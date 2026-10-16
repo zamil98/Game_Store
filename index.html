@@ -76,18 +76,18 @@
   .admin-panel { display:none; }
   .admin-panel.active { display:block; }
   .admin-tabs { display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; }
-  .admin-tab { padding:10px 20px; background:rgba(255,255,255,0.1); border:none; color:#fff; border-radius:10px; cursor:pointer; }
+  .admin-tab { padding:10px 20px; background:rgba(255,255,255,0.1); border:none; color:#fff; border-radius:10px; cursor:pointer; font-weight:600; }
   .admin-tab.active { background:linear-gradient(90deg,#667eea,#764ba2); }
   .admin-table { width:100%; border-collapse:collapse; background:rgba(255,255,255,0.05); border-radius:15px; overflow:hidden; }
   .admin-table th, .admin-table td { padding:12px; text-align:left; border-bottom:1px solid rgba(255,255,255,0.1); font-size:13px; }
   .admin-table th { background:rgba(255,255,255,0.1); font-weight:600; }
   .admin-table tr:hover { background:rgba(255,255,255,0.05); }
-  .badge { padding:4px 10px; border-radius:20px; font-size:11px; font-weight:600; }
+  .badge { padding:4px 10px; border-radius:20px; font-size:11px; font-weight:600; display:inline-block; }
   .badge-pending { background:rgba(251,140,0,0.3); color:#fb8c00; }
   .badge-approved { background:rgba(67,160,71,0.3); color:#43a047; }
   .badge-rejected { background:rgba(229,57,53,0.3); color:#ef5350; }
-  .upi-id { color:#feca57; font-family:monospace; font-weight:600; }
-  .small-btn { padding:5px 10px; font-size:12px; border-radius:6px; border:none; cursor:pointer; margin-right:5px; }
+  .upi-id { color:#feca57; font-family:monospace; font-weight:600; font-size:12px; }
+  .small-btn { padding:6px 10px; font-size:12px; border-radius:6px; border:none; cursor:pointer; margin:2px; font-weight:600; }
   .small-approve { background:#43a047; color:#fff; }
   .small-reject { background:#e53935; color:#fff; }
   .small-ban { background:#fb8c00; color:#fff; }
@@ -105,8 +105,8 @@
 
   /* UPI Payment */
   .upi-pay-box { background:rgba(255,255,255,0.05); padding:20px; border-radius:15px; text-align:center; margin-bottom:15px; border:2px dashed rgba(102,126,234,0.4); }
-  .qr-container { background:#fff; padding:15px; border-radius:15px; display:inline-block; margin-bottom:15px; min-width:220px; min-height:220px; display:flex; align-items:center; justify-content:center; }
-  .qr-container img, .qr-container canvas { display:block; border-radius:8px; max-width:100%; height:auto; }
+  .qr-container { background:#fff; padding:15px; border-radius:15px; display:flex; align-items:center; justify-content:center; margin-bottom:15px; min-width:220px; min-height:220px; }
+  .qr-container img { display:block; border-radius:8px; max-width:100%; height:auto; }
   .upi-id-box { display:flex; align-items:center; gap:10px; background:rgba(0,0,0,0.3); padding:10px 15px; border-radius:10px; margin-bottom:15px; }
   .upi-id-text { flex:1; font-family:monospace; font-weight:600; color:#feca57; font-size:13px; word-break:break-all; text-align:left; }
   .payment-steps { text-align:left; font-size:12px; opacity:0.8; line-height:1.8; padding:0 10px; margin-bottom:15px; }
@@ -380,42 +380,32 @@
     50% { box-shadow:0 0 25px #43a047, 0 0 40px #66bb6a; }
   }
 
-  ::-webkit-scrollbar { width:6px; }
+  ::-webkit-scrollbar { width:6px; height:6px; }
   ::-webkit-scrollbar-thumb { background:#667eea; border-radius:10px; }
 
   /* ============================================================
-     📱 MOBILE-FRIENDLY (ALL DEVICES)
+     📱 MOBILE-FRIENDLY
      ============================================================ */
   @media (max-width: 768px) {
     body { padding:10px; padding-bottom:calc(10px + env(safe-area-inset-bottom)); font-size:14px; }
-
-    /* Header */
     .header { padding:10px 12px; border-radius:12px; margin-bottom:12px; }
     .logo { font-size:18px; }
     .user-name { font-size:12px; }
     .header .btn-logout { padding:8px 12px; font-size:12px; }
-
-    /* Wallet */
     .wallet-card { padding:18px 15px; border-radius:15px; margin-bottom:14px; }
     .wallet-label { font-size:12px; }
     .wallet-balance { font-size:32px; margin-bottom:14px; }
     .wallet-actions { gap:8px; }
     .wallet-actions .btn { flex:1; min-width:0; padding:10px 6px; font-size:12px; }
-
-    /* Games Grid — 2 columns */
     .section-title { font-size:16px; margin-bottom:12px; }
     .games-grid { grid-template-columns:repeat(2,1fr); gap:10px; }
     .game-card { padding:14px 8px; border-radius:12px; }
     .game-icon { font-size:32px; margin-bottom:6px; }
     .game-name { font-size:12px; }
     .game-desc { font-size:10px; }
-
-    /* Auth */
     .auth-screen { margin:20px auto; padding:25px 18px; border-radius:15px; max-width:100%; }
     .auth-screen h1 { font-size:22px; margin-bottom:18px; }
     .auth-screen input, .auth-screen .btn { font-size:14px; padding:12px; }
-
-    /* Modal — bottom sheet */
     .modal-bg { padding:0; align-items:flex-end; }
     .modal {
       max-width:100% !important;
@@ -430,28 +420,18 @@
     .modal h2 { font-size:18px; }
     .modal input, .modal select { font-size:15px; padding:12px; }
     .game-modal-3d { padding:15px !important; }
-
-    /* 3D stage */
     .game-stage-3d { padding:15px 8px; min-height:180px; border-radius:15px; }
-
-    /* Slots */
     .slot-reels { gap:5px; padding:10px; }
     .reel { width:60px; height:85px; font-size:38px; }
     .slot-symbol-bar { font-size:22px; }
     .slot-symbol-cherry { font-size:34px; }
-
-    /* Aviator */
     .aviator-stage { height:200px; }
     .aviator-multiplier { font-size:36px; top:10px; }
     .aviator-plane { font-size:32px; }
     .aviator-status { font-size:11px; bottom:10px; }
-
-    /* Wheel */
     .wheel-3d-stage { width:200px; height:200px; }
     .wheel-pointer { font-size:24px; }
     .wheel-center { width:42px; height:42px; font-size:16px; }
-
-    /* Dice */
     .dice-3d-stage { width:120px; height:120px; }
     .dice-face { width:95px; height:95px; font-size:46px; border-radius:12px; }
     .dice-face-1 { transform:rotateY(0deg) translateZ(47.5px); }
@@ -460,44 +440,29 @@
     .dice-face-4 { transform:rotateY(-90deg) translateZ(47.5px); }
     .dice-face-5 { transform:rotateX(90deg) translateZ(47.5px); }
     .dice-face-6 { transform:rotateX(-90deg) translateZ(47.5px); }
-
-    /* Crash */
     .crash-stage { height:200px; }
     .crash-multiplier { font-size:40px; }
-
-    /* Disco */
     .disco-stage { width:210px; height:210px; }
     .disco-pointer { font-size:30px; }
     .disco-wheel::after { font-size:40px; }
-
-    /* Game controls */
     .game-controls-3d { flex-direction:column; gap:8px; }
     .big-action-btn { padding:14px; font-size:15px; letter-spacing:0.5px; }
-
-    /* UPI */
     .qr-container { min-width:180px; min-height:180px; padding:10px; }
-    .qr-container img, .qr-container canvas { width:180px !important; height:180px !important; }
+    .qr-container img { width:180px !important; height:180px !important; }
     .upi-id-text { font-size:11px; }
     .upi-id-box { padding:8px 10px; gap:6px; }
     .payment-steps { font-size:11px; }
     .amount-highlight { font-size:18px; }
     .open-upi-btn { padding:12px; font-size:13px; }
-
-    /* Admin — horizontal scroll tables */
     .admin-tabs { gap:6px; }
-    .admin-tab { padding:8px 10px; font-size:12px; flex:1; min-width:0; }
+    .admin-tab { padding:8px 10px; font-size:11px; flex:1; min-width:0; }
     .admin-table { display:block; overflow-x:auto; white-space:nowrap; -webkit-overflow-scrolling:touch; border-radius:12px; }
     .admin-table th, .admin-table td { padding:8px 10px; font-size:11px; }
-
-    /* Toast */
+    .small-btn { padding:5px 8px; font-size:11px; }
     .toast { top:10px; right:10px; left:10px; max-width:none; padding:12px 16px; font-size:13px; text-align:center; transform:translateY(-150px); }
     .toast.show { transform:translateY(0); }
-
-    /* History */
     .history-item { padding:10px 12px; font-size:12px; }
     .history-amount { font-size:14px; }
-
-    /* Result */
     .result-box { font-size:15px; padding:15px; }
   }
 
@@ -653,7 +618,6 @@
 /* ============================================================
    ⚠️ APNA FIREBASE CONFIG YAHAN PASTE KARO
    ============================================================ */
-
 const firebaseConfig = {
   apiKey: "AIzaSyAVYOHmep95U9eWJlXaZebeQK4YJS0bcF0",
   authDomain: "aviator-a5883.firebaseapp.com",
@@ -805,14 +769,7 @@ auth.onAuthStateChanged(async user => {
 
   currentUser = user;
 
-  if (isRegistering) {
-    document.getElementById('authScreen').style.display = 'none';
-    document.getElementById('mainApp').style.display = 'block';
-    renderGames();
-    setTimeout(() => setupProfileListener(user.uid), 500);
-    return;
-  }
-
+  // Check admin status
   if (ADMIN_EMAILS.includes(user.email)) {
     isAdmin = true;
     db.ref('admins/' + user.uid).set(true).catch(()=>{});
@@ -823,25 +780,40 @@ auth.onAuthStateChanged(async user => {
     } catch(e) { isAdmin = false; }
   }
 
+  // Load or create profile
   const ref = db.ref('users/' + user.uid);
   const snap = await ref.get();
 
   if (!snap.exists()) {
-    const baseName = (user.email || 'user').split('@')[0];
+    // Generate unique username
+    const baseName = (user.email || 'user').split('@')[0].replace(/[^a-zA-Z0-9_]/g,'') || 'user';
     let username = baseName;
     let counter = 1;
     while (true) {
       const uSnap = await db.ref('usernames/' + username.toLowerCase()).get();
       if (!uSnap.exists()) break;
       username = baseName + counter++;
+      if (counter > 1000) { username = baseName + Date.now(); break; }
     }
-    await ref.set({
-      uid: user.uid, username, email: user.email,
-      upiId: '', balance: WELCOME_BONUS, totalDeposit: 0,
-      totalWithdraw: 0, isBanned: false, createdAt: Date.now()
-    });
+    
+    const profile = {
+      uid: user.uid,
+      username: isAdmin ? 'Admin' : username,
+      email: user.email,
+      upiId: '',
+      balance: isAdmin ? 0 : WELCOME_BONUS,
+      totalDeposit: 0,
+      totalWithdraw: 0,
+      isBanned: false,
+      createdAt: Date.now()
+    };
+    
+    await ref.set(profile);
     await db.ref('usernames/' + username.toLowerCase()).set(user.uid);
-    await addTransaction(user.uid, username, 'bonus', WELCOME_BONUS, 'Welcome Bonus');
+    
+    if (!isAdmin) {
+      await addTransaction(user.uid, username, 'bonus', WELCOME_BONUS, 'Welcome Bonus');
+    }
   }
 
   setupProfileListener(user.uid);
@@ -1685,9 +1657,14 @@ async function submitDepositRequest() {
     if (existing.exists()) throw new Error('Ye UTR already submit ho chuka hai');
 
     await db.ref('deposits').push().set({
-      uid, username: currentProfile.username, email: currentUser.email,
-      amount: amt, utr, upiId: MERCHANT_UPI,
-      status: 'pending', createdAt: Date.now()
+      uid, 
+      username: currentProfile.username, 
+      email: currentUser.email,
+      amount: amt, 
+      utr, 
+      upiId: MERCHANT_UPI,
+      status: 'pending', 
+      createdAt: Date.now()
     });
 
     closeModal();
@@ -1737,9 +1714,12 @@ async function doWithdraw() {
     await db.ref('users/' + uid).update({ upiId: upi });
 
     await db.ref('withdrawals').push().set({
-      uid, username: currentProfile.username,
-      upiId: upi, amount: amt,
-      status: 'pending', createdAt: Date.now()
+      uid, 
+      username: currentProfile.username,
+      upiId: upi, 
+      amount: amt,
+      status: 'pending', 
+      createdAt: Date.now()
     });
 
     await addTransaction(uid, currentProfile.username, 'withdraw', -amt, 'Withdrawal Request');
@@ -1791,80 +1771,142 @@ function openAdminPanel() {
   document.getElementById('authScreen').style.display = 'none';
   document.getElementById('mainApp').style.display = 'none';
   document.getElementById('adminPanel').classList.add('active');
-  document.getElementById('adminUser').textContent = currentUser.email;
+  document.getElementById('adminUser').textContent = currentUser ? currentUser.email : 'Admin';
   startAdminListeners();
 }
 
 function adminLogout() {
+  // Detach listeners
+  adminListeners.forEach(({ref, ev, cb}) => ref.off(ev, cb));
+  adminListeners = [];
   location.href = location.pathname;
 }
 
 function startAdminListeners() {
+  // Clear old listeners
   adminListeners.forEach(({ref, ev, cb}) => ref.off(ev, cb));
   adminListeners = [];
 
+  // === USERS ===
   const usersRef = db.ref('users');
   const usersCb = usersRef.on('value', snap => {
     const users = [];
-    snap.forEach(c => users.push(c.val()));
+    snap.forEach(c => {
+      const u = c.val();
+      if (u) {
+        users.push({
+          key: c.key,
+          uid: u.uid || c.key,
+          username: u.username || 'Unknown',
+          email: u.email || '-',
+          upiId: u.upiId || '',
+          balance: u.balance || 0,
+          isBanned: !!u.isBanned
+        });
+      }
+    });
+    // Sort by createdAt or username
+    users.sort((a, b) => (a.username || '').localeCompare(b.username || ''));
     renderUsers(users);
   });
   adminListeners.push({ref: usersRef, ev: 'value', cb: usersCb});
 
+  // === DEPOSITS ===
   const depRef = db.ref('deposits');
   const depCb = depRef.on('value', snap => {
     const deps = [];
-    snap.forEach(c => deps.push({ key: c.key, ...c.val() }));
-    deps.sort((a,b) => (b.createdAt||0) - (a.createdAt||0));
+    snap.forEach(c => {
+      const d = c.val();
+      if (d) {
+        deps.push({
+          key: c.key,
+          uid: d.uid || '',
+          username: d.username || 'Unknown',
+          amount: d.amount || 0,
+          utr: d.utr || '-',
+          status: d.status || 'pending',
+          createdAt: d.createdAt || 0
+        });
+      }
+    });
+    deps.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
     renderDeposits(deps);
   });
   adminListeners.push({ref: depRef, ev: 'value', cb: depCb});
 
+  // === WITHDRAWALS ===
   const wdRef = db.ref('withdrawals');
   const wdCb = wdRef.on('value', snap => {
     const wds = [];
-    snap.forEach(c => wds.push({ key: c.key, ...c.val() }));
-    wds.sort((a,b) => (b.createdAt||0) - (a.createdAt||0));
+    snap.forEach(c => {
+      const w = c.val();
+      if (w) {
+        wds.push({
+          key: c.key,
+          uid: w.uid || '',
+          username: w.username || 'Unknown',
+          upiId: w.upiId || '-',
+          amount: w.amount || 0,
+          status: w.status || 'pending',
+          createdAt: w.createdAt || 0
+        });
+      }
+    });
+    wds.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
     renderWithdrawals(wds);
   });
   adminListeners.push({ref: wdRef, ev: 'value', cb: wdCb});
 
-  const txRef = db.ref('transactions').limitToLast(100);
+  // === TRANSACTIONS ===
+  const txRef = db.ref('transactions').limitToLast(200);
   const txCb = txRef.on('value', snap => {
     const txs = [];
-    snap.forEach(c => txs.push(c.val()));
+    snap.forEach(c => {
+      const t = c.val();
+      if (t) txs.push(t);
+    });
     txs.reverse();
     renderTx(txs);
   });
   adminListeners.push({ref: txRef, ev: 'value', cb: txCb});
 
-  const statCb = db.ref('users').on('value', snap => {
+  // === STATS ===
+  const statCb = usersRef.on('value', snap => {
     let totalDep = 0, usersCount = 0;
     snap.forEach(c => {
-      usersCount++;
-      totalDep += c.val().totalDeposit || 0;
+      const u = c.val();
+      if (u) {
+        usersCount++;
+        totalDep += u.totalDeposit || 0;
+      }
     });
-    document.getElementById('statUsers').textContent = usersCount;
-    document.getElementById('statDeposits').textContent = '₹' + totalDep;
+    const el1 = document.getElementById('statUsers');
+    const el2 = document.getElementById('statDeposits');
+    if (el1) el1.textContent = usersCount;
+    if (el2) el2.textContent = '₹' + totalDep;
   });
-  adminListeners.push({ref: db.ref('users'), ev: 'value', cb: statCb});
+  adminListeners.push({ref: usersRef, ev: 'value', cb: statCb});
 
-  const wdStatCb = db.ref('withdrawals').on('value', snap => {
+  const wdStatCb = wdRef.on('value', snap => {
     let pending = 0, withdrawn = 0;
     snap.forEach(c => {
       const w = c.val();
-      if (w.status === 'pending') pending++;
-      if (w.status === 'approved') withdrawn += w.amount;
+      if (w) {
+        if ((w.status || 'pending') === 'pending') pending++;
+        if (w.status === 'approved') withdrawn += (w.amount || 0);
+      }
     });
-    document.getElementById('statPending').textContent = pending;
-    document.getElementById('statWithdrawn').textContent = '₹' + withdrawn;
+    const el1 = document.getElementById('statPending');
+    const el2 = document.getElementById('statWithdrawn');
+    if (el1) el1.textContent = pending;
+    if (el2) el2.textContent = '₹' + withdrawn;
   });
-  adminListeners.push({ref: db.ref('withdrawals'), ev: 'value', cb: wdStatCb});
+  adminListeners.push({ref: wdRef, ev: 'value', cb: wdStatCb});
 }
 
 function switchAdminTab(tab, ev) {
   document.querySelectorAll('.admin-tab').forEach(b => b.classList.remove('active'));
-  ev.target.classList.add('active');
+  if (ev && ev.target) ev.target.classList.add('active');
   document.getElementById('adminUsers').style.display = tab === 'users' ? 'block' : 'none';
   document.getElementById('adminDeposits').style.display = tab === 'deposits' ? 'block' : 'none';
   document.getElementById('adminWithdrawals').style.display = tab === 'withdrawals' ? 'block' : 'none';
@@ -1872,117 +1914,199 @@ function switchAdminTab(tab, ev) {
 }
 
 function renderUsers(users) {
-  document.getElementById('usersTable').innerHTML = users.map(u => `
+  const tbody = document.getElementById('usersTable');
+  if (!tbody) return;
+  
+  if (!users || users.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;opacity:0.5;">No users</td></tr>';
+    return;
+  }
+  
+  tbody.innerHTML = users.map(u => `
     <tr>
-      <td>${u.username||'-'}</td>
-      <td style="font-size:11px;">${u.email||'-'}</td>
+      <td><strong>${u.username || 'Unknown'}</strong></td>
+      <td style="font-size:11px;">${u.email || '-'}</td>
       <td class="upi-id">${u.upiId || '-'}</td>
-      <td>₹${u.balance||0}</td>
+      <td>₹${u.balance || 0}</td>
       <td>${u.isBanned ? '<span class="badge badge-rejected">BANNED</span>' : '<span class="badge badge-approved">ACTIVE</span>'}</td>
       <td>
-        <button class="small-btn small-add" onclick="adminAddBalance('${u.uid}','${u.username}')">+ ₹</button>
-        <button class="small-btn small-ban" onclick="adminBan('${u.uid}', ${!!u.isBanned})">${u.isBanned?'Unban':'Ban'}</button>
+        <button class="small-btn small-add" onclick="adminAddBalance('${u.uid}','${u.username}')">+₹</button>
+        <button class="small-btn small-ban" onclick="adminBan('${u.uid}', ${u.isBanned ? 'true' : 'false'})">${u.isBanned?'Unban':'Ban'}</button>
       </td>
     </tr>
-  `).join('') || '<tr><td colspan="6" style="text-align:center;padding:20px;opacity:0.5;">No users</td></tr>';
+  `).join('');
 }
 
 function renderDeposits(deps) {
-  document.getElementById('depositsTable').innerHTML = deps.map(d => `
+  const tbody = document.getElementById('depositsTable');
+  if (!tbody) return;
+  
+  if (!deps || deps.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;opacity:0.5;">No deposit requests</td></tr>';
+    return;
+  }
+  
+  tbody.innerHTML = deps.map(d => {
+    const status = d.status || 'pending';
+    return `
     <tr>
-      <td>${d.username}</td>
-      <td style="color:#66bb6a;font-weight:600;">₹${d.amount}</td>
-      <td style="font-family:monospace;font-size:11px;color:#feca57;">${d.utr}</td>
-      <td><span class="badge badge-${d.status}">${(d.status||'').toUpperCase()}</span></td>
-      <td>${d.createdAt ? new Date(d.createdAt).toLocaleString() : '-'}</td>
+      <td><strong>${d.username || 'Unknown'}</strong></td>
+      <td style="color:#66bb6a;font-weight:600;">₹${d.amount || 0}</td>
+      <td style="font-family:monospace;font-size:11px;color:#feca57;">${d.utr || '-'}</td>
+      <td><span class="badge badge-${status}">${status.toUpperCase()}</span></td>
+      <td style="font-size:11px;">${d.createdAt ? new Date(d.createdAt).toLocaleString() : '-'}</td>
       <td>
-        ${d.status === 'pending' ? `
-          <button class="small-btn small-approve" onclick="adminDeposit('${d.key}','approved')">✅</button>
-          <button class="small-btn small-reject" onclick="adminDeposit('${d.key}','rejected')">❌</button>
-        ` : '-'}
+        ${status === 'pending' ? `
+          <button class="small-btn small-approve" onclick="adminDeposit('${d.key}','approved')">✅ Approve</button>
+          <button class="small-btn small-reject" onclick="adminDeposit('${d.key}','rejected')">❌ Reject</button>
+        ` : '<span style="opacity:0.5;font-size:11px;">✓ Done</span>'}
       </td>
     </tr>
-  `).join('') || '<tr><td colspan="6" style="text-align:center;padding:20px;opacity:0.5;">No deposit requests</td></tr>';
+  `;
+  }).join('');
 }
 
 function renderWithdrawals(wds) {
-  document.getElementById('withdrawalsTable').innerHTML = wds.map(w => `
+  const tbody = document.getElementById('withdrawalsTable');
+  if (!tbody) return;
+  
+  if (!wds || wds.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;opacity:0.5;">No withdrawal requests</td></tr>';
+    return;
+  }
+  
+  tbody.innerHTML = wds.map(w => {
+    const status = w.status || 'pending';
+    return `
     <tr>
-      <td>${w.username}</td>
-      <td class="upi-id">${w.upiId}</td>
-      <td>₹${w.amount}</td>
-      <td><span class="badge badge-${w.status}">${(w.status||'').toUpperCase()}</span></td>
-      <td>${w.createdAt ? new Date(w.createdAt).toLocaleString() : '-'}</td>
+      <td><strong>${w.username || 'Unknown'}</strong></td>
+      <td class="upi-id">${w.upiId || '-'}</td>
+      <td style="color:#fb8c00;font-weight:600;">₹${w.amount || 0}</td>
+      <td><span class="badge badge-${status}">${status.toUpperCase()}</span></td>
+      <td style="font-size:11px;">${w.createdAt ? new Date(w.createdAt).toLocaleString() : '-'}</td>
       <td>
-        ${w.status === 'pending' ? `
-          <button class="small-btn small-approve" onclick="adminWD('${w.key}','approved')">✅</button>
-          <button class="small-btn small-reject" onclick="adminWD('${w.key}','rejected')">❌</button>
-        ` : '-'}
+        ${status === 'pending' ? `
+          <button class="small-btn small-approve" onclick="adminWD('${w.key}','approved')">✅ Approve</button>
+          <button class="small-btn small-reject" onclick="adminWD('${w.key}','rejected')">❌ Reject</button>
+        ` : '<span style="opacity:0.5;font-size:11px;">✓ Done</span>'}
       </td>
     </tr>
-  `).join('') || '<tr><td colspan="6" style="text-align:center;padding:20px;opacity:0.5;">No withdrawal requests</td></tr>';
+  `;
+  }).join('');
 }
 
 function renderTx(txs) {
-  document.getElementById('txTable').innerHTML = txs.map(t => `
+  const tbody = document.getElementById('txTable');
+  if (!tbody) return;
+  
+  if (!txs || txs.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:20px;opacity:0.5;">No transactions</td></tr>';
+    return;
+  }
+  
+  tbody.innerHTML = txs.map(t => `
     <tr>
-      <td>${t.username||'-'}</td>
-      <td>${t.type}</td>
-      <td style="color:${t.amount>0?'#66bb6a':'#ef5350'}">${t.amount>0?'+':''}₹${t.amount}</td>
+      <td>${t.username || '-'}</td>
+      <td>${t.type || '-'}</td>
+      <td style="color:${t.amount>0?'#66bb6a':'#ef5350'};font-weight:600;">${t.amount>0?'+':''}₹${t.amount}</td>
       <td>${t.game || '-'}</td>
-      <td>${t.time ? new Date(t.time).toLocaleString() : '-'}</td>
+      <td style="font-size:11px;">${t.time ? new Date(t.time).toLocaleString() : '-'}</td>
     </tr>
-  `).join('') || '<tr><td colspan="5" style="text-align:center;padding:20px;opacity:0.5;">No transactions</td></tr>';
+  `).join('');
 }
 
 async function adminBan(uid, currentBan) {
-  await db.ref('users/' + uid).update({ isBanned: !currentBan });
-  toast(!currentBan ? '🚫 User banned' : '✅ User unbanned', 'success');
+  if (!uid) return toast('Invalid user', 'error');
+  try {
+    await db.ref('users/' + uid).update({ isBanned: !currentBan });
+    toast(!currentBan ? '🚫 User banned' : '✅ User unbanned', 'success');
+  } catch (e) {
+    toast('❌ ' + e.message, 'error');
+  }
 }
 
 async function adminAddBalance(uid, username) {
+  if (!uid) return toast('Invalid user', 'error');
   const amt = prompt('Amount to add (use - for deduct):');
   if (!amt || isNaN(amt)) return;
   const num = parseInt(amt);
-  await db.ref('users/' + uid).child('balance').transaction(c => (c||0) + num);
-  await addTransaction(uid, username, 'admin_adjust', num, 'Admin');
-  toast('✅ Balance adjusted', 'success');
+  try {
+    await db.ref('users/' + uid).child('balance').transaction(c => (c || 0) + num);
+    await addTransaction(uid, username, 'admin_adjust', num, 'Admin');
+    toast('✅ Balance adjusted', 'success');
+  } catch (e) {
+    toast('❌ ' + e.message, 'error');
+  }
 }
 
 async function adminDeposit(key, status) {
-  const depRef = db.ref('deposits/' + key);
-  const snap = await depRef.get();
-  if (!snap.exists()) return;
-  const d = snap.val();
-  if (d.status !== 'pending') return toast('Already processed', 'error');
+  if (!key || key === 'undefined') return toast('❌ Invalid deposit', 'error');
+  try {
+    const depRef = db.ref('deposits/' + key);
+    const snap = await depRef.get();
+    if (!snap.exists()) return toast('❌ Deposit not found', 'error');
+    
+    const d = snap.val();
+    const currentStatus = d.status || 'pending';
+    
+    if (currentStatus !== 'pending') {
+      return toast('⚠️ Already ' + currentStatus, 'error');
+    }
 
-  await depRef.update({ status, processedAt: Date.now() });
+    await depRef.update({ 
+      status, 
+      processedAt: Date.now(),
+      processedBy: currentUser ? currentUser.email : 'admin'
+    });
 
-  if (status === 'approved') {
-    await db.ref('users/' + d.uid).child('balance').transaction(c => (c||0) + d.amount);
-    await db.ref('users/' + d.uid).child('totalDeposit').transaction(c => (c||0) + d.amount);
-    await addTransaction(d.uid, d.username, 'deposit', d.amount, 'UPI Deposit', { utr: d.utr });
-    toast(`✅ ₹${d.amount} added to ${d.username}`, 'success');
-  } else {
-    toast('❌ Deposit rejected', 'success');
+    if (status === 'approved') {
+      if (!d.uid) return toast('❌ User ID missing', 'error');
+      await db.ref('users/' + d.uid).child('balance').transaction(c => (c || 0) + (d.amount || 0));
+      await db.ref('users/' + d.uid).child('totalDeposit').transaction(c => (c || 0) + (d.amount || 0));
+      await addTransaction(d.uid, d.username || 'Unknown', 'deposit', d.amount || 0, 'UPI Deposit', { utr: d.utr });
+      toast(`✅ ₹${d.amount} added to ${d.username || 'user'}`, 'success');
+    } else {
+      toast('❌ Deposit rejected', 'info');
+    }
+  } catch (e) {
+    console.error('adminDeposit error:', e);
+    toast('❌ Error: ' + e.message, 'error');
   }
 }
 
 async function adminWD(key, status) {
-  const wdRef = db.ref('withdrawals/' + key);
-  const snap = await wdRef.get();
-  if (!snap.exists()) return;
-  const w = snap.val();
+  if (!key || key === 'undefined') return toast('❌ Invalid withdrawal', 'error');
+  try {
+    const wdRef = db.ref('withdrawals/' + key);
+    const snap = await wdRef.get();
+    if (!snap.exists()) return toast('❌ Withdrawal not found', 'error');
+    
+    const w = snap.val();
+    const currentStatus = w.status || 'pending';
+    
+    if (currentStatus !== 'pending') {
+      return toast('⚠️ Already ' + currentStatus, 'error');
+    }
 
-  await wdRef.update({ status });
+    await wdRef.update({ 
+      status,
+      processedAt: Date.now(),
+      processedBy: currentUser ? currentUser.email : 'admin'
+    });
 
-  if (status === 'rejected') {
-    await db.ref('users/' + w.uid).child('balance').transaction(c => (c||0) + w.amount);
-    await addTransaction(w.uid, w.username, 'refund', w.amount, 'WD Rejected');
-  } else {
-    await db.ref('users/' + w.uid).child('totalWithdraw').transaction(c => (c||0) + w.amount);
+    if (status === 'rejected') {
+      if (!w.uid) return toast('❌ User ID missing', 'error');
+      await db.ref('users/' + w.uid).child('balance').transaction(c => (c || 0) + (w.amount || 0));
+      await addTransaction(w.uid, w.username || 'Unknown', 'refund', w.amount || 0, 'WD Rejected');
+      toast('❌ Withdrawal rejected & refunded', 'info');
+    } else {
+      await db.ref('users/' + w.uid).child('totalWithdraw').transaction(c => (c || 0) + (w.amount || 0));
+      toast('✅ Withdrawal approved', 'success');
+    }
+  } catch (e) {
+    console.error('adminWD error:', e);
+    toast('❌ Error: ' + e.message, 'error');
   }
-  toast(`Withdrawal ${status}`, 'success');
 }
 
 /* ============================================================
@@ -1993,6 +2117,7 @@ function showModal(html) {
   document.getElementById('modalBg').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
+
 function closeModal() {
   if (aviatorState.running) { clearInterval(aviatorState.interval); aviatorState.running = false; }
   if (crashState.running) { clearInterval(crashState.interval); crashState.running = false; }
