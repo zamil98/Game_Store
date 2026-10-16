@@ -9,19 +9,16 @@
   body { background:linear-gradient(135deg,#0f0c29,#302b63,#24243e); min-height:100vh; color:#fff; padding:15px; }
   .container { max-width:1100px; margin:0 auto; }
 
-  /* Header */
   .header { display:flex; justify-content:space-between; align-items:center; padding:15px 20px; background:rgba(255,255,255,0.05); border-radius:15px; margin-bottom:20px; backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.1); flex-wrap:wrap; gap:10px; }
   .logo { font-size:24px; font-weight:bold; background:linear-gradient(90deg,#ff6b6b,#feca57); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
   .user-info { display:flex; align-items:center; gap:15px; flex-wrap:wrap; }
   .user-name { font-size:14px; opacity:0.8; }
 
-  /* Wallet */
   .wallet-card { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); padding:25px; border-radius:20px; margin-bottom:20px; box-shadow:0 10px 30px rgba(102,126,234,0.3); }
   .wallet-label { font-size:14px; opacity:0.9; margin-bottom:5px; }
   .wallet-balance { font-size:42px; font-weight:bold; margin-bottom:20px; }
   .wallet-actions { display:flex; gap:10px; flex-wrap:wrap; }
 
-  /* Buttons */
   .btn { padding:10px 20px; border:none; border-radius:10px; cursor:pointer; font-weight:600; font-size:14px; transition:all 0.3s; }
   .btn:hover { transform:translateY(-2px); box-shadow:0 5px 15px rgba(0,0,0,0.3); }
   .btn:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
@@ -32,7 +29,6 @@
   .btn-cancel { background:rgba(255,255,255,0.1); color:#fff; }
   .btn-copy { background:#2196f3; color:#fff; font-size:12px; padding:8px 14px; }
 
-  /* Games Grid */
   .section-title { font-size:20px; margin-bottom:15px; font-weight:600; }
   .games-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:15px; margin-bottom:20px; }
   .game-card { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:15px; padding:20px; text-align:center; cursor:pointer; transition:all 0.3s; backdrop-filter:blur(10px); position:relative; overflow:hidden; }
@@ -43,7 +39,6 @@
   .game-name { font-size:14px; font-weight:600; position:relative; z-index:1; }
   .game-desc { font-size:11px; opacity:0.6; margin-top:4px; position:relative; z-index:1; }
 
-  /* Modal */
   .modal-bg { position:fixed; inset:0; background:rgba(0,0,0,0.85); display:none; align-items:center; justify-content:center; z-index:1000; padding:15px; }
   .modal-bg.active { display:flex; }
   .modal { background:#1a1a2e; border-radius:20px; padding:30px; max-width:440px; width:100%; border:1px solid rgba(255,255,255,0.1); max-height:92vh; overflow-y:auto; }
@@ -53,25 +48,21 @@
   .modal-btns { display:flex; gap:10px; margin-top:10px; }
   .modal-btns .btn { flex:1; }
 
-  /* Result */
   .result-box { text-align:center; padding:20px; border-radius:15px; margin-top:15px; font-size:18px; font-weight:bold; }
   .result-win { background:rgba(67,160,71,0.2); border:2px solid #43a047; color:#66bb6a; }
   .result-lose { background:rgba(229,57,53,0.2); border:2px solid #e53935; color:#ef5350; }
 
-  /* Auth */
   .auth-screen { max-width:400px; margin:60px auto; background:rgba(255,255,255,0.05); padding:40px; border-radius:20px; border:1px solid rgba(255,255,255,0.1); backdrop-filter:blur(10px); }
   .auth-screen h1 { text-align:center; margin-bottom:25px; font-size:28px; background:linear-gradient(90deg,#667eea,#feca57); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
   .tab-btns { display:flex; margin-bottom:20px; background:rgba(255,255,255,0.05); border-radius:10px; padding:4px; }
   .tab-btn { flex:1; padding:10px; border:none; background:transparent; color:#fff; cursor:pointer; border-radius:8px; font-weight:600; }
   .tab-btn.active { background:linear-gradient(90deg,#667eea,#764ba2); }
 
-  /* History */
   .history-list { max-height:300px; overflow-y:auto; }
   .history-item { display:flex; justify-content:space-between; padding:10px; background:rgba(255,255,255,0.05); border-radius:10px; margin-bottom:8px; font-size:13px; }
   .history-amount.win { color:#66bb6a; }
   .history-amount.lose { color:#ef5350; }
 
-  /* Admin */
   .admin-panel { display:none; }
   .admin-panel.active { display:block; }
   .admin-tabs { display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; }
@@ -92,7 +83,6 @@
   .small-ban { background:#fb8c00; color:#fff; }
   .small-add { background:#667eea; color:#fff; }
 
-  /* Toast */
   .toast { position:fixed; top:20px; right:20px; padding:15px 25px; border-radius:10px; color:#fff; font-weight:600; z-index:2000; transform:translateX(400px); transition:transform 0.4s; max-width:90%; }
   .toast.show { transform:translateX(0); }
   .toast.success { background:#43a047; }
@@ -102,9 +92,8 @@
   .loader { display:inline-block; width:16px; height:16px; border:2px solid rgba(255,255,255,0.3); border-top-color:#fff; border-radius:50%; animation:spin 0.6s linear infinite; vertical-align:middle; margin-right:8px; }
   @keyframes spin { to { transform:rotate(360deg); } }
 
-  /* UPI Payment */
   .upi-pay-box { background:rgba(255,255,255,0.05); padding:20px; border-radius:15px; text-align:center; margin-bottom:15px; border:2px dashed rgba(102,126,234,0.4); }
-  .qr-container { background:#fff; padding:15px; border-radius:15px; display:inline-block; margin-bottom:15px; min-width:220px; min-height:220px; display:flex; align-items:center; justify-content:center; }
+  .qr-container { background:#fff; padding:15px; border-radius:15px; display:inline-flex; align-items:center; justify-content:center; margin-bottom:15px; min-width:220px; min-height:220px; }
   .qr-container img, .qr-container canvas { display:block; border-radius:8px; }
   .upi-id-box { display:flex; align-items:center; gap:10px; background:rgba(0,0,0,0.3); padding:10px 15px; border-radius:10px; margin-bottom:15px; }
   .upi-id-text { flex:1; font-family:monospace; font-weight:600; color:#feca57; font-size:13px; word-break:break-all; text-align:left; }
@@ -113,162 +102,40 @@
   .amount-highlight { color:#66bb6a; font-size:20px; font-weight:bold; }
   .open-upi-btn { display:block; margin-top:12px; padding:12px; background:linear-gradient(90deg,#43a047,#66bb6a); color:#fff; text-decoration:none; border-radius:10px; font-weight:600; text-align:center; }
 
-  /* ==================== 3D GAME STYLES ==================== */
   .game-modal-3d { max-width:500px !important; padding:25px !important; }
   .game-stage-3d {
     background:radial-gradient(ellipse at center, #2a1a4a 0%, #0a0a1a 100%);
-    border-radius:20px;
-    padding:25px 15px;
-    margin-bottom:15px;
+    border-radius:20px; padding:25px 15px; margin-bottom:15px;
     border:2px solid rgba(102,126,234,0.4);
-    position:relative;
-    overflow:hidden;
-    min-height:220px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    position:relative; overflow:hidden;
+    min-height:220px; display:flex; align-items:center; justify-content:center;
   }
 
-  /* Crazy 777 Slots */
   .slot-machine-3d { perspective:1200px; width:100%; }
-  .slot-reels {
-    display:flex; gap:8px; justify-content:center;
-    padding:15px;
-    background:linear-gradient(180deg,#1a1a2e,#0a0a1a);
-    border-radius:15px;
-    border:3px solid #feca57;
-    box-shadow:0 0 30px rgba(254,202,87,0.5), inset 0 0 20px rgba(0,0,0,0.8);
-  }
-  .reel {
-    width:70px; height:100px;
-    background:linear-gradient(180deg,#fff,#eee);
-    border-radius:10px;
-    display:flex; align-items:center; justify-content:center;
-    font-size:48px;
-    font-weight:bold;
-    color:#111;
-    overflow:hidden;
-    position:relative;
-    box-shadow:inset 0 0 15px rgba(0,0,0,0.3);
-  }
+  .slot-reels { display:flex; gap:8px; justify-content:center; padding:15px; background:linear-gradient(180deg,#1a1a2e,#0a0a1a); border-radius:15px; border:3px solid #feca57; box-shadow:0 0 30px rgba(254,202,87,0.5), inset 0 0 20px rgba(0,0,0,0.8); }
+  .reel { width:70px; height:100px; background:linear-gradient(180deg,#fff,#eee); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:48px; font-weight:bold; color:#111; overflow:hidden; position:relative; box-shadow:inset 0 0 15px rgba(0,0,0,0.3); }
   .reel.spinning { animation:spinReel 0.15s linear infinite; }
-  @keyframes spinReel {
-    0% { transform:translateY(-100%); filter:blur(2px); }
-    100% { transform:translateY(100%); filter:blur(2px); }
-  }
-  .reel.win-highlight {
-    animation:winPulse 0.5s ease-in-out 3;
-    box-shadow:0 0 30px #feca57, inset 0 0 15px #feca57;
-  }
+  @keyframes spinReel { 0% { transform:translateY(-100%); filter:blur(2px); } 100% { transform:translateY(100%); filter:blur(2px); } }
+  .reel.win-highlight { animation:winPulse 0.5s ease-in-out 3; box-shadow:0 0 30px #feca57, inset 0 0 15px #feca57; }
   @keyframes winPulse { 50% { transform:scale(1.15); } }
   .slot-symbol-7 { color:#e53935; font-weight:900; }
   .slot-symbol-bar { font-size:30px; color:#111; }
   .slot-symbol-cherry { font-size:44px; }
 
-  /* Aviator */
-  .aviator-stage {
-    width:100%; height:220px;
-    background:linear-gradient(180deg,#0a1128 0%,#1a2b5c 100%);
-    border-radius:15px;
-    position:relative;
-    overflow:hidden;
-    border:2px solid #4a90e2;
-  }
-  .aviator-grid {
-    position:absolute; inset:0;
-    background-image:
-      linear-gradient(rgba(74,144,226,0.15) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(74,144,226,0.15) 1px, transparent 1px);
-    background-size:40px 40px;
-  }
-  .aviator-plane {
-    position:absolute;
-    font-size:40px;
-    bottom:20px; left:20px;
-    transition:all 0.3s ease-out;
-    filter:drop-shadow(0 0 10px #feca57);
-    transform:rotate(-45deg);
-    z-index:2;
-  }
-  .aviator-multiplier {
-    position:absolute;
-    top:15px; left:50%;
-    transform:translateX(-50%);
-    font-size:48px;
-    font-weight:900;
-    color:#43a047;
-    text-shadow:0 0 20px #43a047;
-    font-family:monospace;
-    z-index:3;
-  }
-  .aviator-status {
-    position:absolute;
-    bottom:15px; left:50%;
-    transform:translateX(-50%);
-    font-size:13px;
-    color:#fff;
-    opacity:0.8;
-    z-index:3;
-  }
+  .aviator-stage { width:100%; height:220px; background:linear-gradient(180deg,#0a1128 0%,#1a2b5c 100%); border-radius:15px; position:relative; overflow:hidden; border:2px solid #4a90e2; }
+  .aviator-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(74,144,226,0.15) 1px, transparent 1px),linear-gradient(90deg, rgba(74,144,226,0.15) 1px, transparent 1px); background-size:40px 40px; }
+  .aviator-plane { position:absolute; font-size:40px; bottom:20px; left:20px; transition:all 0.3s ease-out; filter:drop-shadow(0 0 10px #feca57); transform:rotate(-45deg); z-index:2; }
+  .aviator-multiplier { position:absolute; top:15px; left:50%; transform:translateX(-50%); font-size:48px; font-weight:900; color:#43a047; text-shadow:0 0 20px #43a047; font-family:monospace; z-index:3; }
+  .aviator-status { position:absolute; bottom:15px; left:50%; transform:translateX(-50%); font-size:13px; color:#fff; opacity:0.8; z-index:3; }
 
-  /* Money Wheel */
   .wheel-3d-stage { position:relative; width:240px; height:240px; margin:0 auto; }
-  .wheel-3d {
-    width:100%; height:100%;
-    border-radius:50%;
-    position:relative;
-    transition:transform 4s cubic-bezier(0.25, 0.1, 0.25, 1);
-    box-shadow:0 0 40px rgba(254,202,87,0.6), inset 0 0 30px rgba(0,0,0,0.5), 0 15px 35px rgba(0,0,0,0.7);
-    border:6px solid #feca57;
-    background:conic-gradient(
-      #e53935 0deg 36deg, #43a047 36deg 72deg, #1e88e5 72deg 108deg,
-      #feca57 108deg 144deg, #ab47bc 144deg 180deg, #fb8c00 180deg 216deg,
-      #26c6da 216deg 252deg, #ec407a 252deg 288deg, #66bb6a 288deg 324deg,
-      #5c6bc0 324deg 360deg
-    );
-  }
-  .wheel-pointer {
-    position:absolute;
-    top:-10px; left:50%;
-    transform:translateX(-50%);
-    font-size:30px;
-    color:#feca57;
-    z-index:10;
-    filter:drop-shadow(0 0 8px #feca57);
-  }
-  .wheel-center {
-    position:absolute;
-    top:50%; left:50%;
-    transform:translate(-50%,-50%);
-    width:50px; height:50px;
-    background:radial-gradient(circle, #feca57, #b8860b);
-    border-radius:50%;
-    border:3px solid #fff;
-    display:flex; align-items:center; justify-content:center;
-    font-size:20px;
-    z-index:5;
-    box-shadow:0 0 20px #feca57;
-  }
+  .wheel-3d { width:100%; height:100%; border-radius:50%; position:relative; transition:transform 4s cubic-bezier(0.25, 0.1, 0.25, 1); box-shadow:0 0 40px rgba(254,202,87,0.6), inset 0 0 30px rgba(0,0,0,0.5), 0 15px 35px rgba(0,0,0,0.7); border:6px solid #feca57; background:conic-gradient(#e53935 0deg 36deg, #43a047 36deg 72deg, #1e88e5 72deg 108deg, #feca57 108deg 144deg, #ab47bc 144deg 180deg, #fb8c00 180deg 216deg, #26c6da 216deg 252deg, #ec407a 252deg 288deg, #66bb6a 288deg 324deg, #5c6bc0 324deg 360deg); }
+  .wheel-pointer { position:absolute; top:-10px; left:50%; transform:translateX(-50%); font-size:30px; color:#feca57; z-index:10; filter:drop-shadow(0 0 8px #feca57); }
+  .wheel-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:50px; height:50px; background:radial-gradient(circle, #feca57, #b8860b); border-radius:50%; border:3px solid #fff; display:flex; align-items:center; justify-content:center; font-size:20px; z-index:5; box-shadow:0 0 20px #feca57; }
 
-  /* 3D Dice */
   .dice-3d-stage { perspective:800px; width:150px; height:150px; margin:0 auto; }
-  .dice-3d {
-    width:100%; height:100%;
-    position:relative;
-    transform-style:preserve-3d;
-    transition:transform 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
-  }
-  .dice-face {
-    position:absolute;
-    width:120px; height:120px;
-    background:linear-gradient(135deg,#fff,#ddd);
-    border:3px solid #333;
-    border-radius:15px;
-    display:flex; align-items:center; justify-content:center;
-    font-size:60px;
-    color:#111;
-    box-shadow:inset 0 0 20px rgba(0,0,0,0.2);
-  }
+  .dice-3d { width:100%; height:100%; position:relative; transform-style:preserve-3d; transition:transform 1.5s cubic-bezier(0.25, 0.1, 0.25, 1); }
+  .dice-face { position:absolute; width:120px; height:120px; background:linear-gradient(135deg,#fff,#ddd); border:3px solid #333; border-radius:15px; display:flex; align-items:center; justify-content:center; font-size:60px; color:#111; box-shadow:inset 0 0 20px rgba(0,0,0,0.2); }
   .dice-face-1 { transform:rotateY(0deg) translateZ(60px); }
   .dice-face-2 { transform:rotateY(90deg) translateZ(60px); }
   .dice-face-3 { transform:rotateY(180deg) translateZ(60px); }
@@ -276,108 +143,26 @@
   .dice-face-5 { transform:rotateX(90deg) translateZ(60px); }
   .dice-face-6 { transform:rotateX(-90deg) translateZ(60px); }
 
-  /* Crash Game */
-  .crash-stage {
-    width:100%; height:220px;
-    background:linear-gradient(180deg,#0a0a1a,#1a0a2e);
-    border-radius:15px;
-    position:relative;
-    overflow:hidden;
-    border:2px solid #ec407a;
-  }
+  .crash-stage { width:100%; height:220px; background:linear-gradient(180deg,#0a0a1a,#1a0a2e); border-radius:15px; position:relative; overflow:hidden; border:2px solid #ec407a; }
   .crash-canvas { position:absolute; inset:0; width:100%; height:100%; }
-  .crash-multiplier {
-    position:absolute;
-    top:50%; left:50%;
-    transform:translate(-50%,-50%);
-    font-size:56px;
-    font-weight:900;
-    color:#66bb6a;
-    text-shadow:0 0 25px #66bb6a;
-    font-family:monospace;
-    z-index:3;
-  }
-  .crash-multiplier.crashed {
-    color:#e53935;
-    text-shadow:0 0 25px #e53935;
-    animation:crashShake 0.4s;
-  }
-  @keyframes crashShake {
-    0%,100% { transform:translate(-50%,-50%); }
-    25% { transform:translate(-55%,-50%) rotate(-5deg); }
-    75% { transform:translate(-45%,-50%) rotate(5deg); }
-  }
+  .crash-multiplier { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:56px; font-weight:900; color:#66bb6a; text-shadow:0 0 25px #66bb6a; font-family:monospace; z-index:3; }
+  .crash-multiplier.crashed { color:#e53935; text-shadow:0 0 25px #e53935; animation:crashShake 0.4s; }
+  @keyframes crashShake { 0%,100% { transform:translate(-50%,-50%); } 25% { transform:translate(-55%,-50%) rotate(-5deg); } 75% { transform:translate(-45%,-50%) rotate(5deg); } }
 
-  /* Disco Wheel */
   .disco-stage { position:relative; width:260px; height:260px; margin:0 auto; }
-  .disco-lights {
-    position:absolute; inset:-20px;
-    border-radius:50%;
-    background:conic-gradient(#ff0000,#ff7700,#ffff00,#00ff00,#00ffff,#0000ff,#ff00ff,#ff0000);
-    filter:blur(15px);
-    animation:discoRotate 3s linear infinite;
-    opacity:0.7;
-  }
+  .disco-lights { position:absolute; inset:-20px; border-radius:50%; background:conic-gradient(#ff0000,#ff7700,#ffff00,#00ff00,#00ffff,#0000ff,#ff00ff,#ff0000); filter:blur(15px); animation:discoRotate 3s linear infinite; opacity:0.7; }
   @keyframes discoRotate { to { transform:rotate(360deg); } }
-  .disco-wheel {
-    position:relative;
-    width:100%; height:100%;
-    border-radius:50%;
-    transition:transform 5s cubic-bezier(0.17, 0.67, 0.16, 1);
-    box-shadow:0 0 30px rgba(255,255,255,0.5), 0 15px 40px rgba(0,0,0,0.8);
-    border:8px solid #fff;
-    background:conic-gradient(
-      #ff006e 0deg 45deg, #fb5607 45deg 90deg,
-      #ffbe0b 90deg 135deg, #8338ec 135deg 180deg,
-      #3a86ff 180deg 225deg, #06ffa5 225deg 270deg,
-      #ff006e 270deg 315deg, #fb5607 315deg 360deg
-    );
-  }
-  .disco-wheel::after {
-    content:'💿';
-    position:absolute;
-    top:50%; left:50%;
-    transform:translate(-50%,-50%);
-    font-size:50px;
-    filter:drop-shadow(0 0 15px #fff);
-  }
-  .disco-pointer {
-    position:absolute;
-    top:-15px; left:50%;
-    transform:translateX(-50%);
-    font-size:40px;
-    color:#ffbe0b;
-    filter:drop-shadow(0 0 10px #ffbe0b);
-    z-index:10;
-  }
+  .disco-wheel { position:relative; width:100%; height:100%; border-radius:50%; transition:transform 5s cubic-bezier(0.17, 0.67, 0.16, 1); box-shadow:0 0 30px rgba(255,255,255,0.5), 0 15px 40px rgba(0,0,0,0.8); border:8px solid #fff; background:conic-gradient(#ff006e 0deg 45deg, #fb5607 45deg 90deg, #ffbe0b 90deg 135deg, #8338ec 135deg 180deg, #3a86ff 180deg 225deg, #06ffa5 225deg 270deg, #ff006e 270deg 315deg, #fb5607 315deg 360deg); }
+  .disco-wheel::after { content:'💿'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:50px; filter:drop-shadow(0 0 15px #fff); }
+  .disco-pointer { position:absolute; top:-15px; left:50%; transform:translateX(-50%); font-size:40px; color:#ffbe0b; filter:drop-shadow(0 0 10px #ffbe0b); z-index:10; }
 
-  /* Game controls */
   .game-controls-3d { display:flex; gap:10px; margin-top:15px; }
   .game-controls-3d .btn { flex:1; padding:15px; font-size:16px; }
-  .big-action-btn {
-    background:linear-gradient(135deg,#feca57,#ff6b6b);
-    color:#fff;
-    font-weight:900;
-    font-size:18px;
-    padding:15px;
-    border-radius:12px;
-    border:none;
-    cursor:pointer;
-    text-transform:uppercase;
-    letter-spacing:1px;
-    box-shadow:0 5px 20px rgba(254,202,87,0.5);
-    transition:all 0.2s;
-    width:100%;
-  }
+  .big-action-btn { background:linear-gradient(135deg,#feca57,#ff6b6b); color:#fff; font-weight:900; font-size:18px; padding:15px; border-radius:12px; border:none; cursor:pointer; text-transform:uppercase; letter-spacing:1px; box-shadow:0 5px 20px rgba(254,202,87,0.5); transition:all 0.2s; width:100%; }
   .big-action-btn:hover { transform:translateY(-2px); box-shadow:0 8px 25px rgba(254,202,87,0.7); }
   .big-action-btn:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
-  .cashout-btn {
-    background:linear-gradient(135deg,#43a047,#66bb6a) !important;
-    animation:cashPulse 1s infinite;
-  }
-  @keyframes cashPulse {
-    50% { box-shadow:0 0 25px #43a047, 0 0 40px #66bb6a; }
-  }
+  .cashout-btn { background:linear-gradient(135deg,#43a047,#66bb6a) !important; animation:cashPulse 1s infinite; }
+  @keyframes cashPulse { 50% { box-shadow:0 0 25px #43a047, 0 0 40px #66bb6a; } }
 
   ::-webkit-scrollbar { width:6px; }
   ::-webkit-scrollbar-thumb { background:#667eea; border-radius:10px; }
@@ -505,9 +290,8 @@
 
 <script>
 /* ============================================================
-   ⚠️ APNA FIREBASE CONFIG YAHAN PASTE KARO
+   FIREBASE CONFIG
    ============================================================ */
-
 const firebaseConfig = {
   apiKey: "AIzaSyAVYOHmep95U9eWJlXaZebeQK4YJS0bcF0",
   authDomain: "aviator-a5883.firebaseapp.com",
@@ -515,8 +299,7 @@ const firebaseConfig = {
   projectId: "aviator-a5883",
   storageBucket: "aviator-a5883.firebasestorage.app",
   messagingSenderId: "994457571135",
-  appId: "1:994457571135:web:102936cbd65698bfcfcd8a",
-  measurementId: "G-8LRPZ82JC0"
+  appId: "1:994457571135:web:102936cbd65698bfcfcd8a"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -524,7 +307,7 @@ const auth = firebase.auth();
 const db = firebase.database();
 
 /* ============================================================
-   ⚙️ CONFIG
+   CONFIG
    ============================================================ */
 const ADMIN_SECRET = 'x9k2m7';
 const ADMIN_EMAILS = ['admin@gamehub.com'];
@@ -796,7 +579,7 @@ async function addTransaction(uid, username, type, amount, game, extra = {}) {
 }
 
 /* ============================================================
-   GAME MODAL OPENER
+   GAME MODAL
    ============================================================ */
 function openGame(gameId) {
   const g = GAMES.find(x => x.id === gameId);
@@ -975,7 +758,7 @@ async function submitSimpleGame(gameId) {
 }
 
 /* ============================================================
-   🎰 CRAZY 777 SLOTS
+   CRAZY 777 SLOTS
    ============================================================ */
 async function playSlots777() {
   const bet = parseInt(document.getElementById('betInput').value);
@@ -1047,7 +830,7 @@ async function playSlots777() {
 }
 
 /* ============================================================
-   ✈️ AVIATOR
+   AVIATOR
    ============================================================ */
 let aviatorState = { running: false, mult: 1.00, crashAt: 0, bet: 0, interval: null, cashedOut: false };
 
@@ -1155,7 +938,7 @@ function crashAviator() {
 }
 
 /* ============================================================
-   🎡 MONEY WHEEL
+   MONEY WHEEL
    ============================================================ */
 async function playMoneyWheel() {
   const bet = parseInt(document.getElementById('betInput').value);
@@ -1192,7 +975,7 @@ async function playMoneyWheel() {
 }
 
 /* ============================================================
-   🎲 3D DICE
+   3D DICE
    ============================================================ */
 async function playDice3D() {
   const bet = parseInt(document.getElementById('betInput').value);
@@ -1246,7 +1029,7 @@ async function playDice3D() {
 }
 
 /* ============================================================
-   🚀 CRASH GAME
+   CRASH GAME
    ============================================================ */
 let crashState = { running: false, mult: 1.00, crashAt: 0, bet: 0, interval: null, cashedOut: false, points: [] };
 
@@ -1364,7 +1147,7 @@ function crashCrash() {
 }
 
 /* ============================================================
-   🕺 DISCO WHEEL
+   DISCO WHEEL
    ============================================================ */
 async function playDiscoWheel() {
   const bet = parseInt(document.getElementById('betInput').value);
@@ -1401,7 +1184,7 @@ async function playDiscoWheel() {
 }
 
 /* ============================================================
-   💰 DEPOSIT — UPI QR (FIXED)
+   DEPOSIT — UPI QR (FINAL FIXED VERSION)
    ============================================================ */
 function openDeposit() {
   showModal(`
@@ -1413,7 +1196,7 @@ function openDeposit() {
 
     <div class="upi-pay-box">
       <div class="qr-container" id="qrContainer">
-        <div id="qrLoading" style="color:#000;text-align:center;font-size:12px;">Loading QR...</div>
+        <div style="color:#000;text-align:center;font-size:12px;padding:20px;">QR Loading...</div>
       </div>
       <div class="upi-id-box">
         <div class="upi-id-text" id="upiTextEl">${MERCHANT_UPI}</div>
@@ -1446,7 +1229,7 @@ function openDeposit() {
     </div>
   `);
 
-  setTimeout(() => updateQR(), 100);
+  setTimeout(() => updateQR(), 150);
 }
 
 function updateQR() {
@@ -1468,7 +1251,7 @@ function updateQR() {
   const container = document.getElementById('qrContainer');
   if (!container) return;
 
-  // ===== Server-side QR (100% reliable, no library needed) =====
+  // Server-side QR generation (100% reliable)
   const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=10&data=${encodeURIComponent(upiUrl)}`;
 
   container.innerHTML = `<img src="${qrImageUrl}" alt="UPI QR Code" 
@@ -1520,6 +1303,9 @@ function legacyCopy(text) {
   document.body.removeChild(ta);
 }
 
+/* ============================================================
+   SUBMIT DEPOSIT — FIXED (UTR as key, no index needed)
+   ============================================================ */
 async function submitDepositRequest() {
   const amt = parseInt(document.getElementById('depositAmt').value);
   const utr = document.getElementById('utrInput').value.trim();
@@ -1532,25 +1318,42 @@ async function submitDepositRequest() {
 
   try {
     const uid = currentUser.uid;
-    const existing = await db.ref('deposits').orderByChild('utr').equalTo(utr).get();
+
+    // UTR ko key banao (special chars replace)
+    const utrKey = utr.replace(/[.#$\[\]\/]/g, '_');
+    const depRef = db.ref('deposits/' + utrKey);
+
+    // Duplicate check (no index needed)
+    const existing = await depRef.get();
     if (existing.exists()) throw new Error('Ye UTR already submit ho chuka hai');
 
-    await db.ref('deposits').push().set({
-      uid, username: currentProfile.username, email: currentUser.email,
-      amount: amt, utr, upiId: MERCHANT_UPI,
-      status: 'pending', createdAt: Date.now()
+    // Save deposit with UTR as key
+    await depRef.set({
+      uid,
+      username: currentProfile.username,
+      email: currentUser.email,
+      amount: amt,
+      utr,
+      upiId: MERCHANT_UPI,
+      status: 'pending',
+      createdAt: Date.now()
     });
 
     closeModal();
-    toast('✅ Deposit request submitted', 'success');
+    toast('✅ Deposit request submitted — admin verify karega', 'success');
   } catch (e) {
-    toast('❌ ' + e.message, 'error');
+    console.error('Deposit error:', e);
+    let msg = e.message || 'Failed';
+    if (msg.includes('PERMISSION_DENIED')) {
+      msg = 'Firebase rules update karo (deposits node allow karo)';
+    }
+    toast('❌ ' + msg, 'error');
     btn.disabled = false; btn.textContent = '✅ Submit';
   }
 }
 
 /* ============================================================
-   💸 WITHDRAW
+   WITHDRAW
    ============================================================ */
 function openWithdraw() {
   showModal(`
@@ -1558,7 +1361,7 @@ function openWithdraw() {
     <p style="font-size:12px;opacity:0.7;margin-bottom:15px;">Min ₹100. Admin approval ke baad UPI pe aayega.</p>
     <label style="font-size:12px;opacity:0.8;">Amount (₹)</label>
     <input type="number" id="wdAmt" placeholder="Amount" min="100" value="100">
-    <label style="font-size:12px;opacity:0.8;">Your UPI ID</label>
+    <label style="font-size:12px;opacity:0.8;">Your UPI ID (paisa yahan aayega)</label>
     <input type="text" id="wdUpi" placeholder="yourname@upi" value="${currentProfile.upiId || ''}">
     <div class="modal-btns">
       <button class="btn btn-cancel" onclick="closeModal()">Cancel</button>
