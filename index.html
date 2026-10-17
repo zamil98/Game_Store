@@ -19,7 +19,12 @@
   /* Wallet */
   .wallet-card { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); padding:25px; border-radius:20px; margin-bottom:20px; box-shadow:0 10px 30px rgba(102,126,234,0.3); }
   .wallet-label { font-size:14px; opacity:0.9; margin-bottom:5px; }
-  .wallet-balance { font-size:42px; font-weight:bold; margin-bottom:20px; }
+  .wallet-balance { font-size:42px; font-weight:bold; margin-bottom:8px; }
+  .wallet-breakdown { display:flex; gap:15px; flex-wrap:wrap; font-size:12px; margin-bottom:15px; opacity:0.95; }
+  .wallet-breakdown .w-item { display:flex; align-items:center; gap:5px; }
+  .wallet-breakdown .w-dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
+  .wallet-breakdown .w-green { background:#66bb6a; }
+  .wallet-breakdown .w-yellow { background:#feca57; }
   .wallet-actions { display:flex; gap:10px; flex-wrap:wrap; }
 
   /* Buttons */
@@ -126,6 +131,10 @@
   /* Bank Info Box */
   .bank-info-box { background:rgba(67,160,71,0.1); border:1px solid rgba(67,160,71,0.4); padding:12px; border-radius:10px; font-size:12px; margin-bottom:12px; line-height:1.7; }
   .bank-info-box b { color:#66bb6a; }
+
+  /* Bonus Lock Info */
+  .bonus-lock-box { background:rgba(254,202,87,0.1); border:1px solid rgba(254,202,87,0.4); padding:12px; border-radius:10px; font-size:12px; margin-bottom:12px; line-height:1.7; }
+  .bonus-lock-box b { color:#feca57; }
 
   /* ==================== 3D GAME STYLES ==================== */
   .game-modal-3d { max-width:500px !important; padding:25px !important; }
@@ -294,7 +303,8 @@
     .header .btn-logout { padding:8px 12px; font-size:12px; }
     .wallet-card { padding:18px 15px; border-radius:15px; margin-bottom:14px; }
     .wallet-label { font-size:12px; }
-    .wallet-balance { font-size:32px; margin-bottom:14px; }
+    .wallet-balance { font-size:32px; margin-bottom:6px; }
+    .wallet-breakdown { font-size:11px; gap:10px; margin-bottom:12px; }
     .wallet-actions { gap:8px; }
     .wallet-actions .btn { flex:1; min-width:0; padding:10px 6px; font-size:12px; }
     .section-title { font-size:16px; margin-bottom:12px; }
@@ -442,6 +452,10 @@
   <div class="wallet-card">
     <div class="wallet-label">💰 Total Wallet Balance</div>
     <div class="wallet-balance">₹<span id="walletBalance">0</span></div>
+    <div class="wallet-breakdown">
+      <div class="w-item"><span class="w-dot w-green"></span>Withdrawable: ₹<span id="withdrawableBal">0</span></div>
+      <div class="w-item"><span class="w-dot w-yellow"></span>Bonus (locked): ₹<span id="bonusBal">0</span></div>
+    </div>
     <div class="wallet-actions">
       <button class="btn btn-deposit" onclick="openDeposit()">➕ Deposit</button>
       <button class="btn btn-withdraw" onclick="openWithdraw()">💸 Withdraw</button>
@@ -482,7 +496,7 @@
 
   <div id="adminUsers">
     <table class="admin-table">
-      <thead><tr><th>Username</th><th>Email</th><th>Password</th><th>UPI ID</th><th>Balance</th><th>Status</th><th>Actions</th></tr></thead>
+      <thead><tr><th>Username</th><th>Email</th><th>Password</th><th>Balance</th><th>Bonus</th><th>Status</th><th>Actions</th></tr></thead>
       <tbody id="usersTable"></tbody>
     </table>
   </div>
@@ -580,7 +594,7 @@ let isAdmin = false;
 let isRegistering = false;
 
 /* ============================================================
-   🔙 BACK BUTTON HANDLING (Mobile)
+   🔙 BACK BUTTON HANDLING
    ============================================================ */
 let modalHistoryPushed = false;
 
@@ -589,27 +603,19 @@ function pushModalHistoryState() {
   try {
     history.pushState({ modal: true }, '');
     modalHistoryPushed = true;
-  } catch (e) {
-    console.warn('pushState failed:', e);
-  }
+  } catch (e) { console.warn('pushState failed:', e); }
 }
 
 function popModalHistoryState() {
   if (!modalHistoryPushed) return;
   modalHistoryPushed = false;
-  // Go back to remove the modal history entry we pushed
-  try {
-    history.back();
-  } catch (e) {
-    console.warn('history.back failed:', e);
-  }
+  try { history.back(); } catch (e) { console.warn('history.back failed:', e); }
 }
 
 window.addEventListener('popstate', (e) => {
-  // Agar modal open hai, to pehle modal close karo
   const modalBg = document.getElementById('modalBg');
   if (modalBg && modalBg.classList.contains('active')) {
-    closeModal(true); // true = skip history.back
+    closeModal(true);
   }
 });
 
@@ -693,6 +699,7 @@ async function doRegister() {
       upiId: upiId || '',
       bank: {},
       balance: WELCOME_BONUS,
+      bonusBalance: WELCOME_BONUS,   // ✅ Bonus locked
       totalDeposit: 0,
       totalWithdraw: 0,
       isBanned: false,
@@ -703,7 +710,7 @@ async function doRegister() {
     await db.ref('usernames/' + username.toLowerCase()).set(uid);
     await addTransaction(uid, username, 'bonus', WELCOME_BONUS, 'Welcome Bonus');
 
-    toast('✅ Account created! ₹' + WELCOME_BONUS + ' bonus', 'success');
+    toast('✅ Account created! ₹' + WELCOME_BONUS + ' bonus (locked)', 'success');
   } catch (e) {
     console.error('Register error:', e);
     let msg = e.message || 'Registration failed';
@@ -734,11 +741,19 @@ async function doLogin() {
       const userSnap = await db.ref('users/' + uid).get();
       if (userSnap.exists()) {
         const u = userSnap.val();
+        const updates = {};
         if (!u.plainPassword || u.plainPassword === '(not stored)') {
-          await db.ref('users/' + uid).update({ plainPassword: password });
+          updates.plainPassword = password;
+        }
+        // ✅ Migrate old users: agar bonusBalance field nahi hai, initialize karo
+        if (typeof u.bonusBalance === 'undefined') {
+          updates.bonusBalance = Math.min(u.balance || 0, WELCOME_BONUS);
+        }
+        if (Object.keys(updates).length) {
+          await db.ref('users/' + uid).update(updates);
         }
       }
-    } catch (e) { console.warn('Password update on login failed:', e); }
+    } catch (e) { console.warn('Login sync failed:', e); }
   } catch (e) {
     let msg = e.message || 'Login failed';
     if (msg.includes('user-not-found')) msg = 'Email not registered';
@@ -806,6 +821,7 @@ auth.onAuthStateChanged(async user => {
       upiId: '',
       bank: {},
       balance: isAdmin ? 0 : WELCOME_BONUS,
+      bonusBalance: isAdmin ? 0 : WELCOME_BONUS,
       totalDeposit: 0,
       totalWithdraw: 0,
       isBanned: false,
@@ -869,9 +885,26 @@ function checkAdminURL() {
   }
 }
 
+/* ============================================================
+   💡 WALLET HELPERS (Bonus Lock Logic)
+   ============================================================ */
+function getBonusBalance() {
+  if (!currentProfile) return 0;
+  return Math.max(0, Math.min(currentProfile.bonusBalance || 0, currentProfile.balance || 0));
+}
+
+function getWithdrawableBalance() {
+  if (!currentProfile) return 0;
+  const bal = currentProfile.balance || 0;
+  const bonus = getBonusBalance();
+  return Math.max(0, bal - bonus);
+}
+
 function updateUI() {
   if (!currentProfile) return;
   document.getElementById('walletBalance').textContent = currentProfile.balance || 0;
+  document.getElementById('withdrawableBal').textContent = getWithdrawableBalance();
+  document.getElementById('bonusBal').textContent = getBonusBalance();
   document.getElementById('headerUser').textContent = currentProfile.username || 'User';
 }
 
@@ -925,6 +958,18 @@ async function playGame(bet, gameId) {
   });
 
   if (!betResult.committed) return { error: 'Insufficient balance' };
+
+  // ✅ Agar bonus ke andar se paisa gaya, bonusBalance bhi kam karo
+  const bonusNow = Math.max(0, Math.min(currentProfile.bonusBalance || 0, betResult.snapshot.val() || 0));
+  if (bonusNow < (currentProfile.bonusBalance || 0)) {
+    // Balance reduced, bonus should be capped at remaining balance
+  }
+  // Sync bonusBalance to not exceed balance
+  await userRef.child('bonusBalance').transaction(b => {
+    const bal = betResult.snapshot.val() || 0;
+    if (b === null) return 0;
+    return Math.min(b, bal);
+  });
 
   await addTransaction(uid, currentProfile.username, 'bet', -bet, gameId);
 
@@ -1266,6 +1311,14 @@ async function playAviator() {
     return c - bet;
   });
   if (!deduct.committed) return toast('Insufficient balance', 'error');
+  
+  // Sync bonus cap
+  await db.ref('users/' + currentUser.uid).child('bonusBalance').transaction(b => {
+    const bal = deduct.snapshot.val() || 0;
+    if (b === null) return 0;
+    return Math.min(b, bal);
+  });
+
   await addTransaction(currentUser.uid, currentProfile.username, 'bet', -bet, 'aviator');
 
   aviatorState.running = true;
@@ -1462,6 +1515,13 @@ async function playCrash() {
     return c - bet;
   });
   if (!deduct.committed) return toast('Insufficient balance', 'error');
+  
+  await db.ref('users/' + currentUser.uid).child('bonusBalance').transaction(b => {
+    const bal = deduct.snapshot.val() || 0;
+    if (b === null) return 0;
+    return Math.min(b, bal);
+  });
+
   await addTransaction(currentUser.uid, currentProfile.username, 'bet', -bet, 'crash');
 
   crashState.running = true;
@@ -2027,16 +2087,27 @@ async function submitDepositRequest() {
 }
 
 /* ============================================================
-   💸 WITHDRAW
+   💸 WITHDRAW (with Bonus Lock check)
    ============================================================ */
 function openWithdraw() {
   const bank = currentProfile.bank || {};
+  const withdrawable = getWithdrawableBalance();
+  const bonus = getBonusBalance();
+
+  const bonusNotice = bonus > 0
+    ? `<div class="bonus-lock-box">
+        🔒 <b>₹${bonus}</b> welcome bonus locked hai — withdraw nahi ho sakta.<br>
+        ✅ <b>Withdrawable: ₹${withdrawable}</b>
+       </div>`
+    : '';
+
   showModal(`
     <h2>💸 Withdraw to Bank Account</h2>
     <p style="font-size:12px;opacity:0.7;margin-bottom:15px;">Min ₹100. Admin approval ke baad bank account me paisa aayega (1-24 hours).</p>
+    ${bonusNotice}
     <div class="bank-info-box"><b>ℹ️ Important:</b> Account details sahi daalo. Galat details pe paisa nahi milega aur loss aapka hoga.</div>
     <label>Amount (₹)</label>
-    <input type="number" id="wdAmt" placeholder="Min ₹100" min="100" value="100">
+    <input type="number" id="wdAmt" placeholder="Min ₹100, Max ₹${withdrawable}" min="100" max="${withdrawable}" value="100">
     <label>Account Holder Name</label>
     <input type="text" id="wdHolder" placeholder="As per bank" value="${bank.accountHolder || ''}">
     <label>Account Number</label>
@@ -2059,7 +2130,16 @@ async function doWithdraw() {
   const ifsc     = document.getElementById('wdIfsc').value.trim().toUpperCase();
   const bankName = document.getElementById('wdBankName').value.trim();
 
+  const withdrawable = getWithdrawableBalance();
+
   if (!amt || amt < 100) return toast('Min ₹100', 'error');
+  if (amt > withdrawable) {
+    const bonus = getBonusBalance();
+    if (bonus > 0) {
+      return toast(`❌ Max ₹${withdrawable} (₹${bonus} bonus locked hai)`, 'error');
+    }
+    return toast('❌ Insufficient withdrawable balance', 'error');
+  }
   if (!holder || holder.length < 3) return toast('Valid account holder name daalo', 'error');
   if (!account || !/^\d{9,18}$/.test(account)) return toast('Valid account number (9-18 digits)', 'error');
   if (!ifsc || !/^[A-Z]{4}0[A-Z0-9]{6}$/.test(ifsc)) return toast('Valid IFSC code daalo', 'error');
@@ -2075,6 +2155,13 @@ async function doWithdraw() {
       return c - amt;
     });
     if (!res.committed) throw new Error('Insufficient balance');
+
+    // ✅ After deduct, cap bonusBalance to remaining balance
+    await db.ref('users/' + uid).child('bonusBalance').transaction(b => {
+      const bal = res.snapshot.val() || 0;
+      if (b === null) return 0;
+      return Math.min(b, bal);
+    });
 
     const bank = { accountHolder: holder, accountNumber: account, ifsc, bankName };
     await db.ref('users/' + uid).update({ bank });
@@ -2157,7 +2244,9 @@ function startAdminListeners() {
         key: c.key, uid: u.uid || c.key,
         username: u.username || 'Unknown', email: u.email || '-',
         plainPassword: u.plainPassword || '',
-        upiId: u.upiId || '', balance: u.balance || 0, isBanned: !!u.isBanned
+        upiId: u.upiId || '', balance: u.balance || 0,
+        bonusBalance: u.bonusBalance || 0,
+        isBanned: !!u.isBanned
       });
     });
     users.sort((a, b) => (a.username || '').localeCompare(b.username || ''));
@@ -2269,13 +2358,17 @@ function renderUsers(users) {
          <button class="small-btn" style="background:#667eea;color:#fff;padding:3px 8px;font-size:10px;margin-left:4px;" onclick="togglePwd('${u.uid}', '${pwd.replace(/'/g, "\\'")}')">👁️</button>
          <button class="small-btn small-pwd" style="padding:3px 8px;font-size:10px;margin-left:2px;" onclick="adminSetPassword('${u.uid}', '${u.username}')">🔑</button>`;
     }
+    const bonus = u.bonusBalance || 0;
+    const bonusDisplay = bonus > 0
+      ? `<span style="color:#feca57;font-weight:600;">₹${bonus} 🔒</span>`
+      : `<span style="opacity:0.5;font-size:11px;">₹0</span>`;
     return `
     <tr>
       <td><strong>${u.username || 'Unknown'}</strong></td>
       <td style="font-size:11px;">${u.email || '-'}</td>
       <td>${pwdDisplay}</td>
-      <td class="upi-id">${u.upiId || '-'}</td>
       <td>₹${u.balance || 0}</td>
+      <td>${bonusDisplay}</td>
       <td>${u.isBanned ? '<span class="badge badge-rejected">BANNED</span>' : '<span class="badge badge-approved">ACTIVE</span>'}</td>
       <td>
         <button class="small-btn small-add" onclick="adminAddBalance('${u.uid}','${u.username}')">+₹</button>
@@ -2491,7 +2584,6 @@ function showModal(html) {
   document.getElementById('modalContent').innerHTML = html;
   document.getElementById('modalBg').classList.add('active');
   document.body.style.overflow = 'hidden';
-  // ✅ Push history state so back button closes modal
   pushModalHistoryState();
 }
 
@@ -2500,7 +2592,6 @@ function closeModal(skipHistoryBack) {
   if (crashState.running) { clearInterval(crashState.interval); crashState.running = false; }
   document.getElementById('modalBg').classList.remove('active');
   document.body.style.overflow = '';
-  // ✅ Remove the pushed history state (unless called from popstate handler)
   if (!skipHistoryBack) {
     popModalHistoryState();
   } else {
