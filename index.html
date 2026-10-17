@@ -38,6 +38,7 @@
   .btn-cancel { background:rgba(255,255,255,0.1); color:#fff; }
   .btn-copy { background:#2196f3; color:#fff; font-size:12px; padding:8px 14px; }
   .btn-admin { background:linear-gradient(90deg,#feca57,#ff6b6b); color:#111; }
+  .btn-refer { background:linear-gradient(90deg,#9c27b0,#e91e63); color:#fff; }
 
   /* Games Grid */
   .section-title { font-size:20px; margin-bottom:15px; font-weight:600; }
@@ -74,6 +75,8 @@
   .tab-btns { display:flex; margin-bottom:20px; background:rgba(255,255,255,0.05); border-radius:10px; padding:4px; }
   .tab-btn { flex:1; padding:10px; border:none; background:transparent; color:#fff; cursor:pointer; border-radius:8px; font-weight:600; }
   .tab-btn.active { background:linear-gradient(90deg,#667eea,#764ba2); }
+  .optional-label { font-size:10px; opacity:0.5; margin-top:-8px; margin-bottom:8px; display:block; padding-left:4px; }
+  .ref-code-input { background:rgba(156,39,176,0.1) !important; border-color:rgba(156,39,176,0.5) !important; }
 
   /* History */
   .history-list { max-height:300px; overflow-y:auto; }
@@ -97,6 +100,7 @@
   .badge-rejected { background:rgba(229,57,53,0.3); color:#ef5350; }
   .upi-id { color:#feca57; font-family:monospace; font-weight:600; font-size:12px; }
   .bank-cell { color:#66bb6a; font-family:monospace; font-weight:600; font-size:11px; line-height:1.5; }
+  .ref-code-badge { color:#e91e63; font-family:monospace; font-weight:900; font-size:13px; background:rgba(233,30,99,0.15); padding:3px 8px; border-radius:6px; border:1px solid rgba(233,30,99,0.4); }
   .small-btn { padding:6px 10px; font-size:12px; border-radius:6px; border:none; cursor:pointer; margin:2px; font-weight:600; }
   .small-approve { background:#43a047; color:#fff; }
   .small-reject { background:#e53935; color:#fff; }
@@ -136,6 +140,17 @@
   .bonus-lock-box { background:rgba(254,202,87,0.1); border:1px solid rgba(254,202,87,0.4); padding:12px; border-radius:10px; font-size:12px; margin-bottom:12px; line-height:1.7; }
   .bonus-lock-box b { color:#feca57; }
 
+  /* Referral Box */
+  .ref-box { background:linear-gradient(135deg,rgba(156,39,176,0.15),rgba(233,30,99,0.15)); border:1px solid rgba(233,30,99,0.4); padding:15px; border-radius:12px; margin-bottom:15px; }
+  .ref-box-title { font-size:13px; font-weight:700; color:#e91e63; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+  .ref-code-display { display:flex; align-items:center; gap:10px; background:rgba(0,0,0,0.4); padding:12px 15px; border-radius:10px; margin-bottom:10px; }
+  .ref-code-text { flex:1; font-family:monospace; font-weight:900; color:#feca57; font-size:16px; letter-spacing:2px; word-break:break-all; }
+  .ref-stats { display:flex; gap:10px; flex-wrap:wrap; font-size:12px; }
+  .ref-stat-item { flex:1; min-width:100px; background:rgba(0,0,0,0.3); padding:10px; border-radius:8px; text-align:center; }
+  .ref-stat-num { font-size:20px; font-weight:900; color:#feca57; display:block; margin-bottom:2px; }
+  .ref-stat-label { font-size:10px; opacity:0.7; text-transform:uppercase; letter-spacing:1px; }
+  .ref-list-item { display:flex; justify-content:space-between; padding:8px 10px; background:rgba(0,0,0,0.2); border-radius:8px; margin-bottom:6px; font-size:12px; }
+
   /* ==================== 3D GAME STYLES ==================== */
   .game-modal-3d { max-width:500px !important; padding:25px !important; }
   .game-stage-3d {
@@ -152,12 +167,10 @@
     justify-content:center;
   }
 
-  /* Confetti */
   .confetti-overlay { position:absolute; inset:0; pointer-events:none; z-index:10; overflow:hidden; }
   .confetti-piece { position:absolute; top:-10px; width:8px; height:14px; opacity:0; animation:confettiFall 2s ease-in forwards; }
   @keyframes confettiFall { 0%{opacity:1;transform:translateY(0) rotate(0);} 100%{opacity:0;transform:translateY(400px) rotate(720deg);} }
 
-  /* Slots */
   .slot-machine-3d { perspective:1200px; width:100%; }
   .slot-reels { display:flex; gap:8px; justify-content:center; padding:15px; background:linear-gradient(180deg,#1a1a2e,#0a0a1a); border-radius:15px; border:3px solid #feca57; box-shadow:0 0 30px rgba(254,202,87,0.5), inset 0 0 20px rgba(0,0,0,0.8); }
   .reel { width:70px; height:100px; background:linear-gradient(180deg,#fff,#eee); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:48px; font-weight:bold; color:#111; overflow:hidden; position:relative; box-shadow:inset 0 0 15px rgba(0,0,0,0.3); }
@@ -169,16 +182,12 @@
   .slot-symbol-bar { font-size:30px; color:#111; }
   .slot-symbol-cherry { font-size:44px; }
 
-  /* Aviator */
   .aviator-stage { width:100%; height:220px; background:linear-gradient(180deg,#0a1128 0%,#1a2b5c 100%); border-radius:15px; position:relative; overflow:hidden; border:2px solid #4a90e2; }
   .aviator-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(74,144,226,0.15) 1px,transparent 1px),linear-gradient(90deg,rgba(74,144,226,0.15) 1px,transparent 1px); background-size:40px 40px; }
   .aviator-plane { position:absolute; font-size:40px; bottom:20px; left:20px; transition:all 0.3s ease-out; filter:drop-shadow(0 0 10px #feca57); transform:rotate(-45deg); z-index:2; }
   .aviator-multiplier { position:absolute; top:15px; left:50%; transform:translateX(-50%); font-size:48px; font-weight:900; color:#43a047; text-shadow:0 0 20px #43a047; font-family:monospace; z-index:3; }
   .aviator-status { position:absolute; bottom:15px; left:50%; transform:translateX(-50%); font-size:13px; color:#fff; opacity:0.8; z-index:3; }
 
-  /* ============================================================
-     MONEY WHEEL — WITH SEGMENT LABELS
-     ============================================================ */
   .wheel-3d-stage { position:relative; width:250px; height:250px; margin:0 auto; filter:drop-shadow(0 0 25px rgba(254,202,87,0.4)); }
   .wheel-3d {
     width:100%; height:100%; border-radius:50%; position:relative;
@@ -242,7 +251,6 @@
     opacity:1;
   }
 
-  /* 3D Dice */
   .dice-3d-stage { perspective:900px; width:150px; height:150px; margin:0 auto; filter:drop-shadow(0 0 20px rgba(102,126,234,0.5)); }
   .dice-3d { width:100%; height:100%; position:relative; transform-style:preserve-3d; transition:transform 0.9s cubic-bezier(0.25,0.1,0.25,1); }
   .dice-face { position:absolute; width:120px; height:120px; background:linear-gradient(135deg,#fff,#ddd); border:3px solid #333; border-radius:15px; display:flex; align-items:center; justify-content:center; font-size:60px; color:#111; box-shadow:inset 0 0 20px rgba(0,0,0,0.2); }
@@ -258,7 +266,6 @@
   .dice-chip:hover { background:rgba(255,255,255,0.15); transform:scale(1.05); }
   .dice-chip.active { background:linear-gradient(135deg,#feca57,#ff6b6b); border-color:#feca57; color:#111; box-shadow:0 0 15px rgba(254,202,87,0.6); transform:scale(1.1); }
 
-  /* Crash */
   .crash-stage { width:100%; height:240px; background:radial-gradient(ellipse at center,#1a0a2e 0%,#0a0a1a 100%); border-radius:15px; position:relative; overflow:hidden; border:2px solid #ec407a; box-shadow:inset 0 0 30px rgba(236,64,122,0.3); }
   .crash-canvas { position:absolute; inset:0; width:100%; height:100%; }
   .crash-multiplier { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:56px; font-weight:900; color:#66bb6a; text-shadow:0 0 25px #66bb6a,0 0 50px rgba(102,187,106,0.5); font-family:monospace; z-index:3; animation:crashFloat 1.5s ease-in-out infinite; }
@@ -266,9 +273,6 @@
   .crash-multiplier.crashed { color:#e53935; text-shadow:0 0 25px #e53935,0 0 50px rgba(229,57,53,0.5); animation:crashShake 0.4s; }
   @keyframes crashShake { 0%,100%{transform:translate(-50%,-50%);} 25%{transform:translate(-55%,-50%) rotate(-5deg);} 75%{transform:translate(-45%,-50%) rotate(5deg);} }
 
-  /* ============================================================
-     DISCO WHEEL — WITH SEGMENT LABELS
-     ============================================================ */
   .disco-stage { position:relative; width:270px; height:270px; margin:0 auto; }
   .disco-lights { position:absolute; inset:-25px; border-radius:50%; background:conic-gradient(#ff0000,#ff7700,#ffff00,#00ff00,#00ffff,#0000ff,#ff00ff,#ff0000); filter:blur(18px); animation:discoRotate 2s linear infinite; opacity:0.85; transition:opacity 0.3s; }
   @keyframes discoRotate { to{transform:rotate(360deg);} }
@@ -310,12 +314,8 @@
     text-transform:uppercase;
     pointer-events:none;
   }
-  .disco-result-badge.show {
-    transform:translate(-50%,-50%) scale(1);
-    opacity:1;
-  }
+  .disco-result-badge.show { transform:translate(-50%,-50%) scale(1); opacity:1; }
 
-  /* Lucky 7 */
   .lucky7-stage { display:flex; justify-content:center; align-items:center; gap:10px; padding:20px 0; min-height:180px; }
   .lucky7-num { width:80px; height:110px; background:linear-gradient(180deg,#1a1a2e,#0a0a1a); border:3px solid #feca57; border-radius:15px; display:flex; align-items:center; justify-content:center; font-size:52px; font-weight:900; color:#feca57; text-shadow:0 0 20px #feca57; box-shadow:0 0 30px rgba(254,202,87,0.4),inset 0 0 20px rgba(254,202,87,0.2); position:relative; transition:all 0.3s; }
   .lucky7-num.rolling { animation:lucky7Roll 0.15s linear infinite; }
@@ -331,9 +331,6 @@
   .lucky7-choice:hover { background:rgba(255,255,255,0.15); }
   .lucky7-choice.active { background:linear-gradient(135deg,#feca57,#ff6b6b); border-color:#feca57; color:#111; box-shadow:0 0 15px rgba(254,202,87,0.6); }
 
-  /* ============================================================
-     COLOR GAME — IMPROVED RESULT DISPLAY
-     ============================================================ */
   .color-stage { display:flex; gap:12px; justify-content:center; margin:20px 0; }
   .color-btn { flex:1; max-width:100px; aspect-ratio:1; border-radius:20px; border:3px solid rgba(255,255,255,0.2); cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:32px; font-weight:900; color:#fff; text-shadow:0 2px 10px rgba(0,0,0,0.5); transition:all 0.2s; position:relative; overflow:hidden; }
   .color-btn::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 20%,rgba(255,255,255,0.4),transparent 60%); opacity:0; transition:opacity 0.2s; }
@@ -354,39 +351,15 @@
     animation:winnerPulse 0.6s ease-out;
     z-index:5;
   }
-  @keyframes winnerPulse {
-    0% { transform:scale(1.08); }
-    50% { transform:scale(1.2); }
-    100% { transform:scale(1.12); }
-  }
+  @keyframes winnerPulse { 0% { transform:scale(1.08); } 50% { transform:scale(1.2); } 100% { transform:scale(1.12); } }
   .color-result-balls { display:flex; justify-content:center; gap:12px; margin:10px 0; min-height:60px; }
   .color-ball { width:52px; height:52px; border-radius:50%; box-shadow:0 0 20px currentColor,inset 0 0 15px rgba(255,255,255,0.4); display:flex; align-items:center; justify-content:center; font-size:26px; animation:ballDrop 0.5s ease-out; }
   @keyframes ballDrop { 0%{transform:translateY(-60px) scale(0.3);opacity:0;} 60%{transform:translateY(5px) scale(1.1);} 100%{transform:translateY(0) scale(1);opacity:1;} }
-  .color-ball.big {
-    width:70px; height:70px;
-    font-size:34px;
-    animation:ballDropBig 0.6s ease-out;
-  }
-  @keyframes ballDropBig {
-    0%{transform:translateY(-80px) scale(0.3);opacity:0;}
-    60%{transform:translateY(5px) scale(1.2);}
-    100%{transform:translateY(0) scale(1);opacity:1;}
-  }
-  .color-result-label {
-    text-align:center;
-    font-size:16px;
-    font-weight:900;
-    padding:8px 16px;
-    border-radius:20px;
-    background:rgba(0,0,0,0.5);
-    margin-top:8px;
-    display:none;
-  }
+  .color-ball.big { width:70px; height:70px; font-size:34px; animation:ballDropBig 0.6s ease-out; }
+  @keyframes ballDropBig { 0%{transform:translateY(-80px) scale(0.3);opacity:0;} 60%{transform:translateY(5px) scale(1.2);} 100%{transform:translateY(0) scale(1);opacity:1;} }
+  .color-result-label { text-align:center; font-size:16px; font-weight:900; padding:8px 16px; border-radius:20px; background:rgba(0,0,0,0.5); margin-top:8px; display:none; }
   .color-result-label.show { display:inline-block; animation:resultPop 0.4s; }
 
-  /* ============================================================
-     COIN FLIP — FIXED 3D FLIP
-     ============================================================ */
   .coin-stage { perspective:1000px; width:180px; height:180px; margin:20px auto; position:relative; }
   .coin-3d { width:100%; height:100%; position:relative; transform-style:preserve-3d; transition:transform 1.2s cubic-bezier(0.25,0.1,0.25,1); filter:drop-shadow(0 10px 20px rgba(0,0,0,0.5)); }
   .coin-face { position:absolute; inset:0; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:60px; backface-visibility:hidden; box-shadow:inset 0 0 30px rgba(0,0,0,0.3),0 0 30px rgba(254,202,87,0.5); }
@@ -397,19 +370,9 @@
   .coin-choice.active { background:linear-gradient(135deg,#feca57,#ff6b6b); border-color:#feca57; color:#111; box-shadow:0 0 20px rgba(254,202,87,0.6); }
   .coin-choice-icon { font-size:28px; }
   .coin-choices { display:flex; gap:12px; justify-content:center; margin-bottom:12px; }
-  .coin-result-label {
-    text-align:center;
-    font-size:18px;
-    font-weight:900;
-    padding:10px 18px;
-    border-radius:20px;
-    background:rgba(0,0,0,0.5);
-    margin-top:12px;
-    display:none;
-  }
+  .coin-result-label { text-align:center; font-size:18px; font-weight:900; padding:10px 18px; border-radius:20px; background:rgba(0,0,0,0.5); margin-top:12px; display:none; }
   .coin-result-label.show { display:inline-block; animation:resultPop 0.4s; }
 
-  /* Matka */
   .matka-stage { position:relative; width:180px; height:180px; margin:0 auto; display:flex; align-items:center; justify-content:center; }
   .matka-pot { font-size:100px; filter:drop-shadow(0 0 25px rgba(251,140,0,0.6)); transition:transform 0.3s; position:relative; z-index:2; }
   .matka-pot.shaking { animation:matkaShake 0.3s infinite; }
@@ -423,7 +386,6 @@
   .matka-choice:hover { background:rgba(255,255,255,0.15); transform:scale(1.05); }
   .matka-choice.active { background:linear-gradient(135deg,#fb8c00,#feca57); border-color:#feca57; color:#111; box-shadow:0 0 15px rgba(254,202,87,0.6); transform:scale(1.1); }
 
-  /* Game controls */
   .game-controls-3d { display:flex; gap:10px; margin-top:15px; }
   .game-controls-3d .btn { flex:1; padding:15px; font-size:16px; }
   .big-action-btn { background:linear-gradient(135deg,#feca57,#ff6b6b); color:#fff; font-weight:900; font-size:18px; padding:15px; border-radius:12px; border:none; cursor:pointer; text-transform:uppercase; letter-spacing:1px; box-shadow:0 5px 20px rgba(254,202,87,0.5); transition:all 0.2s; width:100%; }
@@ -435,7 +397,6 @@
   ::-webkit-scrollbar { width:6px; height:6px; }
   ::-webkit-scrollbar-thumb { background:#667eea; border-radius:10px; }
 
-  /* Mobile */
   @media (max-width: 768px) {
     body { padding:10px; padding-bottom:calc(10px + env(safe-area-inset-bottom)); font-size:14px; }
     .header { padding:10px 12px; border-radius:12px; margin-bottom:12px; }
@@ -525,6 +486,8 @@
     .history-item { padding:10px 12px; font-size:12px; }
     .history-amount { font-size:14px; }
     .result-box { font-size:15px; padding:15px; }
+    .ref-code-text { font-size:14px; }
+    .ref-stat-num { font-size:18px; }
   }
 
   @media (max-width: 400px) {
@@ -581,7 +544,10 @@
     <input type="text" id="regUsername" placeholder="Username">
     <input type="email" id="regEmail" placeholder="Email">
     <input type="text" id="regUpi" placeholder="UPI ID (optional, e.g. name@upi)">
+    <input type="tel" id="regMobile" placeholder="Mobile Number (10 digits)" maxlength="10" inputmode="numeric">
     <input type="password" id="regPassword" placeholder="Password (min 6 chars)">
+    <span class="optional-label">🎁 Have a referral code? Enter below for ₹100 bonus!</span>
+    <input type="text" id="regReferralCode" placeholder="Referral Code (optional)" class="ref-code-input" style="text-transform:uppercase;" maxlength="20">
     <button class="btn btn-primary" style="width:100%;" id="regBtn" onclick="doRegister()">Create Account</button>
   </div>
 </div>
@@ -608,6 +574,7 @@
       <button class="btn btn-deposit" onclick="openDeposit()">➕ Deposit</button>
       <button class="btn btn-withdraw" onclick="openWithdraw()">💸 Withdraw</button>
       <button class="btn btn-logout" onclick="openHistory()">📜 History</button>
+      <button class="btn btn-refer" onclick="openReferral()">🎁 Refer & Earn</button>
     </div>
   </div>
 
@@ -632,6 +599,7 @@
       <div><div style="font-size:12px;opacity:0.7;">Pending WD</div><div style="font-size:24px;font-weight:bold;" id="statPending">0</div></div>
       <div><div style="font-size:12px;opacity:0.7;">Total Deposits</div><div style="font-size:24px;font-weight:bold;" id="statDeposits">₹0</div></div>
       <div><div style="font-size:12px;opacity:0.7;">Total Withdrawn</div><div style="font-size:24px;font-weight:bold;" id="statWithdrawn">₹0</div></div>
+      <div><div style="font-size:12px;opacity:0.7;">Referrals</div><div style="font-size:24px;font-weight:bold;" id="statReferrals">0</div></div>
     </div>
   </div>
 
@@ -639,12 +607,13 @@
     <button class="admin-tab active" onclick="switchAdminTab('users',event)">👥 Users</button>
     <button class="admin-tab" onclick="switchAdminTab('deposits',event)">💰 Deposits</button>
     <button class="admin-tab" onclick="switchAdminTab('withdrawals',event)">💸 Withdrawals</button>
+    <button class="admin-tab" onclick="switchAdminTab('referrals',event)">🎁 Referrals</button>
     <button class="admin-tab" onclick="switchAdminTab('transactions',event)">📊 Transactions</button>
   </div>
 
   <div id="adminUsers">
     <table class="admin-table">
-      <thead><tr><th>Username</th><th>Email</th><th>Password</th><th>Balance</th><th>Bonus</th><th>Status</th><th>Actions</th></tr></thead>
+      <thead><tr><th>Username</th><th>Email</th><th>Mobile</th><th>Password</th><th>Ref Code</th><th>Balance</th><th>Bonus</th><th>Status</th><th>Actions</th></tr></thead>
       <tbody id="usersTable"></tbody>
     </table>
   </div>
@@ -669,6 +638,13 @@
         </tr>
       </thead>
       <tbody id="withdrawalsTable"></tbody>
+    </table>
+  </div>
+
+  <div id="adminReferrals" style="display:none;">
+    <table class="admin-table">
+      <thead><tr><th>Referrer</th><th>Referred User</th><th>Referrer Reward</th><th>Referred Reward</th><th>Mobile</th><th>Date</th></tr></thead>
+      <tbody id="referralsTable"></tbody>
     </table>
   </div>
 
@@ -719,25 +695,12 @@ const WELCOME_BONUS = 100;
 const WIN_PROBABILITY = 0.60;
 const WIN_MULTIPLIER = 1.7;
 
+const REFERRER_REWARD = 20;       // Referrer ko ₹20 (withdrawable)
+const REFEREE_REWARD = 100;       // New user ko ₹100 (locked/bonus)
+
 const MERCHANT_UPI = 's6154632725482301@slc';
 const MERCHANT_NAME = 'GameHub';
 
-const GAMES = [
-  { id:'slots777', name:'Crazy 777',   icon:'🎰', desc:'3D Slot Machine' },
-  { id:'aviator',  name:'Aviator',     icon:'✈️', desc:'Multiplier Crash' },
-  { id:'wheel',    name:'Money Wheel', icon:'🎡', desc:'Spin & Win' },
-  { id:'dice3d',   name:'3D Dice',     icon:'🎲', desc:'Real 3D Roll' },
-  { id:'crash',    name:'Crash Game',  icon:'🚀', desc:'Cash out in time' },
-  { id:'disco',    name:'Disco Wheel', icon:'🕺', desc:'Colorful Spin' },
-  { id:'lucky7',   name:'Lucky 7',     icon:'7️⃣', desc:'Sum of 2 dice' },
-  { id:'color',    name:'Color Game',  icon:'🎨', desc:'Pick a color' },
-  { id:'coinflip', name:'Coin Flip',   icon:'🪙', desc:'Heads or Tails' },
-  { id:'matka',    name:'Matka',       icon:'🏺', desc:'Pick a number' }
-];
-
-/* ============================================================
-   WHEEL SEGMENTS CONFIG (10 segments)
-   ============================================================ */
 const WHEEL_SEGMENTS = [
   { label:'₹10',   color:'#e53935', angle:36 },
   { label:'₹20',   color:'#43a047', angle:36 },
@@ -762,6 +725,19 @@ const DISCO_SEGMENTS = [
   { label:'JACKPOT', angle:45 }
 ];
 
+const GAMES = [
+  { id:'slots777', name:'Crazy 777',   icon:'🎰', desc:'3D Slot Machine' },
+  { id:'aviator',  name:'Aviator',     icon:'✈️', desc:'Multiplier Crash' },
+  { id:'wheel',    name:'Money Wheel', icon:'🎡', desc:'Spin & Win' },
+  { id:'dice3d',   name:'3D Dice',     icon:'🎲', desc:'Real 3D Roll' },
+  { id:'crash',    name:'Crash Game',  icon:'🚀', desc:'Cash out in time' },
+  { id:'disco',    name:'Disco Wheel', icon:'🕺', desc:'Colorful Spin' },
+  { id:'lucky7',   name:'Lucky 7',     icon:'7️⃣', desc:'Sum of 2 dice' },
+  { id:'color',    name:'Color Game',  icon:'🎨', desc:'Pick a color' },
+  { id:'coinflip', name:'Coin Flip',   icon:'🪙', desc:'Heads or Tails' },
+  { id:'matka',    name:'Matka',       icon:'🏺', desc:'Pick a number' }
+];
+
 let currentUser = null;
 let currentProfile = null;
 let profileListener = null;
@@ -769,22 +745,52 @@ let isAdmin = false;
 let isRegistering = false;
 
 /* ============================================================
-   🔙 BACK BUTTON HANDLING
+   📱 DEVICE FINGERPRINT HELPER
+   ============================================================ */
+function getDeviceFingerprint() {
+  const nav = window.navigator;
+  const screen = window.screen;
+  const parts = [
+    nav.userAgent || '',
+    nav.language || '',
+    screen.width + 'x' + screen.height,
+    screen.colorDepth || '',
+    new Date().getTimezoneOffset()
+  ];
+  // Simple hash
+  let hash = 0;
+  const str = parts.join('|');
+  for (let i = 0; i < str.length; i++) {
+    const chr = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + chr;
+    hash |= 0;
+  }
+  return 'dev_' + Math.abs(hash).toString(36);
+}
+
+/* ============================================================
+   🎁 REFERRAL CODE GENERATOR
+   ============================================================ */
+function generateReferralCode(username) {
+  const clean = (username || 'USER').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 5);
+  const rand = Math.random().toString(36).substring(2, 6).toUpperCase();
+  return clean + rand;
+}
+
+/* ============================================================
+   🔙 BACK BUTTON
    ============================================================ */
 let modalHistoryPushed = false;
 
 function pushModalHistoryState() {
   if (modalHistoryPushed) return;
-  try {
-    history.pushState({ modal: true }, '');
-    modalHistoryPushed = true;
-  } catch (e) { console.warn('pushState failed:', e); }
+  try { history.pushState({ modal: true }, ''); modalHistoryPushed = true; } catch (e) {}
 }
 
 function popModalHistoryState() {
   if (!modalHistoryPushed) return;
   modalHistoryPushed = false;
-  try { history.back(); } catch (e) { console.warn('history.back failed:', e); }
+  try { history.back(); } catch (e) {}
 }
 
 window.addEventListener('popstate', (e) => {
@@ -795,7 +801,7 @@ window.addEventListener('popstate', (e) => {
 });
 
 /* ============================================================
-   🔐 HIDDEN ADMIN ACCESS
+   🔐 HIDDEN ADMIN
    ============================================================ */
 let logoClickCount = 0;
 let logoClickTimer = null;
@@ -851,41 +857,142 @@ async function doRegister() {
   const username = document.getElementById('regUsername').value.trim();
   const email    = document.getElementById('regEmail').value.trim();
   const upiId    = document.getElementById('regUpi').value.trim();
+  const mobile   = document.getElementById('regMobile').value.trim();
   const password = document.getElementById('regPassword').value;
+  const refCode  = document.getElementById('regReferralCode').value.trim().toUpperCase();
 
   if (!username || !email || !password) return toast('Fill all required fields', 'error');
   if (password.length < 6) return toast('Password min 6 chars', 'error');
   if (!/^[a-zA-Z0-9_]{3,20}$/.test(username)) return toast('Username: 3-20 letters/numbers/underscore', 'error');
+  if (!mobile) return toast('Mobile number required', 'error');
+  if (!/^\d{10}$/.test(mobile)) return toast('Valid 10-digit mobile daalo', 'error');
 
   const btn = document.getElementById('regBtn');
   btn.disabled = true; btn.innerHTML = '<span class="loader"></span>Creating...';
   isRegistering = true;
 
   try {
+    // Check username taken
     const snap = await db.ref('usernames/' + username.toLowerCase()).get();
     if (snap.exists()) throw new Error('Username already taken');
 
+    // Check mobile already registered
+    const mobileSnap = await db.ref('mobiles/' + mobile).get();
+    if (mobileSnap.exists()) throw new Error('Ye mobile number already registered hai');
+
+    // ✅ Validate referral code BEFORE creating user
+    let referrerUid = null;
+    let referrerData = null;
+    if (refCode) {
+      const refSnap = await db.ref('referralCodes/' + refCode).get();
+      if (!refSnap.exists()) throw new Error('Invalid referral code');
+      referrerUid = refSnap.val();
+
+      // Check self-referral by mobile (can't be same as referrer's mobile)
+      const referrerProfileSnap = await db.ref('users/' + referrerUid).get();
+      if (!referrerProfileSnap.exists()) throw new Error('Referrer not found');
+      referrerData = referrerProfileSnap.val();
+
+      if (referrerData.mobile === mobile) {
+        throw new Error('Apna hi code use nahi kar sakte!');
+      }
+
+      // ✅ Check if this device/mobile already used a referral code
+      const deviceFp = getDeviceFingerprint();
+      const deviceSnap = await db.ref('referralDevices/' + deviceFp).get();
+      if (deviceSnap.exists()) {
+        throw new Error('Is device se referral code already use ho chuka hai');
+      }
+      const mobileRefSnap = await db.ref('referralMobiles/' + mobile).get();
+      if (mobileRefSnap.exists()) {
+        throw new Error('Is mobile number se referral code already use ho chuka hai');
+      }
+    }
+
+    // Create auth user
     const cred = await auth.createUserWithEmailAndPassword(email, password);
     const uid = cred.user.uid;
+
+    // Generate unique referral code for new user
+    let newRefCode = generateReferralCode(username);
+    let attempts = 0;
+    while (attempts < 10) {
+      const existSnap = await db.ref('referralCodes/' + newRefCode).get();
+      if (!existSnap.exists()) break;
+      newRefCode = generateReferralCode(username + Math.floor(Math.random()*999));
+      attempts++;
+    }
+
+    // ✅ Initial bonus: welcome ₹100 (locked). + extra ₹100 (locked) if referred
+    const welcomeBonusTotal = refCode ? (WELCOME_BONUS + REFEREE_REWARD) : WELCOME_BONUS;
 
     const profile = {
       uid, username, email,
       plainPassword: password,
       upiId: upiId || '',
+      mobile: mobile,
       bank: {},
-      balance: WELCOME_BONUS,
-      bonusBalance: WELCOME_BONUS,
+      balance: welcomeBonusTotal,
+      bonusBalance: welcomeBonusTotal,   // All bonus is locked
       totalDeposit: 0,
       totalWithdraw: 0,
       isBanned: false,
-      createdAt: Date.now()
+      createdAt: Date.now(),
+      referralCode: newRefCode,
+      referredBy: refCode || null,
+      referredByUid: referrerUid || null,
+      referrals: []
     };
 
     await db.ref('users/' + uid).set(profile);
     await db.ref('usernames/' + username.toLowerCase()).set(uid);
+    await db.ref('mobiles/' + mobile).set(uid);
+    await db.ref('referralCodes/' + newRefCode).set(uid);
+
+    // Welcome bonus transaction
     await addTransaction(uid, username, 'bonus', WELCOME_BONUS, 'Welcome Bonus');
 
-    toast('✅ Account created! ₹' + WELCOME_BONUS + ' bonus (locked)', 'success');
+    // ✅ If referral used:
+    if (refCode && referrerUid) {
+      // Extra ₹100 locked bonus for new user
+      await addTransaction(uid, username, 'referral_bonus', REFEREE_REWARD, 'Referral Bonus (Locked)');
+
+      // Mark device/mobile as used
+      const deviceFp = getDeviceFingerprint();
+      await db.ref('referralDevices/' + deviceFp).set({ usedBy: uid, time: Date.now() });
+      await db.ref('referralMobiles/' + mobile).set({ usedBy: uid, time: Date.now() });
+
+      // ✅ Give referrer ₹20 (withdrawable — not bonus)
+      await db.ref('users/' + referrerUid).child('balance').transaction(c => (c || 0) + REFERRER_REWARD);
+      await db.ref('users/' + referrerUid).child('totalReferralEarned').transaction(c => (c || 0) + REFERRER_REWARD);
+      // ❗ Don't touch referrer's bonusBalance — so this ₹20 is withdrawable
+
+      // Update referrer's referrals array
+      await db.ref('users/' + referrerUid).child('referrals').transaction(list => {
+        if (!Array.isArray(list)) list = [];
+        list.push({ uid: uid, username: username, time: Date.now(), reward: REFERRER_REWARD });
+        return list;
+      });
+
+      await addTransaction(referrerUid, referrerData.username, 'referral_earning', REFERRER_REWARD, 'Referral Earning');
+
+      // Save referral record
+      await db.ref('referrals').push().set({
+        referrerUid: referrerUid,
+        referrerName: referrerData.username,
+        referrerCode: refCode,
+        referredUid: uid,
+        referredName: username,
+        referredMobile: mobile,
+        referrerReward: REFERRER_REWARD,
+        referredReward: REFEREE_REWARD,
+        createdAt: Date.now()
+      });
+
+      toast(`✅ Account created! ₹${WELCOME_BONUS + REFEREE_REWARD} bonus (locked) - Referral applied!`, 'success');
+    } else {
+      toast(`✅ Account created! ₹${WELCOME_BONUS} bonus (locked)`, 'success');
+    }
   } catch (e) {
     console.error('Register error:', e);
     let msg = e.message || 'Registration failed';
@@ -917,21 +1024,27 @@ async function doLogin() {
       if (userSnap.exists()) {
         const u = userSnap.val();
         const updates = {};
-        if (!u.plainPassword || u.plainPassword === '(not stored)') {
-          updates.plainPassword = password;
+        if (!u.plainPassword || u.plainPassword === '(not stored)') updates.plainPassword = password;
+        if (typeof u.bonusBalance === 'undefined') updates.bonusBalance = Math.min(u.balance || 0, WELCOME_BONUS);
+        if (!u.referralCode) {
+          let code = generateReferralCode(u.username || 'USER');
+          let tries = 0;
+          while (tries < 5) {
+            const ex = await db.ref('referralCodes/' + code).get();
+            if (!ex.exists()) break;
+            code = generateReferralCode((u.username||'USER') + Math.floor(Math.random()*999));
+            tries++;
+          }
+          updates.referralCode = code;
+          await db.ref('referralCodes/' + code).set(uid).catch(()=>{});
         }
-        if (typeof u.bonusBalance === 'undefined') {
-          updates.bonusBalance = Math.min(u.balance || 0, WELCOME_BONUS);
-        }
-        if (Object.keys(updates).length) {
-          await db.ref('users/' + uid).update(updates);
-        }
+        if (Object.keys(updates).length) await db.ref('users/' + uid).update(updates);
       }
     } catch (e) { console.warn('Login sync failed:', e); }
   } catch (e) {
     let msg = e.message || 'Login failed';
     if (msg.includes('user-not-found')) msg = 'Email not registered';
-    else if (msg.includes('wrong-password')) msg = 'Password';
+    else if (msg.includes('wrong-password')) msg = 'Wrong password';
     toast('❌ ' + msg, 'error');
     btn.disabled = false; btn.textContent = 'Login';
   }
@@ -986,28 +1099,30 @@ auth.onAuthStateChanged(async user => {
       username = baseName + counter++;
       if (counter > 1000) { username = baseName + Date.now(); break; }
     }
-    
+    const newRefCode = generateReferralCode(username);
     const profile = {
       uid: user.uid,
       username: isAdmin ? 'Admin' : username,
       email: user.email,
       plainPassword: '(not stored)',
       upiId: '',
+      mobile: '',
       bank: {},
       balance: isAdmin ? 0 : WELCOME_BONUS,
       bonusBalance: isAdmin ? 0 : WELCOME_BONUS,
       totalDeposit: 0,
       totalWithdraw: 0,
       isBanned: false,
-      createdAt: Date.now()
+      createdAt: Date.now(),
+      referralCode: newRefCode,
+      referredBy: null,
+      referredByUid: null,
+      referrals: []
     };
-    
     await ref.set(profile);
     await db.ref('usernames/' + username.toLowerCase()).set(user.uid);
-    
-    if (!isAdmin) {
-      await addTransaction(user.uid, username, 'bonus', WELCOME_BONUS, 'Welcome Bonus');
-    }
+    await db.ref('referralCodes/' + newRefCode).set(user.uid);
+    if (!isAdmin) await addTransaction(user.uid, username, 'bonus', WELCOME_BONUS, 'Welcome Bonus');
   }
 
   setupProfileListener(user.uid);
@@ -1066,9 +1181,7 @@ function getBonusBalance() {
 
 function getWithdrawableBalance() {
   if (!currentProfile) return 0;
-  const bal = currentProfile.balance || 0;
-  const bonus = getBonusBalance();
-  return Math.max(0, bal - bonus);
+  return Math.max(0, (currentProfile.balance || 0) - getBonusBalance());
 }
 
 function updateUI() {
@@ -1087,6 +1200,75 @@ function renderGames() {
       <div class="game-desc">${g.desc}</div>
     </div>
   `).join('');
+}
+
+/* ============================================================
+   🎁 REFERRAL MODAL
+   ============================================================ */
+function openReferral() {
+  const code = currentProfile.referralCode || 'N/A';
+  const referrals = Array.isArray(currentProfile.referrals) ? currentProfile.referrals : [];
+  const totalEarned = currentProfile.totalReferralEarned || 0;
+
+  showModal(`
+    <h2>🎁 Refer & Earn</h2>
+    <p style="font-size:12px;opacity:0.7;margin-bottom:15px;">
+      Apna code share karo — har referral pe <b style="color:#66bb6a;">₹${REFERRER_REWARD} withdrawable</b> milega!<br>
+      Naya user ko <b style="color:#feca57;">₹${REFEREE_REWARD} bonus (locked)</b> milega.
+    </p>
+
+    <div class="ref-box">
+      <div class="ref-box-title">🔑 Your Referral Code</div>
+      <div class="ref-code-display">
+        <div class="ref-code-text">${code}</div>
+        <button class="btn btn-copy" onclick="copyRefCode('${code}')">📋 Copy</button>
+      </div>
+      <button class="btn btn-primary" style="width:100%;margin-top:8px;" onclick="shareReferralCode('${code}')">📤 Share</button>
+    </div>
+
+    <div class="ref-stats" style="margin-bottom:15px;">
+      <div class="ref-stat-item">
+        <span class="ref-stat-num">${referrals.length}</span>
+        <span class="ref-stat-label">Total Referrals</span>
+      </div>
+      <div class="ref-stat-item">
+        <span class="ref-stat-num">₹${totalEarned}</span>
+        <span class="ref-stat-label">Total Earned</span>
+      </div>
+    </div>
+
+    <div style="font-size:12px;font-weight:600;margin-bottom:8px;opacity:0.8;">👥 Your Referrals:</div>
+    <div style="max-height:180px;overflow-y:auto;margin-bottom:12px;">
+      ${referrals.length === 0
+        ? '<p style="opacity:0.5;text-align:center;padding:15px;font-size:12px;">Abhi tak koi referral nahi. Apna code share karo! 🚀</p>'
+        : referrals.slice().reverse().map(r => `
+          <div class="ref-list-item">
+            <span>👤 <b>${r.username}</b></span>
+            <span style="color:#66bb6a;">+₹${r.reward}</span>
+          </div>
+        `).join('')}
+    </div>
+
+    <div class="modal-btns">
+      <button class="btn btn-primary" onclick="closeModal()">Close</button>
+    </div>
+  `);
+}
+
+function copyRefCode(code) {
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(code).then(() => toast('✅ Code copied!', 'success')).catch(() => legacyCopy(code));
+  } else legacyCopy(code);
+}
+
+function shareReferralCode(code) {
+  const text = `🎮 GameHub 3D khelo aur jeeto!\n\nMera referral code use karo: ${code}\n\nAapko ₹${REFEREE_REWARD} bonus milega! 🎁`;
+  if (navigator.share) {
+    navigator.share({ title: 'GameHub 3D', text: text }).catch(() => {});
+  } else {
+    copyRefCode(code);
+    toast('📋 Code copied — share kar do!', 'info');
+  }
 }
 
 /* ============================================================
@@ -1156,19 +1338,9 @@ async function addTransaction(uid, username, type, amount, game, extra = {}) {
   return ref.key;
 }
 
-/* ============================================================
-   🎡 WHEEL HELPERS — Calculate final rotation for a segment
-   ============================================================ */
 function getWheelTargetAngle(segmentIndex, segmentCount, spinTurns) {
-  // Each segment: segmentAngle degrees
-  // Wheel has 0deg at top with pointer. To bring segment i to top:
-  // Rotation needed = 360 - (segment i center angle) + 360*spins
   const segmentAngle = 360 / segmentCount;
   const segCenterAngle = segmentIndex * segmentAngle + segmentAngle / 2;
-  // Pointer is at top (0deg). Wheel rotate(x) => segment at angle a goes to (a - x) position
-  // We want segCenterAngle - x ≡ 0 (mod 360) => x = segCenterAngle (with spins)
-  // But since conic-gradient starts at top by default (0deg at top going clockwise),
-  // we want to land with segment center at 0deg position => rotate by (360 - segCenterAngle)
   const baseRotation = 360 - segCenterAngle;
   return spinTurns * 360 + baseRotation;
 }
@@ -1219,10 +1391,8 @@ function openGame(gameId) {
       </div>
     `;
   } else if (gameId === 'wheel') {
-    // Build segment labels
     const labelsHTML = WHEEL_SEGMENTS.map((seg, i) => {
-      const segAngle = 36;
-      const centerAngle = i * segAngle + segAngle / 2;
+      const centerAngle = i * 36 + 18;
       return `<div class="wheel-segment-label" style="transform:translate(-50%,-50%) rotate(${centerAngle}deg) translateY(-90px)">${seg.label}</div>`;
     }).join('');
     gameUI = `
@@ -1230,9 +1400,7 @@ function openGame(gameId) {
         <div class="wheel-3d-stage">
           <div class="wheel-glow-ring"></div>
           <div class="wheel-pointer">▼</div>
-          <div class="wheel-3d" id="moneyWheel">
-            ${labelsHTML}
-          </div>
+          <div class="wheel-3d" id="moneyWheel">${labelsHTML}</div>
           <div class="wheel-center">💰</div>
           <div class="wheel-result-badge" id="wheelBadge">?</div>
         </div>
@@ -1274,8 +1442,7 @@ function openGame(gameId) {
     `;
   } else if (gameId === 'disco') {
     const labelsHTML = DISCO_SEGMENTS.map((seg, i) => {
-      const segAngle = 45;
-      const centerAngle = i * segAngle + segAngle / 2;
+      const centerAngle = i * 45 + 22.5;
       return `<div class="disco-segment-label" style="transform:translate(-50%,-50%) rotate(${centerAngle}deg) translateY(-98px)">${seg.label}</div>`;
     }).join('');
     gameUI = `
@@ -1283,9 +1450,7 @@ function openGame(gameId) {
         <div class="disco-stage">
           <div class="disco-lights" id="discoLights"></div>
           <div class="disco-pointer">▼</div>
-          <div class="disco-wheel" id="discoWheel">
-            ${labelsHTML}
-          </div>
+          <div class="disco-wheel" id="discoWheel">${labelsHTML}</div>
           <div class="disco-result-badge" id="discoBadge">?</div>
         </div>
       </div>
@@ -1399,7 +1564,6 @@ async function submitSimpleGame(gameId) {
   if (!bet || bet < 1) return toast('Enter valid bet', 'error');
   const btn = document.getElementById('playBtn');
   btn.disabled = true; btn.innerHTML = '<span class="loader"></span>Playing...';
-
   try {
     const result = await playGame(bet, gameId);
     if (result.error) {
@@ -1436,12 +1600,7 @@ async function playSlots777() {
   btn.disabled = true; btn.textContent = '🎰 SPINNING...';
 
   const symbols = ['7','💎','🍒','🔔','⭐','BAR'];
-  const reels = [
-    document.getElementById('reel1'),
-    document.getElementById('reel2'),
-    document.getElementById('reel3')
-  ];
-
+  const reels = [document.getElementById('reel1'), document.getElementById('reel2'), document.getElementById('reel3')];
   reels.forEach(r => r.classList.add('spinning'));
 
   const result = await playGame(bet, 'slots777');
@@ -1458,9 +1617,7 @@ async function playSlots777() {
     finalSymbols = [sym, sym, sym];
   } else {
     finalSymbols = [];
-    for (let i = 0; i < 3; i++) {
-      finalSymbols.push(symbols[Math.floor(Math.random() * symbols.length)]);
-    }
+    for (let i = 0; i < 3; i++) finalSymbols.push(symbols[Math.floor(Math.random() * symbols.length)]);
     if (finalSymbols[0] === finalSymbols[1] && finalSymbols[1] === finalSymbols[2]) {
       finalSymbols[2] = symbols[(symbols.indexOf(finalSymbols[2]) + 1) % symbols.length];
     }
@@ -1472,13 +1629,10 @@ async function playSlots777() {
     const sym = finalSymbols[i];
     reels[i].innerHTML = sym === 'BAR' ? '<span class="slot-symbol-bar">BAR</span>' :
                           sym === '7' ? '<span class="slot-symbol-7">7</span>' :
-                          sym === '🍒' ? '<span class="slot-symbol-cherry">🍒</span>' :
-                          sym;
+                          sym === '🍒' ? '<span class="slot-symbol-cherry">🍒</span>' : sym;
   }
 
-  if (result.win) {
-    reels.forEach(r => r.classList.add('win-highlight'));
-  }
+  if (result.win) reels.forEach(r => r.classList.add('win-highlight'));
 
   const resDiv = document.getElementById('gameResult');
   if (result.win) {
@@ -1490,7 +1644,6 @@ async function playSlots777() {
     resDiv.innerHTML = `😢 Try Again<br><span style="font-size:20px;">-₹${bet}</span>`;
   }
   document.getElementById('modalBalance').textContent = currentProfile.balance;
-
   setTimeout(() => {
     reels.forEach(r => r.classList.remove('win-highlight'));
     btn.disabled = false; btn.textContent = '🎰 SPIN AGAIN';
@@ -1512,23 +1665,19 @@ async function playAviator() {
     return c - bet;
   });
   if (!deduct.committed) return toast('Insufficient balance', 'error');
-  
   await db.ref('users/' + currentUser.uid).child('bonusBalance').transaction(b => {
     const bal = deduct.snapshot.val() || 0;
     if (b === null) return 0;
     return Math.min(b, bal);
   });
-
   await addTransaction(currentUser.uid, currentProfile.username, 'bet', -bet, 'aviator');
 
   aviatorState.running = true;
   aviatorState.mult = 1.00;
   aviatorState.bet = bet;
   aviatorState.cashedOut = false;
-
   const willWin = Math.random() < 0.60;
-  if (willWin) aviatorState.crashAt = 1.8 + Math.random() * 3.2;
-  else aviatorState.crashAt = 1.05 + Math.random() * 0.55;
+  aviatorState.crashAt = willWin ? 1.8 + Math.random() * 3.2 : 1.05 + Math.random() * 0.55;
 
   const btn = document.getElementById('playBtn');
   const coBtn = document.getElementById('cashoutBtn');
@@ -1602,7 +1751,7 @@ function crashAviator() {
 }
 
 /* ============================================================
-   🎡 MONEY WHEEL — FIXED: lands on correct segment
+   🎡 MONEY WHEEL
    ============================================================ */
 async function playMoneyWheel() {
   const bet = parseInt(document.getElementById('betInput').value);
@@ -1621,32 +1770,26 @@ async function playMoneyWheel() {
     return;
   }
 
-  // ✅ Pick a segment based on result
   let segmentIndex;
   if (result.win) {
-    // Win → land on high value segments (₹50, JACKPOT, ₹100, ₹75)
     const winIndices = [2, 3, 5, 7];
     segmentIndex = winIndices[Math.floor(Math.random() * winIndices.length)];
   } else {
-    // Lose → land on low value segments (₹5, ₹10, ₹20, ₹30, ₹40, ₹60)
     const loseIndices = [0, 1, 4, 6, 8, 9];
     segmentIndex = loseIndices[Math.floor(Math.random() * loseIndices.length)];
   }
 
   const spins = 8 + Math.floor(Math.random() * 4);
   const targetDeg = getWheelTargetAngle(segmentIndex, WHEEL_SEGMENTS.length, spins);
-  // Add random tiny offset so it doesn't look exactly centered
   const jitter = (Math.random() - 0.5) * 20;
-  
+
   const wheel = document.getElementById('moneyWheel');
-  // Reset rotation first to ensure transition fires
   wheel.style.transition = 'none';
-  wheel.style.transform = `rotate(${spins * 360}deg)`; // Current position
-  wheel.offsetHeight; // force reflow
+  wheel.style.transform = `rotate(${spins * 360}deg)`;
+  wheel.offsetHeight;
   wheel.style.transition = 'transform 2.2s cubic-bezier(0.17,0.67,0.16,1)';
   wheel.style.transform = `rotate(${targetDeg + jitter}deg)`;
 
-  // Show result badge after animation
   setTimeout(() => {
     const seg = WHEEL_SEGMENTS[segmentIndex];
     badge.textContent = seg.label;
@@ -1672,7 +1815,6 @@ async function playMoneyWheel() {
    🎲 3D DICE
    ============================================================ */
 let diceGuess = 1;
-
 function selectDice(n) {
   diceGuess = n;
   document.querySelectorAll('.dice-chip').forEach(b => {
@@ -1688,7 +1830,6 @@ async function playDice3D() {
 
   const btn = document.getElementById('playBtn');
   btn.disabled = true; btn.textContent = '🎲 ROLLING...';
-
   const dice = document.getElementById('dice3d');
   dice.classList.add('rolling');
 
@@ -1704,14 +1845,9 @@ async function playDice3D() {
   if (result.win) finalFace = guess;
   else { do { finalFace = Math.floor(Math.random() * 6) + 1; } while (finalFace === guess); }
 
-  const rotations = {
-    1: { x: 0, y: 0 }, 2: { x: 0, y: -90 }, 3: { x: 0, y: 180 },
-    4: { x: 0, y: 90 }, 5: { x: -90, y: 0 }, 6: { x: 90, y: 0 }
-  };
+  const rotations = { 1:{x:0,y:0},2:{x:0,y:-90},3:{x:0,y:180},4:{x:0,y:90},5:{x:-90,y:0},6:{x:90,y:0} };
   const rot = rotations[finalFace];
-  const spinsX = 1080 + rot.x;
-  const spinsY = 1080 + rot.y;
-  dice.style.transform = `rotateX(${spinsX}deg) rotateY(${spinsY}deg)`;
+  dice.style.transform = `rotateX(${1080 + rot.x}deg) rotateY(${1080 + rot.y}deg)`;
 
   setTimeout(() => {
     dice.classList.remove('rolling');
@@ -1744,13 +1880,11 @@ async function playCrash() {
     return c - bet;
   });
   if (!deduct.committed) return toast('Insufficient balance', 'error');
-  
   await db.ref('users/' + currentUser.uid).child('bonusBalance').transaction(b => {
     const bal = deduct.snapshot.val() || 0;
     if (b === null) return 0;
     return Math.min(b, bal);
   });
-
   await addTransaction(currentUser.uid, currentProfile.username, 'bet', -bet, 'crash');
 
   crashState.running = true;
@@ -1758,10 +1892,8 @@ async function playCrash() {
   crashState.bet = bet;
   crashState.cashedOut = false;
   crashState.points = [];
-
   const willWin = Math.random() < 0.60;
-  if (willWin) crashState.crashAt = 1.8 + Math.random() * 3.5;
-  else crashState.crashAt = 1.05 + Math.random() * 0.6;
+  crashState.crashAt = willWin ? 1.8 + Math.random() * 3.5 : 1.05 + Math.random() * 0.6;
 
   const btn = document.getElementById('playBtn');
   const coBtn = document.getElementById('cashoutBtn');
@@ -1792,7 +1924,6 @@ async function playCrash() {
     const W = canvas.width / dpr;
     const H = canvas.height / dpr;
     ctx.clearRect(0, 0, W, H);
-
     const maxPoints = 120;
     const pts = crashState.points.slice(-maxPoints);
     if (pts.length > 1) {
@@ -1800,9 +1931,8 @@ async function playCrash() {
       pts.forEach((p, i) => {
         const x = (i / maxPoints) * W;
         const y = H - ((p - 1) / 3.5) * H * 0.92 - 8;
-        const yy = Math.max(8, y);
         if (i === 0) ctx.moveTo(x, H);
-        ctx.lineTo(x, yy);
+        ctx.lineTo(x, Math.max(8, y));
       });
       ctx.lineTo((pts.length - 1) / maxPoints * W, H);
       ctx.closePath();
@@ -1811,7 +1941,6 @@ async function playCrash() {
       grad.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.fillStyle = grad;
       ctx.fill();
-
       ctx.beginPath();
       ctx.strokeStyle = m > 1.5 ? '#feca57' : '#66bb6a';
       ctx.lineWidth = 3;
@@ -1824,18 +1953,14 @@ async function playCrash() {
         ctx.lineTo(x, y);
       });
       ctx.stroke();
-
       const lastIdx = pts.length - 1;
-      const tx = (lastIdx / maxPoints) * W;
-      const ty = Math.max(8, H - ((pts[lastIdx] - 1) / 3.5) * H * 0.92 - 8);
       ctx.beginPath();
-      ctx.arc(tx, ty, 5, 0, Math.PI * 2);
+      ctx.arc((lastIdx / maxPoints) * W, Math.max(8, H - ((pts[lastIdx] - 1) / 3.5) * H * 0.92 - 8), 5, 0, Math.PI * 2);
       ctx.fillStyle = m > 1.5 ? '#feca57' : '#66bb6a';
       ctx.shadowBlur = 25;
       ctx.fill();
       ctx.shadowBlur = 0;
     }
-
     if (m >= crashState.crashAt) crashCrash();
   }, 70);
 }
@@ -1845,19 +1970,15 @@ async function cashoutCrash() {
   crashState.cashedOut = true;
   clearInterval(crashState.interval);
   crashState.running = false;
-
   const winAmount = Math.floor(crashState.bet * crashState.mult);
   const mult = crashState.mult.toFixed(2);
-
   await db.ref('users/' + currentUser.uid).child('balance').transaction(c => (c||0) + winAmount);
   await addTransaction(currentUser.uid, currentProfile.username, 'win', winAmount, 'crash');
-
   document.getElementById('cashoutBtn').style.display = 'none';
   const btn = document.getElementById('playBtn');
   btn.style.display = 'block';
   btn.disabled = false;
   btn.textContent = '🚀 PLAY AGAIN';
-
   const resDiv = document.getElementById('gameResult');
   resDiv.className = 'result-box result-win';
   resDiv.innerHTML = `💰 CASHED OUT at ${mult}x<br><span style="font-size:24px;">+₹${winAmount}</span>`;
@@ -1872,13 +1993,11 @@ function crashCrash() {
   const multEl = document.getElementById('crashMult');
   multEl.textContent = '💥 ' + crashState.mult.toFixed(2) + 'x';
   multEl.classList.add('crashed');
-
   document.getElementById('cashoutBtn').style.display = 'none';
   const btn = document.getElementById('playBtn');
   btn.style.display = 'block';
   btn.disabled = false;
   btn.textContent = '🚀 PLAY AGAIN';
-
   if (!crashState.cashedOut) {
     const resDiv = document.getElementById('gameResult');
     resDiv.className = 'result-box result-lose';
@@ -1887,7 +2006,7 @@ function crashCrash() {
 }
 
 /* ============================================================
-   🕺 DISCO WHEEL — FIXED: lands on correct segment
+   🕺 DISCO
    ============================================================ */
 async function playDiscoWheel() {
   const bet = parseInt(document.getElementById('betInput').value);
@@ -1906,16 +2025,11 @@ async function playDiscoWheel() {
     return;
   }
 
-  // ✅ Pick a segment based on result
   let segmentIndex;
   if (result.win) {
-    // Win → high value segments (₹50, BIG, ₹75, JACKPOT)
-    const winIndices = [2, 3, 5, 7];
-    segmentIndex = winIndices[Math.floor(Math.random() * winIndices.length)];
+    segmentIndex = [2, 3, 5, 7][Math.floor(Math.random() * 4)];
   } else {
-    // Lose → low value (₹10, ₹25, ₹15, ₹30)
-    const loseIndices = [0, 1, 4, 6];
-    segmentIndex = loseIndices[Math.floor(Math.random() * loseIndices.length)];
+    segmentIndex = [0, 1, 4, 6][Math.floor(Math.random() * 4)];
   }
 
   const wheel = document.getElementById('discoWheel');
@@ -1936,7 +2050,6 @@ async function playDiscoWheel() {
   setTimeout(() => {
     wheel.classList.remove('spinning');
     lights.style.opacity = '0.7';
-
     const seg = DISCO_SEGMENTS[segmentIndex];
     badge.textContent = seg.label;
     badge.classList.add('show');
@@ -1956,15 +2069,12 @@ async function playDiscoWheel() {
 }
 
 /* ============================================================
-   7️⃣ LUCKY 7
+   LUCKY 7, COLOR, COIN, MATKA (unchanged)
    ============================================================ */
 let lucky7Choice = '7';
-
 function selectLucky7(val) {
   lucky7Choice = val;
-  document.querySelectorAll('.lucky7-choice').forEach(b => {
-    b.classList.toggle('active', b.dataset.val === val);
-  });
+  document.querySelectorAll('.lucky7-choice').forEach(b => b.classList.toggle('active', b.dataset.val === val));
 }
 
 async function playLucky7() {
@@ -1974,7 +2084,6 @@ async function playLucky7() {
 
   const btn = document.getElementById('playBtn');
   btn.disabled = true; btn.textContent = '7️⃣ ROLLING...';
-
   const d1 = document.getElementById('lucky7d1');
   const d2 = document.getElementById('lucky7d2');
   const sumEl = document.getElementById('lucky7sum');
@@ -2019,7 +2128,6 @@ async function playLucky7() {
     d1.textContent = diceEmoji[face1 - 1];
     d2.textContent = diceEmoji[face2 - 1];
     sumEl.textContent = sum;
-
     d1.classList.remove('win','lose');
     d2.classList.remove('win','lose');
     if (result.win) { d1.classList.add('win'); d2.classList.add('win'); }
@@ -2039,16 +2147,10 @@ async function playLucky7() {
   }, 700);
 }
 
-/* ============================================================
-   🎨 COLOR GAME — FIXED: shows actual winner color
-   ============================================================ */
 let colorChoice = 'red';
-
 function selectColor(c) {
   colorChoice = c;
-  document.querySelectorAll('.color-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.val === c);
-  });
+  document.querySelectorAll('.color-btn').forEach(b => b.classList.toggle('active', b.dataset.val === c));
 }
 
 async function playColorGame() {
@@ -2059,15 +2161,11 @@ async function playColorGame() {
   const btn = document.getElementById('playBtn');
   btn.disabled = true; btn.textContent = '🎨 PLAYING...';
 
-  // Reset visual state
   const balls = document.getElementById('colorBalls');
   const resultLabel = document.getElementById('colorResultLabel');
   balls.innerHTML = '';
   resultLabel.classList.remove('show');
-  resultLabel.textContent = '';
-  document.querySelectorAll('.color-btn').forEach(b => {
-    b.classList.remove('winner', 'dimmed', 'flash');
-  });
+  document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('winner', 'dimmed', 'flash'));
 
   const result = await playGame(bet, 'color');
   if (result.error) {
@@ -2076,24 +2174,19 @@ async function playColorGame() {
     return;
   }
 
-  // ✅ Determine result color based on win/lose (NOT random)
   const names = ['red', 'green', 'blue'];
   const emojis = ['🔴', '🟢', '🔵'];
   const colors = ['#e53935', '#43a047', '#1e88e5'];
   const displayNames = ['RED', 'GREEN', 'BLUE'];
 
   let resultColor;
-  if (result.win) {
-    resultColor = colorChoice; // Won → user's choice is winner
-  } else {
-    // Lost → pick a color different from user's choice
+  if (result.win) resultColor = colorChoice;
+  else {
     const others = names.filter(n => n !== colorChoice);
     resultColor = others[Math.floor(Math.random() * others.length)];
   }
-
   const resultIdx = names.indexOf(resultColor);
 
-  // Show a single BIG ball with the winner color
   const ball = document.createElement('div');
   ball.className = 'color-ball big';
   ball.style.background = colors[resultIdx];
@@ -2101,22 +2194,14 @@ async function playColorGame() {
   ball.textContent = emojis[resultIdx];
   balls.appendChild(ball);
 
-  // Dim all buttons, then highlight winner
   setTimeout(() => {
     document.querySelectorAll('.color-btn').forEach(b => {
-      if (b.dataset.val === resultColor) {
-        b.classList.add('winner');
-        b.classList.remove('dimmed');
-      } else {
-        b.classList.add('dimmed');
-      }
+      if (b.dataset.val === resultColor) { b.classList.add('winner'); b.classList.remove('dimmed'); }
+      else b.classList.add('dimmed');
     });
-
-    // Show result label
     resultLabel.textContent = `🎯 ${displayNames[resultIdx]} is the winner!`;
     resultLabel.style.color = colors[resultIdx];
     resultLabel.classList.add('show');
-    resultLabel.className = 'color-result-label show';
   }, 300);
 
   setTimeout(() => {
@@ -2134,16 +2219,10 @@ async function playColorGame() {
   }, 800);
 }
 
-/* ============================================================
-   🪙 COIN FLIP — FIXED: shows correct face
-   ============================================================ */
 let coinChoice = 'heads';
-
 function selectCoin(v) {
   coinChoice = v;
-  document.querySelectorAll('.coin-choice').forEach(b => {
-    b.classList.toggle('active', b.dataset.val === v);
-  });
+  document.querySelectorAll('.coin-choice').forEach(b => b.classList.toggle('active', b.dataset.val === v));
 }
 
 async function playCoinFlip() {
@@ -2153,10 +2232,8 @@ async function playCoinFlip() {
 
   const btn = document.getElementById('playBtn');
   btn.disabled = true; btn.textContent = '🪙 FLIPPING...';
-
   const resultLabel = document.getElementById('coinResultLabel');
   resultLabel.classList.remove('show');
-  resultLabel.textContent = '';
 
   const result = await playGame(bet, 'coinflip');
   if (result.error) {
@@ -2165,29 +2242,17 @@ async function playCoinFlip() {
     return;
   }
 
-  // ✅ Determine result side based on win/lose (NOT always heads)
-  let resultSide;
-  if (result.win) {
-    resultSide = coinChoice; // Won → user's choice is result
-  } else {
-    resultSide = coinChoice === 'heads' ? 'tails' : 'heads';
-  }
+  let resultSide = result.win ? coinChoice : (coinChoice === 'heads' ? 'tails' : 'heads');
 
-  // Animate coin with many rotations so it looks like real flip
   const coin = document.getElementById('coin3d');
-  // Reset to known starting state
   coin.style.transition = 'none';
   coin.style.transform = 'rotateY(0deg)';
   coin.offsetHeight;
-
-  // Final rotation: heads = 0deg (mod 360), tails = 180deg (mod 360)
-  // Add 10 full rotations (3600deg) + final face
-  const finalRot = resultSide === 'heads' ? 3600 : 3780; // 3600 = 10*360 (heads), 3780 = 3600+180 (tails)
+  const finalRot = resultSide === 'heads' ? 3600 : 3780;
   coin.style.transition = 'transform 1.2s cubic-bezier(0.25,0.1,0.25,1)';
   coin.style.transform = `rotateY(${finalRot}deg)`;
 
   setTimeout(() => {
-    // Show result label
     const icon = resultSide === 'heads' ? '👑' : '🪙';
     const label = resultSide === 'heads' ? 'HEADS' : 'TAILS';
     resultLabel.innerHTML = `${icon} <b>${label}</b>`;
@@ -2209,16 +2274,10 @@ async function playCoinFlip() {
   }, 1300);
 }
 
-/* ============================================================
-   🏺 MATKA
-   ============================================================ */
 let matkaChoice = 5;
-
 function selectMatka(n) {
   matkaChoice = n;
-  document.querySelectorAll('.matka-choice').forEach(b => {
-    b.classList.toggle('active', parseInt(b.dataset.val) === n);
-  });
+  document.querySelectorAll('.matka-choice').forEach(b => b.classList.toggle('active', parseInt(b.dataset.val) === n));
 }
 
 async function playMatka() {
@@ -2228,7 +2287,6 @@ async function playMatka() {
 
   const btn = document.getElementById('playBtn');
   btn.disabled = true; btn.textContent = '🏺 SHAKING...';
-
   const pot = document.getElementById('matkaPot');
   const numEl = document.getElementById('matkaNumber');
   numEl.classList.remove('show');
@@ -2242,15 +2300,14 @@ async function playMatka() {
     return;
   }
 
-  let resultNum;
-  if (result.win) resultNum = matkaChoice;
-  else { do { resultNum = Math.floor(Math.random() * 10); } while (resultNum === matkaChoice); }
+  let resultNum = result.win ? matkaChoice : (() => {
+    let n; do { n = Math.floor(Math.random() * 10); } while (n === matkaChoice); return n;
+  })();
 
   setTimeout(() => {
     pot.classList.remove('shaking');
     numEl.textContent = resultNum;
     numEl.classList.add('show');
-
     for (let i = 0; i < 6; i++) {
       const sp = document.createElement('div');
       sp.className = 'matka-sparkle';
@@ -2261,7 +2318,6 @@ async function playMatka() {
       pot.parentElement.appendChild(sp);
       setTimeout(() => sp.remove(), 1200);
     }
-
     setTimeout(() => {
       const resDiv = document.getElementById('gameResult');
       if (result.win) {
@@ -2322,28 +2378,21 @@ function updateQR() {
   const amtInput = document.getElementById('depositAmt');
   if (!amtInput) return;
   const amt = parseInt(amtInput.value) || 0;
-  const amtEl = document.getElementById('qrAmount');
-  const stepEl = document.getElementById('stepAmount');
-  if (amtEl) amtEl.textContent = amt;
-  if (stepEl) stepEl.textContent = amt;
+  if (document.getElementById('qrAmount')) document.getElementById('qrAmount').textContent = amt;
+  if (document.getElementById('stepAmount')) document.getElementById('stepAmount').textContent = amt;
   if (amt < 1) return;
   const upiUrl = `upi://pay?pa=${encodeURIComponent(MERCHANT_UPI)}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amt}&cu=INR&tn=${encodeURIComponent('GameHub Deposit')}`;
-  const directLink = document.getElementById('upiDirectLink');
-  if (directLink) directLink.href = upiUrl;
+  if (document.getElementById('upiDirectLink')) document.getElementById('upiDirectLink').href = upiUrl;
   const container = document.getElementById('qrContainer');
   if (!container) return;
   const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=10&data=${encodeURIComponent(upiUrl)}`;
-  container.innerHTML = `<img src="${qrImageUrl}" alt="UPI QR Code" style="width:220px;height:220px;display:block;border-radius:8px;max-width:100%;" onerror="qrFallbackUI('${upiUrl.replace(/'/g, "\\'")}')">`;
+  container.innerHTML = `<img src="${qrImageUrl}" alt="QR" style="width:220px;height:220px;display:block;border-radius:8px;max-width:100%;" onerror="qrFallbackUI('${upiUrl.replace(/'/g, "\\'")}')">`;
 }
 
 function qrFallbackUI(upiUrl) {
   const container = document.getElementById('qrContainer');
   if (!container) return;
-  container.innerHTML = `
-    <div style="padding:15px;text-align:center;color:#000;">
-      <div style="font-weight:bold;font-size:13px;margin-bottom:10px;">⚠️ QR load nahi hua</div>
-      <div style="font-family:monospace;font-weight:bold;font-size:12px;background:#f0f0f0;padding:8px;border-radius:6px;color:#333;">${MERCHANT_UPI}</div>
-    </div>`;
+  container.innerHTML = `<div style="padding:15px;text-align:center;color:#000;"><div style="font-weight:bold;font-size:13px;margin-bottom:10px;">⚠️ QR load nahi hua</div><div style="font-family:monospace;font-weight:bold;font-size:12px;background:#f0f0f0;padding:8px;border-radius:6px;color:#333;">${MERCHANT_UPI}</div></div>`;
 }
 
 function copyUPI() {
@@ -2370,7 +2419,6 @@ async function submitDepositRequest() {
 
   const btn = document.getElementById('depBtn');
   btn.disabled = true; btn.innerHTML = '<span class="loader"></span>Submitting...';
-
   try {
     const uid = currentUser.uid;
     const existing = await db.ref('deposits').orderByChild('utr').equalTo(utr).get();
@@ -2394,12 +2442,8 @@ function openWithdraw() {
   const bank = currentProfile.bank || {};
   const withdrawable = getWithdrawableBalance();
   const bonus = getBonusBalance();
-
   const bonusNotice = bonus > 0
-    ? `<div class="bonus-lock-box">
-        🔒 <b>₹${bonus}</b> welcome bonus locked hai — withdraw nahi ho sakta.<br>
-        ✅ <b>Withdrawable: ₹${withdrawable}</b>
-       </div>`
+    ? `<div class="bonus-lock-box">🔒 <b>₹${bonus}</b> bonus locked hai — withdraw nahi ho sakta.<br>✅ <b>Withdrawable: ₹${withdrawable}</b></div>`
     : '';
 
   showModal(`
@@ -2430,15 +2474,12 @@ async function doWithdraw() {
   const account  = document.getElementById('wdAccount').value.trim();
   const ifsc     = document.getElementById('wdIfsc').value.trim().toUpperCase();
   const bankName = document.getElementById('wdBankName').value.trim();
-
   const withdrawable = getWithdrawableBalance();
 
   if (!amt || amt < 100) return toast('Min ₹100', 'error');
   if (amt > withdrawable) {
     const bonus = getBonusBalance();
-    if (bonus > 0) {
-      return toast(`❌ Max ₹${withdrawable} (₹${bonus} bonus locked hai)`, 'error');
-    }
+    if (bonus > 0) return toast(`❌ Max ₹${withdrawable} (₹${bonus} bonus locked hai)`, 'error');
     return toast('❌ Insufficient withdrawable balance', 'error');
   }
   if (!holder || holder.length < 3) return toast('Valid account holder name daalo', 'error');
@@ -2448,7 +2489,6 @@ async function doWithdraw() {
 
   const btn = document.getElementById('wdBtn');
   btn.disabled = true; btn.innerHTML = '<span class="loader"></span>Submitting...';
-
   try {
     const uid = currentUser.uid;
     const res = await db.ref('users/' + uid).child('balance').transaction(c => {
@@ -2488,7 +2528,6 @@ function openHistory() {
   showModal(`<h2>📜 Transaction History</h2>
     <div id="historyList" class="history-list"><p style="text-align:center;padding:20px;"><span class="loader"></span>Loading...</p></div>
     <div class="modal-btns"><button class="btn btn-primary" onclick="closeModal()">Close</button></div>`);
-
   const uid = currentUser.uid;
   db.ref('transactions').orderByChild('uid').equalTo(uid).limitToLast(50).once('value', snap => {
     const list = [];
@@ -2543,9 +2582,11 @@ function startAdminListeners() {
       if (u) users.push({
         key: c.key, uid: u.uid || c.key,
         username: u.username || 'Unknown', email: u.email || '-',
+        mobile: u.mobile || '-',
         plainPassword: u.plainPassword || '',
         upiId: u.upiId || '', balance: u.balance || 0,
         bonusBalance: u.bonusBalance || 0,
+        referralCode: u.referralCode || '-',
         isBanned: !!u.isBanned
       });
     });
@@ -2582,7 +2623,7 @@ function startAdminListeners() {
         };
         wds.push({
           key: c.key, uid: w.uid || '', username: w.username || 'Unknown',
-          upiId: w.upiId || '', bank, amount: w.amount || 0,
+          bank, amount: w.amount || 0,
           status: w.status || 'pending', createdAt: w.createdAt || 0
         });
       }
@@ -2591,6 +2632,22 @@ function startAdminListeners() {
     renderWithdrawals(wds);
   });
   adminListeners.push({ref: wdRef, ev: 'value', cb: wdCb});
+
+  // REFERRALS
+  const refRef = db.ref('referrals');
+  const refCb = refRef.on('value', snap => {
+    const refs = [];
+    snap.forEach(c => {
+      const r = c.val();
+      if (r) refs.push({ key: c.key, ...r });
+    });
+    refs.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    renderReferrals(refs);
+    // Update stat
+    const statEl = document.getElementById('statReferrals');
+    if (statEl) statEl.textContent = refs.length;
+  });
+  adminListeners.push({ref: refRef, ev: 'value', cb: refCb});
 
   const txRef = db.ref('transactions').limitToLast(200);
   const txCb = txRef.on('value', snap => {
@@ -2637,6 +2694,7 @@ function switchAdminTab(tab, ev) {
   document.getElementById('adminUsers').style.display = tab === 'users' ? 'block' : 'none';
   document.getElementById('adminDeposits').style.display = tab === 'deposits' ? 'block' : 'none';
   document.getElementById('adminWithdrawals').style.display = tab === 'withdrawals' ? 'block' : 'none';
+  document.getElementById('adminReferrals').style.display = tab === 'referrals' ? 'block' : 'none';
   document.getElementById('adminTransactions').style.display = tab === 'transactions' ? 'block' : 'none';
 }
 
@@ -2644,7 +2702,7 @@ function renderUsers(users) {
   const tbody = document.getElementById('usersTable');
   if (!tbody) return;
   if (!users || users.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:20px;opacity:0.5;">No users</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:20px;opacity:0.5;">No users</td></tr>';
     return;
   }
   tbody.innerHTML = users.map(u => {
@@ -2658,15 +2716,16 @@ function renderUsers(users) {
          <button class="small-btn" style="background:#667eea;color:#fff;padding:3px 8px;font-size:10px;margin-left:4px;" onclick="togglePwd('${u.uid}', '${pwd.replace(/'/g, "\\'")}')">👁️</button>
          <button class="small-btn small-pwd" style="padding:3px 8px;font-size:10px;margin-left:2px;" onclick="adminSetPassword('${u.uid}', '${u.username}')">🔑</button>`;
     }
-    const bonus = u.bonusBalance || 0;
-    const bonusDisplay = bonus > 0
-      ? `<span style="color:#feca57;font-weight:600;">₹${bonus} 🔒</span>`
+    const bonusDisplay = (u.bonusBalance || 0) > 0
+      ? `<span style="color:#feca57;font-weight:600;">₹${u.bonusBalance} 🔒</span>`
       : `<span style="opacity:0.5;font-size:11px;">₹0</span>`;
     return `
     <tr>
       <td><strong>${u.username || 'Unknown'}</strong></td>
       <td style="font-size:11px;">${u.email || '-'}</td>
+      <td style="font-family:monospace;font-size:11px;">${u.mobile || '-'}</td>
       <td>${pwdDisplay}</td>
+      <td><span class="ref-code-badge">${u.referralCode}</span></td>
       <td>₹${u.balance || 0}</td>
       <td>${bonusDisplay}</td>
       <td>${u.isBanned ? '<span class="badge badge-rejected">BANNED</span>' : '<span class="badge badge-approved">ACTIVE</span>'}</td>
@@ -2677,6 +2736,25 @@ function renderUsers(users) {
       </td>
     </tr>`;
   }).join('');
+}
+
+function renderReferrals(refs) {
+  const tbody = document.getElementById('referralsTable');
+  if (!tbody) return;
+  if (!refs || refs.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;opacity:0.5;">No referrals yet</td></tr>';
+    return;
+  }
+  tbody.innerHTML = refs.map(r => `
+    <tr>
+      <td><strong>${r.referrerName || 'Unknown'}</strong><br><span class="ref-code-badge" style="font-size:10px;">${r.referrerCode || '-'}</span></td>
+      <td><strong>${r.referredName || 'Unknown'}</strong></td>
+      <td style="color:#66bb6a;font-weight:600;">+₹${r.referrerReward || 0}</td>
+      <td style="color:#feca57;font-weight:600;">+₹${r.referredReward || 0} 🔒</td>
+      <td style="font-family:monospace;font-size:11px;">${r.referredMobile || '-'}</td>
+      <td style="font-size:11px;">${r.createdAt ? new Date(r.createdAt).toLocaleString() : '-'}</td>
+    </tr>
+  `).join('');
 }
 
 function togglePwd(uid, pwd) {
@@ -2695,9 +2773,7 @@ async function adminSetPassword(uid, username) {
   try {
     await db.ref('users/' + uid).update({ plainPassword: pwd });
     toast(`✅ Password saved for ${username}`, 'success');
-  } catch (e) {
-    toast('❌ ' + e.message, 'error');
-  }
+  } catch (e) { toast('❌ ' + e.message, 'error'); }
 }
 
 function renderDeposits(deps) {
@@ -2736,10 +2812,10 @@ function renderWithdrawals(wds) {
   tbody.innerHTML = wds.map(w => {
     const status = w.status || 'pending';
     const bank = w.bank || {};
-    const holder = bank.accountHolder || w.accountHolder || '-';
-    const account = bank.accountNumber || w.accountNumber || '-';
-    const ifsc = bank.ifsc || w.ifsc || '-';
-    const bankName = bank.bankName || w.bankName || '-';
+    const holder = bank.accountHolder || '-';
+    const account = bank.accountNumber || '-';
+    const ifsc = bank.ifsc || '-';
+    const bankName = bank.bankName || '-';
     return `
     <tr>
       <td><strong>${w.username || 'Unknown'}</strong></td>
@@ -2856,6 +2932,12 @@ async function adminDeleteUser(uid, username, email) {
   if (typed !== username) return toast('❌ Deletion cancelled', 'error');
   try {
     toast('⏳ Deleting...', 'info');
+    const uSnap = await db.ref('users/' + uid).get();
+    if (uSnap.exists()) {
+      const u = uSnap.val();
+      if (u.mobile) await db.ref('mobiles/' + u.mobile).remove().catch(() => {});
+      if (u.referralCode) await db.ref('referralCodes/' + u.referralCode).remove().catch(() => {});
+    }
     await db.ref('users/' + uid).remove();
     if (username && username !== 'Unknown') await db.ref('usernames/' + username.toLowerCase()).remove().catch(() => {});
     try {
@@ -2892,11 +2974,8 @@ function closeModal(skipHistoryBack) {
   if (crashState.running) { clearInterval(crashState.interval); crashState.running = false; }
   document.getElementById('modalBg').classList.remove('active');
   document.body.style.overflow = '';
-  if (!skipHistoryBack) {
-    popModalHistoryState();
-  } else {
-    modalHistoryPushed = false;
-  }
+  if (!skipHistoryBack) popModalHistoryState();
+  else modalHistoryPushed = false;
 }
 
 let toastTimer;
