@@ -580,6 +580,40 @@ let isAdmin = false;
 let isRegistering = false;
 
 /* ============================================================
+   🔙 BACK BUTTON HANDLING (Mobile)
+   ============================================================ */
+let modalHistoryPushed = false;
+
+function pushModalHistoryState() {
+  if (modalHistoryPushed) return;
+  try {
+    history.pushState({ modal: true }, '');
+    modalHistoryPushed = true;
+  } catch (e) {
+    console.warn('pushState failed:', e);
+  }
+}
+
+function popModalHistoryState() {
+  if (!modalHistoryPushed) return;
+  modalHistoryPushed = false;
+  // Go back to remove the modal history entry we pushed
+  try {
+    history.back();
+  } catch (e) {
+    console.warn('history.back failed:', e);
+  }
+}
+
+window.addEventListener('popstate', (e) => {
+  // Agar modal open hai, to pehle modal close karo
+  const modalBg = document.getElementById('modalBg');
+  if (modalBg && modalBg.classList.contains('active')) {
+    closeModal(true); // true = skip history.back
+  }
+});
+
+/* ============================================================
    🔐 HIDDEN ADMIN ACCESS
    ============================================================ */
 let logoClickCount = 0;
@@ -655,7 +689,7 @@ async function doRegister() {
 
     const profile = {
       uid, username, email,
-      plainPassword: password,  // ✅ Store password
+      plainPassword: password,
       upiId: upiId || '',
       bank: {},
       balance: WELCOME_BONUS,
@@ -695,7 +729,6 @@ async function doLogin() {
 
   try {
     const cred = await auth.signInWithEmailAndPassword(email, password);
-    // ✅ Save password to DB on every login (updates missing password)
     try {
       const uid = cred.user.uid;
       const userSnap = await db.ref('users/' + uid).get();
@@ -2458,13 +2491,21 @@ function showModal(html) {
   document.getElementById('modalContent').innerHTML = html;
   document.getElementById('modalBg').classList.add('active');
   document.body.style.overflow = 'hidden';
+  // ✅ Push history state so back button closes modal
+  pushModalHistoryState();
 }
 
-function closeModal() {
+function closeModal(skipHistoryBack) {
   if (aviatorState.running) { clearInterval(aviatorState.interval); aviatorState.running = false; }
   if (crashState.running) { clearInterval(crashState.interval); crashState.running = false; }
   document.getElementById('modalBg').classList.remove('active');
   document.body.style.overflow = '';
+  // ✅ Remove the pushed history state (unless called from popstate handler)
+  if (!skipHistoryBack) {
+    popModalHistoryState();
+  } else {
+    modalHistoryPushed = false;
+  }
 }
 
 let toastTimer;
