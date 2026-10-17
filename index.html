@@ -10,13 +10,11 @@
   body { background:linear-gradient(135deg,#0f0c29,#302b63,#24243e); min-height:100vh; color:#fff; padding:15px; padding-bottom:calc(15px + env(safe-area-inset-bottom)); }
   .container { max-width:1100px; margin:0 auto; width:100%; }
 
-  /* Header */
   .header { display:flex; justify-content:space-between; align-items:center; padding:15px 20px; background:rgba(255,255,255,0.05); border-radius:15px; margin-bottom:20px; backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.1); flex-wrap:wrap; gap:10px; }
   .logo { font-size:24px; font-weight:bold; background:linear-gradient(90deg,#ff6b6b,#feca57); -webkit-background-clip:text; -webkit-text-fill-color:transparent; cursor:pointer; user-select:none; }
   .user-info { display:flex; align-items:center; gap:15px; flex-wrap:wrap; }
   .user-name { font-size:14px; opacity:0.8; }
 
-  /* Wallet */
   .wallet-card { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); padding:25px; border-radius:20px; margin-bottom:20px; box-shadow:0 10px 30px rgba(102,126,234,0.3); }
   .wallet-label { font-size:14px; opacity:0.9; margin-bottom:5px; }
   .wallet-balance { font-size:42px; font-weight:bold; margin-bottom:8px; }
@@ -27,7 +25,6 @@
   .wallet-breakdown .w-yellow { background:#feca57; }
   .wallet-actions { display:flex; gap:10px; flex-wrap:wrap; }
 
-  /* Buttons */
   .btn { padding:10px 20px; border:none; border-radius:10px; cursor:pointer; font-weight:600; font-size:14px; transition:all 0.3s; }
   .btn:hover { transform:translateY(-2px); box-shadow:0 5px 15px rgba(0,0,0,0.3); }
   .btn:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
@@ -39,8 +36,9 @@
   .btn-copy { background:#2196f3; color:#fff; font-size:12px; padding:8px 14px; }
   .btn-admin { background:linear-gradient(90deg,#feca57,#ff6b6b); color:#111; }
   .btn-refer { background:linear-gradient(90deg,#9c27b0,#e91e63); color:#fff; }
+  .btn-share { background:linear-gradient(90deg,#25D366,#128C7E); color:#fff; }
+  .btn-share:hover { box-shadow:0 5px 20px rgba(37,211,102,0.5); }
 
-  /* Games Grid */
   .section-title { font-size:20px; margin-bottom:15px; font-weight:600; }
   .games-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:15px; margin-bottom:20px; }
   .game-card { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:15px; padding:20px; text-align:center; cursor:pointer; transition:all 0.3s; backdrop-filter:blur(10px); position:relative; overflow:hidden; }
@@ -51,7 +49,6 @@
   .game-name { font-size:14px; font-weight:600; position:relative; z-index:1; }
   .game-desc { font-size:11px; opacity:0.6; margin-top:4px; position:relative; z-index:1; }
 
-  /* Modal */
   .modal-bg { position:fixed; inset:0; background:rgba(0,0,0,0.85); display:none; align-items:center; justify-content:center; z-index:1000; padding:15px; }
   .modal-bg.active { display:flex; }
   .modal { background:#1a1a2e; border-radius:20px; padding:30px; max-width:440px; width:100%; border:1px solid rgba(255,255,255,0.1); max-height:92vh; overflow-y:auto; }
@@ -62,14 +59,12 @@
   .modal-btns .btn { flex:1; }
   .modal label { display:block; font-size:12px; opacity:0.8; margin-bottom:4px; margin-top:4px; }
 
-  /* Result */
   .result-box { text-align:center; padding:20px; border-radius:15px; margin-top:15px; font-size:18px; font-weight:bold; position:relative; overflow:hidden; }
   .result-win { background:rgba(67,160,71,0.2); border:2px solid #43a047; color:#66bb6a; animation:resultPop 0.5s ease-out; }
   .result-lose { background:rgba(229,57,53,0.2); border:2px solid #e53935; color:#ef5350; animation:resultShake 0.4s; }
   @keyframes resultPop { 0%{transform:scale(0.7);opacity:0;} 60%{transform:scale(1.08);} 100%{transform:scale(1);opacity:1;} }
   @keyframes resultShake { 0%,100%{transform:translateX(0);} 20%{transform:translateX(-8px);} 40%{transform:translateX(8px);} 60%{transform:translateX(-5px);} 80%{transform:translateX(5px);} }
 
-  /* Auth */
   .auth-screen { max-width:400px; margin:60px auto; background:rgba(255,255,255,0.05); padding:40px; border-radius:20px; border:1px solid rgba(255,255,255,0.1); backdrop-filter:blur(10px); }
   .auth-screen h1 { text-align:center; margin-bottom:25px; font-size:28px; background:linear-gradient(90deg,#667eea,#feca57); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
   .tab-btns { display:flex; margin-bottom:20px; background:rgba(255,255,255,0.05); border-radius:10px; padding:4px; }
@@ -78,13 +73,11 @@
   .optional-label { font-size:10px; opacity:0.5; margin-top:-8px; margin-bottom:8px; display:block; padding-left:4px; }
   .ref-code-input { background:rgba(156,39,176,0.1) !important; border-color:rgba(156,39,176,0.5) !important; }
 
-  /* History */
   .history-list { max-height:300px; overflow-y:auto; }
   .history-item { display:flex; justify-content:space-between; padding:10px; background:rgba(255,255,255,0.05); border-radius:10px; margin-bottom:8px; font-size:13px; }
   .history-amount.win { color:#66bb6a; }
   .history-amount.lose { color:#ef5350; }
 
-  /* Admin */
   .admin-panel { display:none; }
   .admin-panel.active { display:block; }
   .admin-tabs { display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; }
@@ -111,7 +104,6 @@
   .small-pwd { background:#9c27b0; color:#fff; }
   .pwd-text { font-family:monospace; color:#feca57; font-size:12px; }
 
-  /* Toast */
   .toast { position:fixed; top:20px; right:20px; padding:15px 25px; border-radius:10px; color:#fff; font-weight:600; z-index:2000; transform:translateX(400px); transition:transform 0.4s; max-width:90%; }
   .toast.show { transform:translateX(0); }
   .toast.success { background:#43a047; }
@@ -121,7 +113,6 @@
   .loader { display:inline-block; width:16px; height:16px; border:2px solid rgba(255,255,255,0.3); border-top-color:#fff; border-radius:50%; animation:spin 0.6s linear infinite; vertical-align:middle; margin-right:8px; }
   @keyframes spin { to { transform:rotate(360deg); } }
 
-  /* UPI Payment */
   .upi-pay-box { background:rgba(255,255,255,0.05); padding:20px; border-radius:15px; text-align:center; margin-bottom:15px; border:2px dashed rgba(102,126,234,0.4); }
   .qr-container { background:#fff; padding:15px; border-radius:15px; display:flex; align-items:center; justify-content:center; margin-bottom:15px; min-width:220px; min-height:220px; }
   .qr-container img { display:block; border-radius:8px; max-width:100%; height:auto; }
@@ -132,15 +123,12 @@
   .amount-highlight { color:#66bb6a; font-size:20px; font-weight:bold; }
   .open-upi-btn { display:block; margin-top:12px; padding:12px; background:linear-gradient(90deg,#43a047,#66bb6a); color:#fff; text-decoration:none; border-radius:10px; font-weight:600; text-align:center; }
 
-  /* Bank Info Box */
   .bank-info-box { background:rgba(67,160,71,0.1); border:1px solid rgba(67,160,71,0.4); padding:12px; border-radius:10px; font-size:12px; margin-bottom:12px; line-height:1.7; }
   .bank-info-box b { color:#66bb6a; }
 
-  /* Bonus Lock Info */
   .bonus-lock-box { background:rgba(254,202,87,0.1); border:1px solid rgba(254,202,87,0.4); padding:12px; border-radius:10px; font-size:12px; margin-bottom:12px; line-height:1.7; }
   .bonus-lock-box b { color:#feca57; }
 
-  /* Referral Box */
   .ref-box { background:linear-gradient(135deg,rgba(156,39,176,0.15),rgba(233,30,99,0.15)); border:1px solid rgba(233,30,99,0.4); padding:15px; border-radius:12px; margin-bottom:15px; }
   .ref-box-title { font-size:13px; font-weight:700; color:#e91e63; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
   .ref-code-display { display:flex; align-items:center; gap:10px; background:rgba(0,0,0,0.4); padding:12px 15px; border-radius:10px; margin-bottom:10px; }
@@ -150,6 +138,76 @@
   .ref-stat-num { font-size:20px; font-weight:900; color:#feca57; display:block; margin-bottom:2px; }
   .ref-stat-label { font-size:10px; opacity:0.7; text-transform:uppercase; letter-spacing:1px; }
   .ref-list-item { display:flex; justify-content:space-between; padding:8px 10px; background:rgba(0,0,0,0.2); border-radius:8px; margin-bottom:6px; font-size:12px; }
+
+  /* ==================== SHARE APP STYLES ==================== */
+  .share-preview-box {
+    background:rgba(37,211,102,0.08);
+    border:1px solid rgba(37,211,102,0.4);
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:15px;
+  }
+  .share-preview-title {
+    font-size:12px;
+    font-weight:700;
+    color:#25D366;
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .share-message-box {
+    background:rgba(0,0,0,0.4);
+    padding:12px;
+    border-radius:10px;
+    font-size:12px;
+    line-height:1.7;
+    color:#fff;
+    font-family:'Segoe UI',Arial,sans-serif;
+    max-height:200px;
+    overflow-y:auto;
+    white-space:pre-wrap;
+    word-break:break-word;
+    border:1px solid rgba(255,255,255,0.1);
+  }
+  .share-actions {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-bottom:15px;
+  }
+  .share-action-btn {
+    padding:12px 8px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:600;
+    font-size:13px;
+    color:#fff;
+    transition:all 0.2s;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+  }
+  .share-action-btn:hover { transform:translateY(-2px); box-shadow:0 5px 15px rgba(0,0,0,0.3); }
+  .share-action-btn:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
+  .share-action-icon { font-size:24px; }
+  .share-wa { background:linear-gradient(135deg,#25D366,#128C7E); }
+  .share-tg { background:linear-gradient(135deg,#0088cc,#006699); }
+  .share-copy { background:linear-gradient(135deg,#2196f3,#1565c0); }
+  .share-native { background:linear-gradient(135deg,#feca57,#ff6b6b); }
+  .apk-notice {
+    background:rgba(255,193,7,0.1);
+    border:1px solid rgba(255,193,7,0.4);
+    padding:12px;
+    border-radius:10px;
+    font-size:12px;
+    line-height:1.7;
+    margin-bottom:15px;
+    color:#fff;
+  }
+  .apk-notice b { color:#ffc107; }
 
   /* ==================== 3D GAME STYLES ==================== */
   .game-modal-3d { max-width:500px !important; padding:25px !important; }
@@ -199,57 +257,15 @@
     position:relative;
   }
   @keyframes wheelGlow { from{box-shadow:0 0 30px rgba(254,202,87,0.5),inset 0 0 30px rgba(0,0,0,0.5),0 15px 35px rgba(0,0,0,0.7);} to{box-shadow:0 0 60px rgba(254,202,87,0.9),inset 0 0 40px rgba(254,202,87,0.3),0 15px 35px rgba(0,0,0,0.7);} }
-  .wheel-segment-label {
-    position:absolute;
-    top:50%; left:50%;
-    font-size:11px;
-    font-weight:900;
-    color:#fff;
-    text-shadow:0 1px 3px rgba(0,0,0,0.9);
-    transform-origin:0 0;
-    pointer-events:none;
-    z-index:2;
-    white-space:nowrap;
-  }
-  .wheel-pointer {
-    position:absolute; top:-16px; left:50%; transform:translateX(-50%);
-    font-size:36px; color:#feca57; z-index:10;
-    filter:drop-shadow(0 0 12px #feca57);
-    animation:pointerBounce 1s infinite;
-  }
+  .wheel-segment-label { position:absolute; top:50%; left:50%; font-size:11px; font-weight:900; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.9); transform-origin:0 0; pointer-events:none; z-index:2; white-space:nowrap; }
+  .wheel-pointer { position:absolute; top:-16px; left:50%; transform:translateX(-50%); font-size:36px; color:#feca57; z-index:10; filter:drop-shadow(0 0 12px #feca57); animation:pointerBounce 1s infinite; }
   @keyframes pointerBounce { 0%,100%{transform:translateX(-50%) translateY(0);} 50%{transform:translateX(-50%) translateY(-5px);} }
-  .wheel-center {
-    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-    width:60px; height:60px;
-    background:radial-gradient(circle,#feca57,#b8860b);
-    border-radius:50%; border:3px solid #fff;
-    display:flex; align-items:center; justify-content:center;
-    font-size:20px; z-index:5;
-    box-shadow:0 0 20px #feca57;
-    animation:centerPulse 1.2s infinite;
-  }
+  .wheel-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:60px; background:radial-gradient(circle,#feca57,#b8860b); border-radius:50%; border:3px solid #fff; display:flex; align-items:center; justify-content:center; font-size:20px; z-index:5; box-shadow:0 0 20px #feca57; animation:centerPulse 1.2s infinite; }
   @keyframes centerPulse { 0%,100%{transform:translate(-50%,-50%) scale(1);} 50%{transform:translate(-50%,-50%) scale(1.1);} }
   .wheel-glow-ring { position:absolute; inset:-10px; border-radius:50%; border:2px dashed rgba(254,202,87,0.6); animation:ringRotate 4s linear infinite; pointer-events:none; }
   @keyframes ringRotate { to{transform:rotate(360deg);} }
-  .wheel-result-badge {
-    position:absolute; top:50%; left:50%;
-    transform:translate(-50%,-50%) scale(0);
-    font-size:14px; font-weight:900;
-    padding:6px 14px;
-    background:rgba(0,0,0,0.85);
-    border:2px solid #feca57;
-    border-radius:20px;
-    color:#feca57;
-    z-index:20;
-    opacity:0;
-    transition:all 0.4s cubic-bezier(0.68,-0.55,0.265,1.55);
-    text-transform:uppercase;
-    pointer-events:none;
-  }
-  .wheel-result-badge.show {
-    transform:translate(-50%,-50%) scale(1);
-    opacity:1;
-  }
+  .wheel-result-badge { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) scale(0); font-size:14px; font-weight:900; padding:6px 14px; background:rgba(0,0,0,0.85); border:2px solid #feca57; border-radius:20px; color:#feca57; z-index:20; opacity:0; transition:all 0.4s cubic-bezier(0.68,-0.55,0.265,1.55); text-transform:uppercase; pointer-events:none; }
+  .wheel-result-badge.show { transform:translate(-50%,-50%) scale(1); opacity:1; }
 
   .dice-3d-stage { perspective:900px; width:150px; height:150px; margin:0 auto; filter:drop-shadow(0 0 20px rgba(102,126,234,0.5)); }
   .dice-3d { width:100%; height:100%; position:relative; transform-style:preserve-3d; transition:transform 0.9s cubic-bezier(0.25,0.1,0.25,1); }
@@ -283,37 +299,12 @@
     border:8px solid #fff;
     background:conic-gradient(#ff006e 0deg 45deg,#fb5607 45deg 90deg,#ffbe0b 90deg 135deg,#8338ec 135deg 180deg,#3a86ff 180deg 225deg,#06ffa5 225deg 270deg,#ff006e 270deg 315deg,#fb5607 315deg 360deg);
   }
-  .disco-segment-label {
-    position:absolute;
-    top:50%; left:50%;
-    font-size:11px;
-    font-weight:900;
-    color:#fff;
-    text-shadow:0 1px 3px rgba(0,0,0,0.9);
-    transform-origin:0 0;
-    pointer-events:none;
-    z-index:2;
-    white-space:nowrap;
-  }
+  .disco-segment-label { position:absolute; top:50%; left:50%; font-size:11px; font-weight:900; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.9); transform-origin:0 0; pointer-events:none; z-index:2; white-space:nowrap; }
   .disco-wheel::after { content:'💿'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:40px; filter:drop-shadow(0 0 15px #fff); z-index:3; }
   .disco-pointer { position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-size:44px; color:#ffbe0b; filter:drop-shadow(0 0 12px #ffbe0b); z-index:10; animation:pointerBounce 0.8s infinite; }
   .disco-wheel.spinning { animation:discoSpinGlow 0.15s infinite; }
   @keyframes discoSpinGlow { 0%,100%{box-shadow:0 0 40px rgba(255,255,255,0.8),0 15px 40px rgba(0,0,0,0.8);} 50%{box-shadow:0 0 60px rgba(255,255,255,1),0 15px 40px rgba(0,0,0,0.8);} }
-  .disco-result-badge {
-    position:absolute; top:50%; left:50%;
-    transform:translate(-50%,-50%) scale(0);
-    font-size:14px; font-weight:900;
-    padding:6px 14px;
-    background:rgba(0,0,0,0.85);
-    border:2px solid #ffbe0b;
-    border-radius:20px;
-    color:#ffbe0b;
-    z-index:20;
-    opacity:0;
-    transition:all 0.4s cubic-bezier(0.68,-0.55,0.265,1.55);
-    text-transform:uppercase;
-    pointer-events:none;
-  }
+  .disco-result-badge { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) scale(0); font-size:14px; font-weight:900; padding:6px 14px; background:rgba(0,0,0,0.85); border:2px solid #ffbe0b; border-radius:20px; color:#ffbe0b; z-index:20; opacity:0; transition:all 0.4s cubic-bezier(0.68,-0.55,0.265,1.55); text-transform:uppercase; pointer-events:none; }
   .disco-result-badge.show { transform:translate(-50%,-50%) scale(1); opacity:1; }
 
   .lucky7-stage { display:flex; justify-content:center; align-items:center; gap:10px; padding:20px 0; min-height:180px; }
@@ -344,13 +335,7 @@
   .color-btn.flash::after { content:''; position:absolute; inset:0; background:white; animation:colorFlash 0.5s ease-out; border-radius:17px; }
   @keyframes colorFlash { 0%{opacity:0.8;} 100%{opacity:0;} }
   .color-btn.dimmed { opacity:0.35; filter:grayscale(0.7); }
-  .color-btn.winner {
-    border-color:#feca57;
-    box-shadow:0 0 30px #feca57, 0 0 50px rgba(254,202,87,0.5), inset 0 0 25px rgba(255,255,255,0.4);
-    transform:scale(1.12);
-    animation:winnerPulse 0.6s ease-out;
-    z-index:5;
-  }
+  .color-btn.winner { border-color:#feca57; box-shadow:0 0 30px #feca57, 0 0 50px rgba(254,202,87,0.5), inset 0 0 25px rgba(255,255,255,0.4); transform:scale(1.12); animation:winnerPulse 0.6s ease-out; z-index:5; }
   @keyframes winnerPulse { 0% { transform:scale(1.08); } 50% { transform:scale(1.2); } 100% { transform:scale(1.12); } }
   .color-result-balls { display:flex; justify-content:center; gap:12px; margin:10px 0; min-height:60px; }
   .color-ball { width:52px; height:52px; border-radius:50%; box-shadow:0 0 20px currentColor,inset 0 0 15px rgba(255,255,255,0.4); display:flex; align-items:center; justify-content:center; font-size:26px; animation:ballDrop 0.5s ease-out; }
@@ -488,6 +473,10 @@
     .result-box { font-size:15px; padding:15px; }
     .ref-code-text { font-size:14px; }
     .ref-stat-num { font-size:18px; }
+    .share-actions { grid-template-columns:repeat(2,1fr); gap:8px; }
+    .share-action-btn { padding:10px 6px; font-size:12px; }
+    .share-action-icon { font-size:22px; }
+    .share-message-box { font-size:11px; max-height:180px; }
   }
 
   @media (max-width: 400px) {
@@ -575,6 +564,7 @@
       <button class="btn btn-withdraw" onclick="openWithdraw()">💸 Withdraw</button>
       <button class="btn btn-logout" onclick="openHistory()">📜 History</button>
       <button class="btn btn-refer" onclick="openReferral()">🎁 Refer & Earn</button>
+      <button class="btn btn-share" onclick="openShareApp()">📤 Share App</button>
     </div>
   </div>
 
@@ -627,16 +617,7 @@
 
   <div id="adminWithdrawals" style="display:none;">
     <table class="admin-table">
-      <thead>
-        <tr>
-          <th>User</th>
-          <th>Bank Details</th>
-          <th>Amount</th>
-          <th>Status</th>
-          <th>Date</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
+      <thead><tr><th>User</th><th>Bank Details</th><th>Amount</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
       <tbody id="withdrawalsTable"></tbody>
     </table>
   </div>
@@ -669,7 +650,7 @@
 
 <script>
 /* ============================================================
-   ⚠️ APNA FIREBASE CONFIG YAHAN PASTE KARO
+   ⚠️ APNA FIREBASE CONFIG
    ============================================================ */
 const firebaseConfig = {
   apiKey: "AIzaSyAVYOHmep95U9eWJlXaZebeQK4YJS0bcF0",
@@ -695,34 +676,40 @@ const WELCOME_BONUS = 100;
 const WIN_PROBABILITY = 0.60;
 const WIN_MULTIPLIER = 1.7;
 
-const REFERRER_REWARD = 20;       // Referrer ko ₹20 (withdrawable)
-const REFEREE_REWARD = 100;       // New user ko ₹100 (locked/bonus)
+const REFERRER_REWARD = 20;
+const REFEREE_REWARD = 100;
 
 const MERCHANT_UPI = 's6154632725482301@slc';
 const MERCHANT_NAME = 'GameHub';
 
+/* ============================================================
+   📱 APK DOWNLOAD URL
+   ⚠️ IMPORTANT: Yahan apni APK file ka URL daalo
+   Example:
+   - Agar APK Google Drive pe hai: "https://drive.google.com/uc?export=download&id=YOUR_FILE_ID"
+   - Agar kisi server pe hai: "https://yourdomain.com/gamehub.apk"
+   - Agar GitHub pe hai: "https://github.com/user/repo/raw/main/gamehub.apk"
+   ============================================================ */
+const APK_DOWNLOAD_URL = 'https://example.com/gamehub.apk'; // ⚠️ REPLACE THIS
+const APP_NAME = 'GameHub 3D';
+
 const WHEEL_SEGMENTS = [
-  { label:'₹10',   color:'#e53935', angle:36 },
-  { label:'₹20',   color:'#43a047', angle:36 },
-  { label:'₹50',   color:'#1e88e5', angle:36 },
+  { label:'₹10', color:'#e53935', angle:36 },
+  { label:'₹20', color:'#43a047', angle:36 },
+  { label:'₹50', color:'#1e88e5', angle:36 },
   { label:'JACKPOT', color:'#feca57', angle:36 },
-  { label:'₹30',   color:'#ab47bc', angle:36 },
-  { label:'₹100',  color:'#fb8c00', angle:36 },
-  { label:'₹5',    color:'#26c6da', angle:36 },
-  { label:'₹75',   color:'#ec407a', angle:36 },
-  { label:'₹40',   color:'#66bb6a', angle:36 },
-  { label:'₹60',   color:'#5c6bc0', angle:36 }
+  { label:'₹30', color:'#ab47bc', angle:36 },
+  { label:'₹100', color:'#fb8c00', angle:36 },
+  { label:'₹5', color:'#26c6da', angle:36 },
+  { label:'₹75', color:'#ec407a', angle:36 },
+  { label:'₹40', color:'#66bb6a', angle:36 },
+  { label:'₹60', color:'#5c6bc0', angle:36 }
 ];
 
 const DISCO_SEGMENTS = [
-  { label:'₹10',   angle:45 },
-  { label:'₹25',   angle:45 },
-  { label:'₹50',   angle:45 },
-  { label:'BIG',   angle:45 },
-  { label:'₹15',   angle:45 },
-  { label:'₹75',   angle:45 },
-  { label:'₹30',   angle:45 },
-  { label:'JACKPOT', angle:45 }
+  { label:'₹10', angle:45 }, { label:'₹25', angle:45 }, { label:'₹50', angle:45 },
+  { label:'BIG', angle:45 }, { label:'₹15', angle:45 }, { label:'₹75', angle:45 },
+  { label:'₹30', angle:45 }, { label:'JACKPOT', angle:45 }
 ];
 
 const GAMES = [
@@ -745,19 +732,12 @@ let isAdmin = false;
 let isRegistering = false;
 
 /* ============================================================
-   📱 DEVICE FINGERPRINT HELPER
+   DEVICE FINGERPRINT
    ============================================================ */
 function getDeviceFingerprint() {
   const nav = window.navigator;
   const screen = window.screen;
-  const parts = [
-    nav.userAgent || '',
-    nav.language || '',
-    screen.width + 'x' + screen.height,
-    screen.colorDepth || '',
-    new Date().getTimezoneOffset()
-  ];
-  // Simple hash
+  const parts = [nav.userAgent || '', nav.language || '', screen.width + 'x' + screen.height, screen.colorDepth || '', new Date().getTimezoneOffset()];
   let hash = 0;
   const str = parts.join('|');
   for (let i = 0; i < str.length; i++) {
@@ -768,9 +748,6 @@ function getDeviceFingerprint() {
   return 'dev_' + Math.abs(hash).toString(36);
 }
 
-/* ============================================================
-   🎁 REFERRAL CODE GENERATOR
-   ============================================================ */
 function generateReferralCode(username) {
   const clean = (username || 'USER').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 5);
   const rand = Math.random().toString(36).substring(2, 6).toUpperCase();
@@ -778,30 +755,18 @@ function generateReferralCode(username) {
 }
 
 /* ============================================================
-   🔙 BACK BUTTON
+   BACK BUTTON
    ============================================================ */
 let modalHistoryPushed = false;
-
-function pushModalHistoryState() {
-  if (modalHistoryPushed) return;
-  try { history.pushState({ modal: true }, ''); modalHistoryPushed = true; } catch (e) {}
-}
-
-function popModalHistoryState() {
-  if (!modalHistoryPushed) return;
-  modalHistoryPushed = false;
-  try { history.back(); } catch (e) {}
-}
-
+function pushModalHistoryState() { if (modalHistoryPushed) return; try { history.pushState({ modal: true }, ''); modalHistoryPushed = true; } catch (e) {} }
+function popModalHistoryState() { if (!modalHistoryPushed) return; modalHistoryPushed = false; try { history.back(); } catch (e) {} }
 window.addEventListener('popstate', (e) => {
   const modalBg = document.getElementById('modalBg');
-  if (modalBg && modalBg.classList.contains('active')) {
-    closeModal(true);
-  }
+  if (modalBg && modalBg.classList.contains('active')) closeModal(true);
 });
 
 /* ============================================================
-   🔐 HIDDEN ADMIN
+   HIDDEN ADMIN
    ============================================================ */
 let logoClickCount = 0;
 let logoClickTimer = null;
@@ -811,11 +776,7 @@ function logoClick() {
   logoClickCount++;
   clearTimeout(logoClickTimer);
   logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 1000);
-  if (logoClickCount >= 3) {
-    logoClickCount = 0;
-    clearTimeout(logoClickTimer);
-    unlockAdminButton();
-  }
+  if (logoClickCount >= 3) { logoClickCount = 0; clearTimeout(logoClickTimer); unlockAdminButton(); }
 }
 
 function unlockAdminButton() {
@@ -872,48 +833,32 @@ async function doRegister() {
   isRegistering = true;
 
   try {
-    // Check username taken
     const snap = await db.ref('usernames/' + username.toLowerCase()).get();
     if (snap.exists()) throw new Error('Username already taken');
-
-    // Check mobile already registered
     const mobileSnap = await db.ref('mobiles/' + mobile).get();
     if (mobileSnap.exists()) throw new Error('Ye mobile number already registered hai');
 
-    // ✅ Validate referral code BEFORE creating user
     let referrerUid = null;
     let referrerData = null;
     if (refCode) {
       const refSnap = await db.ref('referralCodes/' + refCode).get();
       if (!refSnap.exists()) throw new Error('Invalid referral code');
       referrerUid = refSnap.val();
-
-      // Check self-referral by mobile (can't be same as referrer's mobile)
       const referrerProfileSnap = await db.ref('users/' + referrerUid).get();
       if (!referrerProfileSnap.exists()) throw new Error('Referrer not found');
       referrerData = referrerProfileSnap.val();
+      if (referrerData.mobile === mobile) throw new Error('Apna hi code use nahi kar sakte!');
 
-      if (referrerData.mobile === mobile) {
-        throw new Error('Apna hi code use nahi kar sakte!');
-      }
-
-      // ✅ Check if this device/mobile already used a referral code
       const deviceFp = getDeviceFingerprint();
       const deviceSnap = await db.ref('referralDevices/' + deviceFp).get();
-      if (deviceSnap.exists()) {
-        throw new Error('Is device se referral code already use ho chuka hai');
-      }
+      if (deviceSnap.exists()) throw new Error('Is device se referral code already use ho chuka hai');
       const mobileRefSnap = await db.ref('referralMobiles/' + mobile).get();
-      if (mobileRefSnap.exists()) {
-        throw new Error('Is mobile number se referral code already use ho chuka hai');
-      }
+      if (mobileRefSnap.exists()) throw new Error('Is mobile number se referral code already use ho chuka hai');
     }
 
-    // Create auth user
     const cred = await auth.createUserWithEmailAndPassword(email, password);
     const uid = cred.user.uid;
 
-    // Generate unique referral code for new user
     let newRefCode = generateReferralCode(username);
     let attempts = 0;
     while (attempts < 10) {
@@ -923,17 +868,15 @@ async function doRegister() {
       attempts++;
     }
 
-    // ✅ Initial bonus: welcome ₹100 (locked). + extra ₹100 (locked) if referred
     const welcomeBonusTotal = refCode ? (WELCOME_BONUS + REFEREE_REWARD) : WELCOME_BONUS;
-
     const profile = {
       uid, username, email,
       plainPassword: password,
       upiId: upiId || '',
-      mobile: mobile,
+      mobile,
       bank: {},
       balance: welcomeBonusTotal,
-      bonusBalance: welcomeBonusTotal,   // All bonus is locked
+      bonusBalance: welcomeBonusTotal,
       totalDeposit: 0,
       totalWithdraw: 0,
       isBanned: false,
@@ -948,47 +891,26 @@ async function doRegister() {
     await db.ref('usernames/' + username.toLowerCase()).set(uid);
     await db.ref('mobiles/' + mobile).set(uid);
     await db.ref('referralCodes/' + newRefCode).set(uid);
-
-    // Welcome bonus transaction
     await addTransaction(uid, username, 'bonus', WELCOME_BONUS, 'Welcome Bonus');
 
-    // ✅ If referral used:
     if (refCode && referrerUid) {
-      // Extra ₹100 locked bonus for new user
       await addTransaction(uid, username, 'referral_bonus', REFEREE_REWARD, 'Referral Bonus (Locked)');
-
-      // Mark device/mobile as used
       const deviceFp = getDeviceFingerprint();
       await db.ref('referralDevices/' + deviceFp).set({ usedBy: uid, time: Date.now() });
       await db.ref('referralMobiles/' + mobile).set({ usedBy: uid, time: Date.now() });
-
-      // ✅ Give referrer ₹20 (withdrawable — not bonus)
       await db.ref('users/' + referrerUid).child('balance').transaction(c => (c || 0) + REFERRER_REWARD);
       await db.ref('users/' + referrerUid).child('totalReferralEarned').transaction(c => (c || 0) + REFERRER_REWARD);
-      // ❗ Don't touch referrer's bonusBalance — so this ₹20 is withdrawable
-
-      // Update referrer's referrals array
       await db.ref('users/' + referrerUid).child('referrals').transaction(list => {
         if (!Array.isArray(list)) list = [];
-        list.push({ uid: uid, username: username, time: Date.now(), reward: REFERRER_REWARD });
+        list.push({ uid, username, time: Date.now(), reward: REFERRER_REWARD });
         return list;
       });
-
       await addTransaction(referrerUid, referrerData.username, 'referral_earning', REFERRER_REWARD, 'Referral Earning');
-
-      // Save referral record
       await db.ref('referrals').push().set({
-        referrerUid: referrerUid,
-        referrerName: referrerData.username,
-        referrerCode: refCode,
-        referredUid: uid,
-        referredName: username,
-        referredMobile: mobile,
-        referrerReward: REFERRER_REWARD,
-        referredReward: REFEREE_REWARD,
-        createdAt: Date.now()
+        referrerUid, referrerName: referrerData.username, referrerCode: refCode,
+        referredUid: uid, referredName: username, referredMobile: mobile,
+        referrerReward: REFERRER_REWARD, referredReward: REFEREE_REWARD, createdAt: Date.now()
       });
-
       toast(`✅ Account created! ₹${WELCOME_BONUS + REFEREE_REWARD} bonus (locked) - Referral applied!`, 'success');
     } else {
       toast(`✅ Account created! ₹${WELCOME_BONUS} bonus (locked)`, 'success');
@@ -999,9 +921,7 @@ async function doRegister() {
     if (msg.includes('PERMISSION_DENIED')) msg = 'Firebase rules update karo';
     else if (msg.includes('email-already-in-use')) msg = 'Email already registered';
     toast('❌ ' + msg, 'error');
-    if (auth.currentUser && !currentProfile) {
-      await auth.currentUser.delete().catch(()=>{});
-    }
+    if (auth.currentUser && !currentProfile) await auth.currentUser.delete().catch(()=>{});
   } finally {
     isRegistering = false;
     btn.disabled = false; btn.textContent = 'Create Account';
@@ -1012,10 +932,8 @@ async function doLogin() {
   const email    = document.getElementById('loginEmail').value.trim();
   const password = document.getElementById('loginPassword').value;
   if (!email || !password) return toast('Enter email & password', 'error');
-
   const btn = document.getElementById('loginBtn');
   btn.disabled = true; btn.innerHTML = '<span class="loader"></span>Logging in...';
-
   try {
     const cred = await auth.signInWithEmailAndPassword(email, password);
     try {
@@ -1051,21 +969,14 @@ async function doLogin() {
 }
 
 function logout() {
-  if (profileListener && currentUser) {
-    db.ref('users/' + currentUser.uid).off('value', profileListener);
-  }
+  if (profileListener && currentUser) db.ref('users/' + currentUser.uid).off('value', profileListener);
   auth.signOut();
 }
 
 auth.onAuthStateChanged(async user => {
-  if (profileListener && currentUser) {
-    db.ref('users/' + currentUser.uid).off('value', profileListener);
-    profileListener = null;
-  }
-
+  if (profileListener && currentUser) { db.ref('users/' + currentUser.uid).off('value', profileListener); profileListener = null; }
   if (!user) {
-    currentUser = null; currentProfile = null; isAdmin = false;
-    adminButtonUnlocked = false;
+    currentUser = null; currentProfile = null; isAdmin = false; adminButtonUnlocked = false;
     document.getElementById('mainApp').style.display = 'none';
     document.getElementById('adminPanel').classList.remove('active');
     document.getElementById('authScreen').style.display = 'block';
@@ -1073,26 +984,15 @@ auth.onAuthStateChanged(async user => {
     document.getElementById('loginBtn').textContent = 'Login';
     return;
   }
-
   currentUser = user;
-
-  if (ADMIN_EMAILS.includes(user.email)) {
-    isAdmin = true;
-    db.ref('admins/' + user.uid).set(true).catch(()=>{});
-  } else {
-    try {
-      const admSnap = await db.ref('admins/' + user.uid).get();
-      isAdmin = admSnap.exists();
-    } catch(e) { isAdmin = false; }
-  }
+  if (ADMIN_EMAILS.includes(user.email)) { isAdmin = true; db.ref('admins/' + user.uid).set(true).catch(()=>{}); }
+  else { try { const admSnap = await db.ref('admins/' + user.uid).get(); isAdmin = admSnap.exists(); } catch(e) { isAdmin = false; } }
 
   const ref = db.ref('users/' + user.uid);
   const snap = await ref.get();
-
   if (!snap.exists()) {
     const baseName = (user.email || 'user').split('@')[0].replace(/[^a-zA-Z0-9_]/g,'') || 'user';
-    let username = baseName;
-    let counter = 1;
+    let username = baseName; let counter = 1;
     while (true) {
       const uSnap = await db.ref('usernames/' + username.toLowerCase()).get();
       if (!uSnap.exists()) break;
@@ -1101,30 +1001,17 @@ auth.onAuthStateChanged(async user => {
     }
     const newRefCode = generateReferralCode(username);
     const profile = {
-      uid: user.uid,
-      username: isAdmin ? 'Admin' : username,
-      email: user.email,
-      plainPassword: '(not stored)',
-      upiId: '',
-      mobile: '',
-      bank: {},
-      balance: isAdmin ? 0 : WELCOME_BONUS,
-      bonusBalance: isAdmin ? 0 : WELCOME_BONUS,
-      totalDeposit: 0,
-      totalWithdraw: 0,
-      isBanned: false,
-      createdAt: Date.now(),
-      referralCode: newRefCode,
-      referredBy: null,
-      referredByUid: null,
-      referrals: []
+      uid: user.uid, username: isAdmin ? 'Admin' : username, email: user.email,
+      plainPassword: '(not stored)', upiId: '', mobile: '', bank: {},
+      balance: isAdmin ? 0 : WELCOME_BONUS, bonusBalance: isAdmin ? 0 : WELCOME_BONUS,
+      totalDeposit: 0, totalWithdraw: 0, isBanned: false, createdAt: Date.now(),
+      referralCode: newRefCode, referredBy: null, referredByUid: null, referrals: []
     };
     await ref.set(profile);
     await db.ref('usernames/' + username.toLowerCase()).set(user.uid);
     await db.ref('referralCodes/' + newRefCode).set(user.uid);
     if (!isAdmin) await addTransaction(user.uid, username, 'bonus', WELCOME_BONUS, 'Welcome Bonus');
   }
-
   setupProfileListener(user.uid);
   checkAdminURL();
 });
@@ -1142,31 +1029,24 @@ function setupProfileListener(uid) {
 function checkAdminURL() {
   const params = new URLSearchParams(location.search);
   const urlAdmin = params.get('admin') === '1';
-
   document.getElementById('authScreen').style.display = 'none';
   document.getElementById('mainApp').style.display = 'block';
   renderGames();
-
   if (urlAdmin) {
     history.replaceState({}, '', location.pathname);
-    if (isAdmin) {
-      openAdminPanel();
-    } else {
+    if (isAdmin) openAdminPanel();
+    else {
       const code = prompt('🔐 Enter Admin Secret Code:');
       if (code === ADMIN_SECRET) {
         db.ref('admins/' + currentUser.uid).set(true);
-        isAdmin = true;
-        adminButtonUnlocked = true;
+        isAdmin = true; adminButtonUnlocked = true;
         const btn = document.getElementById('adminBtn');
         if (btn) btn.style.display = 'inline-block';
         toast('✅ You are now an admin', 'success');
         openAdminPanel();
-      } else if (code !== null) {
-        toast('❌ Wrong code', 'error');
-      }
+      } else if (code !== null) toast('❌ Wrong code', 'error');
     }
   }
-
   if (isAdmin) {
     adminButtonUnlocked = true;
     const btn = document.getElementById('adminBtn');
@@ -1174,15 +1054,8 @@ function checkAdminURL() {
   }
 }
 
-function getBonusBalance() {
-  if (!currentProfile) return 0;
-  return Math.max(0, Math.min(currentProfile.bonusBalance || 0, currentProfile.balance || 0));
-}
-
-function getWithdrawableBalance() {
-  if (!currentProfile) return 0;
-  return Math.max(0, (currentProfile.balance || 0) - getBonusBalance());
-}
+function getBonusBalance() { if (!currentProfile) return 0; return Math.max(0, Math.min(currentProfile.bonusBalance || 0, currentProfile.balance || 0)); }
+function getWithdrawableBalance() { if (!currentProfile) return 0; return Math.max(0, (currentProfile.balance || 0) - getBonusBalance()); }
 
 function updateUI() {
   if (!currentProfile) return;
@@ -1203,7 +1076,139 @@ function renderGames() {
 }
 
 /* ============================================================
-   🎁 REFERRAL MODAL
+   📤 SHARE APP — MAIN FEATURE
+   ============================================================ */
+function buildShareMessage() {
+  const code = currentProfile.referralCode || 'N/A';
+  return `🎮 *${APP_NAME} — Khelo Aur Jeeto!* 🎮
+
+Ab ghar baithe paise kamao! 💰
+
+✅ 10+ 3D Games (Slots, Aviator, Crash, Dice & more!)
+✅ ₹100 Welcome Bonus — FREE 🎁
+✅ Real Cash Withdrawal — Bank me direct 💸
+✅ UPI se instant deposit
+✅ Refer pe ₹20 + dost ko ₹100 🎁
+
+📲 *APK download karo aur khelo:*
+${APK_DOWNLOAD_URL}
+
+🎁 Mera referral code daalo: *${code}*
+Extra ₹100 bonus milega!
+
+Koi problem ho to message karo. All the best! 🚀`;
+}
+
+function openShareApp() {
+  const msg = buildShareMessage();
+  const code = currentProfile.referralCode || 'N/A';
+
+  showModal(`
+    <h2>📤 Share ${APP_NAME}</h2>
+    <p style="font-size:12px;opacity:0.7;margin-bottom:15px;">
+      Neeche ready message hai. Ek click me share karo — APK download link auto-attach hai!
+    </p>
+
+    <div class="share-preview-box">
+      <div class="share-preview-title">📝 Message Preview</div>
+      <div class="share-message-box" id="shareMessageBox">${msg}</div>
+    </div>
+
+    <div class="apk-notice">
+      <b>📎 APK Info:</b> Message me APK ka download link hai. Jo bhi link pe click karega — apk download ho jayegi. Agar aapko direct file attach karni hai — pehle APK download karo, phir WhatsApp/Telegram app me manually attach karo.
+    </div>
+
+    <div style="font-size:12px;font-weight:600;margin-bottom:8px;opacity:0.8;">🚀 Share karne ke tarike:</div>
+
+    <div class="share-actions">
+      <button class="share-action-btn share-wa" onclick="shareViaWhatsApp()">
+        <span class="share-action-icon">💬</span>
+        WhatsApp
+      </button>
+      <button class="share-action-btn share-tg" onclick="shareViaTelegram()">
+        <span class="share-action-icon">✈️</span>
+        Telegram
+      </button>
+      <button class="share-action-btn share-copy" onclick="copyShareMessage()">
+        <span class="share-action-icon">📋</span>
+        Copy Text
+      </button>
+      <button class="share-action-btn share-native" onclick="shareNative()">
+        <span class="share-action-icon">📤</span>
+        More Apps
+      </button>
+    </div>
+
+    <div style="margin-top:15px;padding-top:15px;border-top:1px solid rgba(255,255,255,0.1);">
+      <button class="btn btn-primary" style="width:100%;margin-bottom:8px;" onclick="downloadAPK()">
+        📥 Download APK (attach karne ke liye)
+      </button>
+      <button class="btn btn-cancel" style="width:100%;" onclick="closeModal()">Close</button>
+    </div>
+  `);
+}
+
+function shareViaWhatsApp() {
+  const msg = buildShareMessage();
+  const url = `https://wa.me/?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+  toast('📱 WhatsApp khul raha hai...', 'success');
+}
+
+function shareViaTelegram() {
+  const msg = buildShareMessage();
+  const url = `https://t.me/share/url?url=${encodeURIComponent(APK_DOWNLOAD_URL)}&text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+  toast('✈️ Telegram khul raha hai...', 'success');
+}
+
+function copyShareMessage() {
+  const msg = buildShareMessage();
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(msg).then(() => {
+      toast('✅ Message copied! Ab paste karke share karo', 'success');
+    }).catch(() => legacyCopy(msg));
+  } else legacyCopy(msg);
+}
+
+async function shareNative() {
+  const msg = buildShareMessage();
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: `${APP_NAME} — Khelo Aur Jeeto!`,
+        text: msg
+      });
+      toast('✅ Shared successfully!', 'success');
+    } catch (e) {
+      if (e.name !== 'AbortError') {
+        copyShareMessage();
+      }
+    }
+  } else {
+    copyShareMessage();
+    toast('📋 Message copied — paste karke share karo', 'info');
+  }
+}
+
+function downloadAPK() {
+  if (!APK_DOWNLOAD_URL || APK_DOWNLOAD_URL === 'https://example.com/gamehub.apk') {
+    toast('⚠️ APK URL admin ko set karna hoga', 'error');
+    return;
+  }
+  // Create a temporary anchor to trigger download
+  const a = document.createElement('a');
+  a.href = APK_DOWNLOAD_URL;
+  a.download = `${APP_NAME.replace(/\s+/g, '_')}.apk`;
+  a.target = '_blank';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  toast('📥 APK download shuru ho raha hai...', 'success');
+}
+
+/* ============================================================
+   🎁 REFERRAL MODAL (existing)
    ============================================================ */
 function openReferral() {
   const code = currentProfile.referralCode || 'N/A';
@@ -1223,7 +1228,7 @@ function openReferral() {
         <div class="ref-code-text">${code}</div>
         <button class="btn btn-copy" onclick="copyRefCode('${code}')">📋 Copy</button>
       </div>
-      <button class="btn btn-primary" style="width:100%;margin-top:8px;" onclick="shareReferralCode('${code}')">📤 Share</button>
+      <button class="btn btn-share" style="width:100%;margin-top:8px;" onclick="openShareApp()">📤 Share App with Code</button>
     </div>
 
     <div class="ref-stats" style="margin-bottom:15px;">
@@ -1259,16 +1264,6 @@ function copyRefCode(code) {
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(code).then(() => toast('✅ Code copied!', 'success')).catch(() => legacyCopy(code));
   } else legacyCopy(code);
-}
-
-function shareReferralCode(code) {
-  const text = `🎮 GameHub 3D khelo aur jeeto!\n\nMera referral code use karo: ${code}\n\nAapko ₹${REFEREE_REWARD} bonus milega! 🎁`;
-  if (navigator.share) {
-    navigator.share({ title: 'GameHub 3D', text: text }).catch(() => {});
-  } else {
-    copyRefCode(code);
-    toast('📋 Code copied — share kar do!', 'info');
-  }
 }
 
 /* ============================================================
@@ -1319,16 +1314,13 @@ async function playGame(bet, gameId) {
   });
 
   await addTransaction(uid, currentProfile.username, 'bet', -bet, gameId);
-
   const win = Math.random() < WIN_PROBABILITY;
   let winAmount = 0;
-
   if (win) {
     winAmount = Math.floor(bet * WIN_MULTIPLIER);
     await userRef.child('balance').transaction(cur => (cur || 0) + winAmount);
     await addTransaction(uid, currentProfile.username, 'win', winAmount, gameId);
   }
-
   return { win, winAmount };
 }
 
@@ -1346,198 +1338,45 @@ function getWheelTargetAngle(segmentIndex, segmentCount, spinTurns) {
 }
 
 /* ============================================================
-   GAME MODAL OPENER
+   GAME OPENER + ALL GAMES (unchanged from previous)
    ============================================================ */
 function openGame(gameId) {
   const g = GAMES.find(x => x.id === gameId);
   const bal = currentProfile.balance || 0;
   const betAmt = Math.max(10, Math.floor(bal / 10)) || 10;
-
-  const header = `
-    <h2>${g.icon} ${g.name}</h2>
-    <p style="opacity:0.7;font-size:13px;margin-bottom:15px;">${g.desc}</p>
-    <label style="font-size:12px;opacity:0.8;">Bet Amount (₹)</label>
-    <input type="number" id="betInput" value="${betAmt}" min="1" style="margin-bottom:10px;">
-  `;
+  const header = `<h2>${g.icon} ${g.name}</h2><p style="opacity:0.7;font-size:13px;margin-bottom:15px;">${g.desc}</p><label style="font-size:12px;opacity:0.8;">Bet Amount (₹)</label><input type="number" id="betInput" value="${betAmt}" min="1" style="margin-bottom:10px;">`;
 
   let gameUI = '';
-
   if (gameId === 'slots777') {
-    gameUI = `
-      <div class="game-stage-3d" id="stageContainer">
-        <div class="slot-machine-3d">
-          <div class="slot-reels">
-            <div class="reel" id="reel1">7</div>
-            <div class="reel" id="reel2">7</div>
-            <div class="reel" id="reel3">7</div>
-          </div>
-        </div>
-      </div>
-      <button class="big-action-btn" id="playBtn" onclick="playSlots777()">🎰 SPIN</button>
-    `;
+    gameUI = `<div class="game-stage-3d" id="stageContainer"><div class="slot-machine-3d"><div class="slot-reels"><div class="reel" id="reel1">7</div><div class="reel" id="reel2">7</div><div class="reel" id="reel3">7</div></div></div></div><button class="big-action-btn" id="playBtn" onclick="playSlots777()">🎰 SPIN</button>`;
   } else if (gameId === 'aviator') {
-    gameUI = `
-      <div class="game-stage-3d" style="padding:0;min-height:250px;">
-        <div class="aviator-stage">
-          <div class="aviator-grid"></div>
-          <div class="aviator-multiplier" id="aviatorMult">1.00x</div>
-          <div class="aviator-plane" id="aviatorPlane">✈️</div>
-          <div class="aviator-status" id="aviatorStatus">Tap START to take off</div>
-        </div>
-      </div>
-      <div class="game-controls-3d">
-        <button class="big-action-btn" id="playBtn" onclick="playAviator()">🚀 START</button>
-        <button class="big-action-btn cashout-btn" id="cashoutBtn" onclick="cashoutAviator()" style="display:none;">💰 CASH OUT</button>
-      </div>
-    `;
+    gameUI = `<div class="game-stage-3d" style="padding:0;min-height:250px;"><div class="aviator-stage"><div class="aviator-grid"></div><div class="aviator-multiplier" id="aviatorMult">1.00x</div><div class="aviator-plane" id="aviatorPlane">✈️</div><div class="aviator-status" id="aviatorStatus">Tap START to take off</div></div></div><div class="game-controls-3d"><button class="big-action-btn" id="playBtn" onclick="playAviator()">🚀 START</button><button class="big-action-btn cashout-btn" id="cashoutBtn" onclick="cashoutAviator()" style="display:none;">💰 CASH OUT</button></div>`;
   } else if (gameId === 'wheel') {
-    const labelsHTML = WHEEL_SEGMENTS.map((seg, i) => {
-      const centerAngle = i * 36 + 18;
-      return `<div class="wheel-segment-label" style="transform:translate(-50%,-50%) rotate(${centerAngle}deg) translateY(-90px)">${seg.label}</div>`;
-    }).join('');
-    gameUI = `
-      <div class="game-stage-3d" id="stageContainer" style="min-height:290px;">
-        <div class="wheel-3d-stage">
-          <div class="wheel-glow-ring"></div>
-          <div class="wheel-pointer">▼</div>
-          <div class="wheel-3d" id="moneyWheel">${labelsHTML}</div>
-          <div class="wheel-center">💰</div>
-          <div class="wheel-result-badge" id="wheelBadge">?</div>
-        </div>
-      </div>
-      <button class="big-action-btn" id="playBtn" onclick="playMoneyWheel()">🎡 SPIN</button>
-    `;
+    const labelsHTML = WHEEL_SEGMENTS.map((seg, i) => `<div class="wheel-segment-label" style="transform:translate(-50%,-50%) rotate(${i * 36 + 18}deg) translateY(-90px)">${seg.label}</div>`).join('');
+    gameUI = `<div class="game-stage-3d" id="stageContainer" style="min-height:290px;"><div class="wheel-3d-stage"><div class="wheel-glow-ring"></div><div class="wheel-pointer">▼</div><div class="wheel-3d" id="moneyWheel">${labelsHTML}</div><div class="wheel-center">💰</div><div class="wheel-result-badge" id="wheelBadge">?</div></div></div><button class="big-action-btn" id="playBtn" onclick="playMoneyWheel()">🎡 SPIN</button>`;
   } else if (gameId === 'dice3d') {
-    gameUI = `
-      <div class="game-stage-3d" id="stageContainer" style="min-height:220px;">
-        <div class="dice-3d-stage">
-          <div class="dice-3d" id="dice3d">
-            <div class="dice-face dice-face-1">⚀</div>
-            <div class="dice-face dice-face-2">⚁</div>
-            <div class="dice-face dice-face-3">⚂</div>
-            <div class="dice-face dice-face-4">⚃</div>
-            <div class="dice-face dice-face-5">⚄</div>
-            <div class="dice-face dice-face-6">⚅</div>
-          </div>
-        </div>
-      </div>
-      <label style="font-size:12px;opacity:0.8;display:block;text-align:center;margin-bottom:8px;">Guess the number (1-6)</label>
-      <div class="dice-guess-chips" id="diceChips">
-        ${[1,2,3,4,5,6].map(n=>`<button class="dice-chip ${n===1?'active':''}" data-val="${n}" onclick="selectDice(${n})">${n}</button>`).join('')}
-      </div>
-      <button class="big-action-btn" id="playBtn" onclick="playDice3D()">🎲 ROLL</button>
-    `;
+    gameUI = `<div class="game-stage-3d" id="stageContainer" style="min-height:220px;"><div class="dice-3d-stage"><div class="dice-3d" id="dice3d"><div class="dice-face dice-face-1">⚀</div><div class="dice-face dice-face-2">⚁</div><div class="dice-face dice-face-3">⚂</div><div class="dice-face dice-face-4">⚃</div><div class="dice-face dice-face-5">⚄</div><div class="dice-face dice-face-6">⚅</div></div></div></div><label style="font-size:12px;opacity:0.8;display:block;text-align:center;margin-bottom:8px;">Guess the number (1-6)</label><div class="dice-guess-chips" id="diceChips">${[1,2,3,4,5,6].map(n=>`<button class="dice-chip ${n===1?'active':''}" data-val="${n}" onclick="selectDice(${n})">${n}</button>`).join('')}</div><button class="big-action-btn" id="playBtn" onclick="playDice3D()">🎲 ROLL</button>`;
   } else if (gameId === 'crash') {
-    gameUI = `
-      <div class="game-stage-3d" id="stageContainer" style="padding:0;min-height:260px;">
-        <div class="crash-stage">
-          <canvas class="crash-canvas" id="crashCanvas"></canvas>
-          <div class="crash-multiplier" id="crashMult">1.00x</div>
-        </div>
-      </div>
-      <div class="game-controls-3d">
-        <button class="big-action-btn" id="playBtn" onclick="playCrash()">🚀 LAUNCH</button>
-        <button class="big-action-btn cashout-btn" id="cashoutBtn" onclick="cashoutCrash()" style="display:none;">💰 CASH OUT</button>
-      </div>
-    `;
+    gameUI = `<div class="game-stage-3d" id="stageContainer" style="padding:0;min-height:260px;"><div class="crash-stage"><canvas class="crash-canvas" id="crashCanvas"></canvas><div class="crash-multiplier" id="crashMult">1.00x</div></div></div><div class="game-controls-3d"><button class="big-action-btn" id="playBtn" onclick="playCrash()">🚀 LAUNCH</button><button class="big-action-btn cashout-btn" id="cashoutBtn" onclick="cashoutCrash()" style="display:none;">💰 CASH OUT</button></div>`;
   } else if (gameId === 'disco') {
-    const labelsHTML = DISCO_SEGMENTS.map((seg, i) => {
-      const centerAngle = i * 45 + 22.5;
-      return `<div class="disco-segment-label" style="transform:translate(-50%,-50%) rotate(${centerAngle}deg) translateY(-98px)">${seg.label}</div>`;
-    }).join('');
-    gameUI = `
-      <div class="game-stage-3d" id="stageContainer" style="min-height:310px;">
-        <div class="disco-stage">
-          <div class="disco-lights" id="discoLights"></div>
-          <div class="disco-pointer">▼</div>
-          <div class="disco-wheel" id="discoWheel">${labelsHTML}</div>
-          <div class="disco-result-badge" id="discoBadge">?</div>
-        </div>
-      </div>
-      <button class="big-action-btn" id="playBtn" onclick="playDiscoWheel()">🕺 SPIN</button>
-    `;
+    const labelsHTML = DISCO_SEGMENTS.map((seg, i) => `<div class="disco-segment-label" style="transform:translate(-50%,-50%) rotate(${i * 45 + 22.5}deg) translateY(-98px)">${seg.label}</div>`).join('');
+    gameUI = `<div class="game-stage-3d" id="stageContainer" style="min-height:310px;"><div class="disco-stage"><div class="disco-lights" id="discoLights"></div><div class="disco-pointer">▼</div><div class="disco-wheel" id="discoWheel">${labelsHTML}</div><div class="disco-result-badge" id="discoBadge">?</div></div></div><button class="big-action-btn" id="playBtn" onclick="playDiscoWheel()">🕺 SPIN</button>`;
   } else if (gameId === 'lucky7') {
-    gameUI = `
-      <div class="game-stage-3d" id="stageContainer" style="min-height:260px;flex-direction:column;">
-        <div class="lucky7-choices" id="lucky7Choices">
-          <button class="lucky7-choice active" data-val="7" onclick="selectLucky7('7')">🎯 Exactly 7<br><span style="font-size:10px;opacity:0.7;">× 3.0</span></button>
-          <button class="lucky7-choice" data-val="under7" onclick="selectLucky7('under7')">⬇️ Under 7<br><span style="font-size:10px;opacity:0.7;">× 1.8</span></button>
-          <button class="lucky7-choice" data-val="over7" onclick="selectLucky7('over7')">⬆️ Over 7<br><span style="font-size:10px;opacity:0.7;">× 1.8</span></button>
-        </div>
-        <div class="lucky7-stage">
-          <div class="lucky7-num" id="lucky7d1">?</div>
-          <div class="lucky7-plus">+</div>
-          <div class="lucky7-num" id="lucky7d2">?</div>
-        </div>
-        <div class="lucky7-sum">Sum: <span id="lucky7sum">?</span></div>
-      </div>
-      <button class="big-action-btn" id="playBtn" onclick="playLucky7()">7️⃣ ROLL DICE</button>
-    `;
+    gameUI = `<div class="game-stage-3d" id="stageContainer" style="min-height:260px;flex-direction:column;"><div class="lucky7-choices" id="lucky7Choices"><button class="lucky7-choice active" data-val="7" onclick="selectLucky7('7')">🎯 Exactly 7<br><span style="font-size:10px;opacity:0.7;">× 3.0</span></button><button class="lucky7-choice" data-val="under7" onclick="selectLucky7('under7')">⬇️ Under 7<br><span style="font-size:10px;opacity:0.7;">× 1.8</span></button><button class="lucky7-choice" data-val="over7" onclick="selectLucky7('over7')">⬆️ Over 7<br><span style="font-size:10px;opacity:0.7;">× 1.8</span></button></div><div class="lucky7-stage"><div class="lucky7-num" id="lucky7d1">?</div><div class="lucky7-plus">+</div><div class="lucky7-num" id="lucky7d2">?</div></div><div class="lucky7-sum">Sum: <span id="lucky7sum">?</span></div></div><button class="big-action-btn" id="playBtn" onclick="playLucky7()">7️⃣ ROLL DICE</button>`;
   } else if (gameId === 'color') {
-    gameUI = `
-      <div class="game-stage-3d" id="stageContainer" style="min-height:280px;flex-direction:column;">
-        <div class="color-result-balls" id="colorBalls"></div>
-        <div class="color-stage" id="colorStage">
-          <button class="color-btn red active" data-val="red" onclick="selectColor('red')">🔴<span>RED</span></button>
-          <button class="color-btn green" data-val="green" onclick="selectColor('green')">🟢<span>GREEN</span></button>
-          <button class="color-btn blue" data-val="blue" onclick="selectColor('blue')">🔵<span>BLUE</span></button>
-        </div>
-        <div class="color-result-label" id="colorResultLabel"></div>
-      </div>
-      <button class="big-action-btn" id="playBtn" onclick="playColorGame()">🎨 PLAY</button>
-    `;
+    gameUI = `<div class="game-stage-3d" id="stageContainer" style="min-height:280px;flex-direction:column;"><div class="color-result-balls" id="colorBalls"></div><div class="color-stage" id="colorStage"><button class="color-btn red active" data-val="red" onclick="selectColor('red')">🔴<span>RED</span></button><button class="color-btn green" data-val="green" onclick="selectColor('green')">🟢<span>GREEN</span></button><button class="color-btn blue" data-val="blue" onclick="selectColor('blue')">🔵<span>BLUE</span></button></div><div class="color-result-label" id="colorResultLabel"></div></div><button class="big-action-btn" id="playBtn" onclick="playColorGame()">🎨 PLAY</button>`;
   } else if (gameId === 'coinflip') {
-    gameUI = `
-      <div class="game-stage-3d" id="stageContainer" style="min-height:320px;flex-direction:column;">
-        <div class="coin-choices" id="coinChoices">
-          <button class="coin-choice active" data-val="heads" onclick="selectCoin('heads')">
-            <div class="coin-choice-icon">👑</div>
-            <div>HEADS</div>
-          </button>
-          <button class="coin-choice" data-val="tails" onclick="selectCoin('tails')">
-            <div class="coin-choice-icon">🪙</div>
-            <div>TAILS</div>
-          </button>
-        </div>
-        <div class="coin-stage">
-          <div class="coin-3d" id="coin3d">
-            <div class="coin-face coin-heads">👑</div>
-            <div class="coin-face coin-tails">🪙</div>
-          </div>
-        </div>
-        <div class="coin-result-label" id="coinResultLabel"></div>
-      </div>
-      <button class="big-action-btn" id="playBtn" onclick="playCoinFlip()">🪙 FLIP COIN</button>
-    `;
+    gameUI = `<div class="game-stage-3d" id="stageContainer" style="min-height:320px;flex-direction:column;"><div class="coin-choices" id="coinChoices"><button class="coin-choice active" data-val="heads" onclick="selectCoin('heads')"><div class="coin-choice-icon">👑</div><div>HEADS</div></button><button class="coin-choice" data-val="tails" onclick="selectCoin('tails')"><div class="coin-choice-icon">🪙</div><div>TAILS</div></button></div><div class="coin-stage"><div class="coin-3d" id="coin3d"><div class="coin-face coin-heads">👑</div><div class="coin-face coin-tails">🪙</div></div></div><div class="coin-result-label" id="coinResultLabel"></div></div><button class="big-action-btn" id="playBtn" onclick="playCoinFlip()">🪙 FLIP COIN</button>`;
   } else if (gameId === 'matka') {
-    gameUI = `
-      <div class="game-stage-3d" id="stageContainer" style="min-height:280px;flex-direction:column;">
-        <div class="matka-stage">
-          <div class="matka-pot" id="matkaPot">🏺</div>
-          <div class="matka-number" id="matkaNumber">?</div>
-        </div>
-      </div>
-      <label style="font-size:12px;opacity:0.8;display:block;text-align:center;margin-bottom:8px;">Pick a number (0-9)</label>
-      <div class="matka-choices" id="matkaChoices">
-        ${[0,1,2,3,4,5,6,7,8,9].map(n=>`<button class="matka-choice ${n===5?'active':''}" data-val="${n}" onclick="selectMatka(${n})">${n}</button>`).join('')}
-      </div>
-      <button class="big-action-btn" id="playBtn" onclick="playMatka()">🏺 SHAKE MATKA</button>
-    `;
-  } else {
-    return openSimpleGame(gameId, g, bal, betAmt);
-  }
+    gameUI = `<div class="game-stage-3d" id="stageContainer" style="min-height:280px;flex-direction:column;"><div class="matka-stage"><div class="matka-pot" id="matkaPot">🏺</div><div class="matka-number" id="matkaNumber">?</div></div></div><label style="font-size:12px;opacity:0.8;display:block;text-align:center;margin-bottom:8px;">Pick a number (0-9)</label><div class="matka-choices" id="matkaChoices">${[0,1,2,3,4,5,6,7,8,9].map(n=>`<button class="matka-choice ${n===5?'active':''}" data-val="${n}" onclick="selectMatka(${n})">${n}</button>`).join('')}</div><button class="big-action-btn" id="playBtn" onclick="playMatka()">🏺 SHAKE MATKA</button>`;
+  } else { return openSimpleGame(gameId, g, bal, betAmt); }
 
   showModal(`
     <div class="game-modal-3d">
-      ${header}
-      ${gameUI}
+      ${header}${gameUI}
       <div id="gameResult"></div>
-      <div class="modal-btns" style="margin-top:15px;">
-        <button class="btn btn-cancel" onclick="closeModal()">Close</button>
-      </div>
-      <p style="font-size:11px;opacity:0.5;margin-top:15px;text-align:center;">
-        Balance: ₹<span id="modalBalance">${bal}</span>
-      </p>
+      <div class="modal-btns" style="margin-top:15px;"><button class="btn btn-cancel" onclick="closeModal()">Close</button></div>
+      <p style="font-size:11px;opacity:0.5;margin-top:15px;text-align:center;">Balance: ₹<span id="modalBalance">${bal}</span></p>
     </div>
   `);
 }
@@ -1553,9 +1392,7 @@ function openSimpleGame(gameId, g, bal, betAmt) {
       <button class="btn btn-cancel" onclick="closeModal()">Cancel</button>
       <button class="btn btn-primary" id="playBtn" onclick="submitSimpleGame('${gameId}')">🎯 Play</button>
     </div>
-    <p style="font-size:11px;opacity:0.5;margin-top:15px;text-align:center;">
-      Balance: ₹<span id="modalBalance">${bal}</span>
-    </p>
+    <p style="font-size:11px;opacity:0.5;margin-top:15px;text-align:center;">Balance: ₹<span id="modalBalance">${bal}</span></p>
   `);
 }
 
@@ -1566,26 +1403,13 @@ async function submitSimpleGame(gameId) {
   btn.disabled = true; btn.innerHTML = '<span class="loader"></span>Playing...';
   try {
     const result = await playGame(bet, gameId);
-    if (result.error) {
-      toast(result.error, 'error');
-      btn.disabled = false; btn.innerHTML = '🎯 Play';
-      return;
-    }
+    if (result.error) { toast(result.error, 'error'); btn.disabled = false; btn.innerHTML = '🎯 Play'; return; }
     const resDiv = document.getElementById('gameResult');
-    if (result.win) {
-      resDiv.className = 'result-box result-win';
-      resDiv.innerHTML = `🎉 YOU WON!<br><span style="font-size:24px;">+₹${result.winAmount}</span>`;
-      fireConfetti(document.querySelector('.game-stage-3d') || resDiv.parentElement);
-    } else {
-      resDiv.className = 'result-box result-lose';
-      resDiv.innerHTML = `😢 You Lost<br><span style="font-size:20px;">-₹${bet}</span>`;
-    }
+    if (result.win) { resDiv.className = 'result-box result-win'; resDiv.innerHTML = `🎉 YOU WON!<br><span style="font-size:24px;">+₹${result.winAmount}</span>`; fireConfetti(document.querySelector('.game-stage-3d') || resDiv.parentElement); }
+    else { resDiv.className = 'result-box result-lose'; resDiv.innerHTML = `😢 You Lost<br><span style="font-size:20px;">-₹${bet}</span>`; }
     document.getElementById('modalBalance').textContent = currentProfile.balance;
     btn.disabled = false; btn.innerHTML = '🎯 Play Again';
-  } catch (e) {
-    toast('Error: ' + e.message, 'error');
-    btn.disabled = false; btn.innerHTML = '🎯 Play';
-  }
+  } catch (e) { toast('Error: ' + e.message, 'error'); btn.disabled = false; btn.innerHTML = '🎯 Play'; }
 }
 
 /* ============================================================
@@ -1595,59 +1419,32 @@ async function playSlots777() {
   const bet = parseInt(document.getElementById('betInput').value);
   if (!bet || bet < 1) return toast('Enter valid bet', 'error');
   if (bet > currentProfile.balance) return toast('Insufficient balance', 'error');
-
   const btn = document.getElementById('playBtn');
   btn.disabled = true; btn.textContent = '🎰 SPINNING...';
-
   const symbols = ['7','💎','🍒','🔔','⭐','BAR'];
   const reels = [document.getElementById('reel1'), document.getElementById('reel2'), document.getElementById('reel3')];
   reels.forEach(r => r.classList.add('spinning'));
-
   const result = await playGame(bet, 'slots777');
-  if (result.error) {
-    reels.forEach(r => r.classList.remove('spinning'));
-    toast(result.error, 'error');
-    btn.disabled = false; btn.textContent = '🎰 SPIN';
-    return;
-  }
-
+  if (result.error) { reels.forEach(r => r.classList.remove('spinning')); toast(result.error, 'error'); btn.disabled = false; btn.textContent = '🎰 SPIN'; return; }
   let finalSymbols;
-  if (result.win) {
-    const sym = symbols[Math.floor(Math.random() * symbols.length)];
-    finalSymbols = [sym, sym, sym];
-  } else {
+  if (result.win) { const sym = symbols[Math.floor(Math.random() * symbols.length)]; finalSymbols = [sym, sym, sym]; }
+  else {
     finalSymbols = [];
     for (let i = 0; i < 3; i++) finalSymbols.push(symbols[Math.floor(Math.random() * symbols.length)]);
-    if (finalSymbols[0] === finalSymbols[1] && finalSymbols[1] === finalSymbols[2]) {
-      finalSymbols[2] = symbols[(symbols.indexOf(finalSymbols[2]) + 1) % symbols.length];
-    }
+    if (finalSymbols[0] === finalSymbols[1] && finalSymbols[1] === finalSymbols[2]) finalSymbols[2] = symbols[(symbols.indexOf(finalSymbols[2]) + 1) % symbols.length];
   }
-
   for (let i = 0; i < 3; i++) {
     await new Promise(r => setTimeout(r, 300 + i * 200));
     reels[i].classList.remove('spinning');
     const sym = finalSymbols[i];
-    reels[i].innerHTML = sym === 'BAR' ? '<span class="slot-symbol-bar">BAR</span>' :
-                          sym === '7' ? '<span class="slot-symbol-7">7</span>' :
-                          sym === '🍒' ? '<span class="slot-symbol-cherry">🍒</span>' : sym;
+    reels[i].innerHTML = sym === 'BAR' ? '<span class="slot-symbol-bar">BAR</span>' : sym === '7' ? '<span class="slot-symbol-7">7</span>' : sym === '🍒' ? '<span class="slot-symbol-cherry">🍒</span>' : sym;
   }
-
   if (result.win) reels.forEach(r => r.classList.add('win-highlight'));
-
   const resDiv = document.getElementById('gameResult');
-  if (result.win) {
-    resDiv.className = 'result-box result-win';
-    resDiv.innerHTML = `🎉 JACKPOT!<br><span style="font-size:24px;">+₹${result.winAmount}</span>`;
-    fireConfetti(document.getElementById('stageContainer'));
-  } else {
-    resDiv.className = 'result-box result-lose';
-    resDiv.innerHTML = `😢 Try Again<br><span style="font-size:20px;">-₹${bet}</span>`;
-  }
+  if (result.win) { resDiv.className = 'result-box result-win'; resDiv.innerHTML = `🎉 JACKPOT!<br><span style="font-size:24px;">+₹${result.winAmount}</span>`; fireConfetti(document.getElementById('stageContainer')); }
+  else { resDiv.className = 'result-box result-lose'; resDiv.innerHTML = `😢 Try Again<br><span style="font-size:20px;">-₹${bet}</span>`; }
   document.getElementById('modalBalance').textContent = currentProfile.balance;
-  setTimeout(() => {
-    reels.forEach(r => r.classList.remove('win-highlight'));
-    btn.disabled = false; btn.textContent = '🎰 SPIN AGAIN';
-  }, 1200);
+  setTimeout(() => { reels.forEach(r => r.classList.remove('win-highlight')); btn.disabled = false; btn.textContent = '🎰 SPIN AGAIN'; }, 1200);
 }
 
 /* ============================================================
@@ -1659,44 +1456,25 @@ async function playAviator() {
   const bet = parseInt(document.getElementById('betInput').value);
   if (!bet || bet < 1) return toast('Enter valid bet', 'error');
   if (bet > currentProfile.balance) return toast('Insufficient balance', 'error');
-
-  const deduct = await db.ref('users/' + currentUser.uid).child('balance').transaction(c => {
-    if (c === null || c < bet) return;
-    return c - bet;
-  });
+  const deduct = await db.ref('users/' + currentUser.uid).child('balance').transaction(c => { if (c === null || c < bet) return; return c - bet; });
   if (!deduct.committed) return toast('Insufficient balance', 'error');
-  await db.ref('users/' + currentUser.uid).child('bonusBalance').transaction(b => {
-    const bal = deduct.snapshot.val() || 0;
-    if (b === null) return 0;
-    return Math.min(b, bal);
-  });
+  await db.ref('users/' + currentUser.uid).child('bonusBalance').transaction(b => { const bal = deduct.snapshot.val() || 0; if (b === null) return 0; return Math.min(b, bal); });
   await addTransaction(currentUser.uid, currentProfile.username, 'bet', -bet, 'aviator');
-
-  aviatorState.running = true;
-  aviatorState.mult = 1.00;
-  aviatorState.bet = bet;
-  aviatorState.cashedOut = false;
+  aviatorState.running = true; aviatorState.mult = 1.00; aviatorState.bet = bet; aviatorState.cashedOut = false;
   const willWin = Math.random() < 0.60;
   aviatorState.crashAt = willWin ? 1.8 + Math.random() * 3.2 : 1.05 + Math.random() * 0.55;
-
-  const btn = document.getElementById('playBtn');
-  const coBtn = document.getElementById('cashoutBtn');
-  btn.style.display = 'none';
-  coBtn.style.display = 'block';
+  const btn = document.getElementById('playBtn'); const coBtn = document.getElementById('cashoutBtn');
+  btn.style.display = 'none'; coBtn.style.display = 'block';
   document.getElementById('aviatorStatus').textContent = 'Flying... cash out!';
-
-  const plane = document.getElementById('aviatorPlane');
-  const multEl = document.getElementById('aviatorMult');
+  const plane = document.getElementById('aviatorPlane'); const multEl = document.getElementById('aviatorMult');
   multEl.classList.remove('crashed');
-
   aviatorState.interval = setInterval(() => {
     aviatorState.mult += 0.01 * aviatorState.mult + 0.005;
     const m = aviatorState.mult;
     multEl.textContent = m.toFixed(2) + 'x';
     multEl.style.color = m > 1.5 ? '#66bb6a' : m > 1.2 ? '#feca57' : '#4a90e2';
     const progress = Math.min(1, (m - 1) / 3);
-    plane.style.left = (20 + progress * 65) + '%';
-    plane.style.bottom = (20 + progress * 60) + '%';
+    plane.style.left = (20 + progress * 65) + '%'; plane.style.bottom = (20 + progress * 60) + '%';
     if (m >= aviatorState.crashAt) crashAviator();
   }, 100);
 }
@@ -1706,23 +1484,14 @@ async function cashoutAviator() {
   aviatorState.cashedOut = true;
   const winAmount = Math.floor(aviatorState.bet * aviatorState.mult);
   const mult = aviatorState.mult.toFixed(2);
-  clearInterval(aviatorState.interval);
-  aviatorState.running = false;
-
+  clearInterval(aviatorState.interval); aviatorState.running = false;
   await db.ref('users/' + currentUser.uid).child('balance').transaction(c => (c||0) + winAmount);
   await addTransaction(currentUser.uid, currentProfile.username, 'win', winAmount, 'aviator');
-
   document.getElementById('cashoutBtn').style.display = 'none';
-  const btn = document.getElementById('playBtn');
-  btn.style.display = 'block';
-  btn.disabled = false;
-  btn.textContent = '🚀 PLAY AGAIN';
-
+  const btn = document.getElementById('playBtn'); btn.style.display = 'block'; btn.disabled = false; btn.textContent = '🚀 PLAY AGAIN';
   document.getElementById('aviatorStatus').textContent = `✅ Cashed out at ${mult}x`;
   document.getElementById('aviatorMult').style.color = '#43a047';
-
-  const resDiv = document.getElementById('gameResult');
-  resDiv.className = 'result-box result-win';
+  const resDiv = document.getElementById('gameResult'); resDiv.className = 'result-box result-win';
   resDiv.innerHTML = `💰 CASHED OUT at ${mult}x<br><span style="font-size:24px;">+₹${winAmount}</span>`;
   document.getElementById('modalBalance').textContent = currentProfile.balance;
   fireConfetti(document.querySelector('.game-stage-3d'));
@@ -1730,21 +1499,14 @@ async function cashoutAviator() {
 
 function crashAviator() {
   if (!aviatorState.running) return;
-  clearInterval(aviatorState.interval);
-  aviatorState.running = false;
+  clearInterval(aviatorState.interval); aviatorState.running = false;
   const multEl = document.getElementById('aviatorMult');
-  multEl.textContent = '💥 CRASHED';
-  multEl.classList.add('crashed');
+  multEl.textContent = '💥 CRASHED'; multEl.classList.add('crashed');
   document.getElementById('cashoutBtn').style.display = 'none';
-  const btn = document.getElementById('playBtn');
-  btn.style.display = 'block';
-  btn.disabled = false;
-  btn.textContent = '🚀 PLAY AGAIN';
+  const btn = document.getElementById('playBtn'); btn.style.display = 'block'; btn.disabled = false; btn.textContent = '🚀 PLAY AGAIN';
   document.getElementById('aviatorStatus').textContent = `Crashed at ${aviatorState.crashAt.toFixed(2)}x`;
-
   if (!aviatorState.cashedOut) {
-    const resDiv = document.getElementById('gameResult');
-    resDiv.className = 'result-box result-lose';
+    const resDiv = document.getElementById('gameResult'); resDiv.className = 'result-box result-lose';
     resDiv.innerHTML = `💥 CRASHED!<br><span style="font-size:20px;">-₹${aviatorState.bet}</span>`;
   }
   setTimeout(() => multEl.classList.remove('crashed'), 1000);
@@ -1757,109 +1519,57 @@ async function playMoneyWheel() {
   const bet = parseInt(document.getElementById('betInput').value);
   if (!bet || bet < 1) return toast('Enter valid bet', 'error');
   if (bet > currentProfile.balance) return toast('Insufficient balance', 'error');
-
-  const btn = document.getElementById('playBtn');
-  btn.disabled = true; btn.textContent = '🎡 SPINNING...';
-  const badge = document.getElementById('wheelBadge');
-  badge.classList.remove('show');
-
+  const btn = document.getElementById('playBtn'); btn.disabled = true; btn.textContent = '🎡 SPINNING...';
+  const badge = document.getElementById('wheelBadge'); badge.classList.remove('show');
   const result = await playGame(bet, 'wheel');
-  if (result.error) {
-    toast(result.error, 'error');
-    btn.disabled = false; btn.textContent = '🎡 SPIN';
-    return;
-  }
-
+  if (result.error) { toast(result.error, 'error'); btn.disabled = false; btn.textContent = '🎡 SPIN'; return; }
   let segmentIndex;
-  if (result.win) {
-    const winIndices = [2, 3, 5, 7];
-    segmentIndex = winIndices[Math.floor(Math.random() * winIndices.length)];
-  } else {
-    const loseIndices = [0, 1, 4, 6, 8, 9];
-    segmentIndex = loseIndices[Math.floor(Math.random() * loseIndices.length)];
-  }
-
+  if (result.win) segmentIndex = [2, 3, 5, 7][Math.floor(Math.random() * 4)];
+  else segmentIndex = [0, 1, 4, 6, 8, 9][Math.floor(Math.random() * 6)];
   const spins = 8 + Math.floor(Math.random() * 4);
   const targetDeg = getWheelTargetAngle(segmentIndex, WHEEL_SEGMENTS.length, spins);
   const jitter = (Math.random() - 0.5) * 20;
-
   const wheel = document.getElementById('moneyWheel');
-  wheel.style.transition = 'none';
-  wheel.style.transform = `rotate(${spins * 360}deg)`;
-  wheel.offsetHeight;
+  wheel.style.transition = 'none'; wheel.style.transform = `rotate(${spins * 360}deg)`; wheel.offsetHeight;
   wheel.style.transition = 'transform 2.2s cubic-bezier(0.17,0.67,0.16,1)';
   wheel.style.transform = `rotate(${targetDeg + jitter}deg)`;
-
   setTimeout(() => {
     const seg = WHEEL_SEGMENTS[segmentIndex];
-    badge.textContent = seg.label;
-    badge.style.borderColor = seg.color;
-    badge.style.color = seg.color;
-    badge.classList.add('show');
-
+    badge.textContent = seg.label; badge.style.borderColor = seg.color; badge.style.color = seg.color; badge.classList.add('show');
     const resDiv = document.getElementById('gameResult');
-    if (result.win) {
-      resDiv.className = 'result-box result-win';
-      resDiv.innerHTML = `🎉 Landed on <b>${seg.label}</b>! You Won!<br><span style="font-size:24px;">+₹${result.winAmount}</span>`;
-      fireConfetti(document.getElementById('stageContainer'));
-    } else {
-      resDiv.className = 'result-box result-lose';
-      resDiv.innerHTML = `😢 Landed on <b>${seg.label}</b><br><span style="font-size:20px;">-₹${bet}</span>`;
-    }
+    if (result.win) { resDiv.className = 'result-box result-win'; resDiv.innerHTML = `🎉 Landed on <b>${seg.label}</b>! You Won!<br><span style="font-size:24px;">+₹${result.winAmount}</span>`; fireConfetti(document.getElementById('stageContainer')); }
+    else { resDiv.className = 'result-box result-lose'; resDiv.innerHTML = `😢 Landed on <b>${seg.label}</b><br><span style="font-size:20px;">-₹${bet}</span>`; }
     document.getElementById('modalBalance').textContent = currentProfile.balance;
     btn.disabled = false; btn.textContent = '🎡 SPIN AGAIN';
   }, 2400);
 }
 
 /* ============================================================
-   🎲 3D DICE
+   🎲 DICE
    ============================================================ */
 let diceGuess = 1;
-function selectDice(n) {
-  diceGuess = n;
-  document.querySelectorAll('.dice-chip').forEach(b => {
-    b.classList.toggle('active', parseInt(b.dataset.val) === n);
-  });
-}
+function selectDice(n) { diceGuess = n; document.querySelectorAll('.dice-chip').forEach(b => b.classList.toggle('active', parseInt(b.dataset.val) === n)); }
 
 async function playDice3D() {
   const bet = parseInt(document.getElementById('betInput').value);
   const guess = diceGuess;
   if (!bet || bet < 1) return toast('Enter valid bet', 'error');
   if (bet > currentProfile.balance) return toast('Insufficient balance', 'error');
-
-  const btn = document.getElementById('playBtn');
-  btn.disabled = true; btn.textContent = '🎲 ROLLING...';
-  const dice = document.getElementById('dice3d');
-  dice.classList.add('rolling');
-
+  const btn = document.getElementById('playBtn'); btn.disabled = true; btn.textContent = '🎲 ROLLING...';
+  const dice = document.getElementById('dice3d'); dice.classList.add('rolling');
   const result = await playGame(bet, 'dice3d');
-  if (result.error) {
-    dice.classList.remove('rolling');
-    toast(result.error, 'error');
-    btn.disabled = false; btn.textContent = '🎲 ROLL';
-    return;
-  }
-
+  if (result.error) { dice.classList.remove('rolling'); toast(result.error, 'error'); btn.disabled = false; btn.textContent = '🎲 ROLL'; return; }
   let finalFace;
   if (result.win) finalFace = guess;
   else { do { finalFace = Math.floor(Math.random() * 6) + 1; } while (finalFace === guess); }
-
   const rotations = { 1:{x:0,y:0},2:{x:0,y:-90},3:{x:0,y:180},4:{x:0,y:90},5:{x:-90,y:0},6:{x:90,y:0} };
   const rot = rotations[finalFace];
   dice.style.transform = `rotateX(${1080 + rot.x}deg) rotateY(${1080 + rot.y}deg)`;
-
   setTimeout(() => {
     dice.classList.remove('rolling');
     const resDiv = document.getElementById('gameResult');
-    if (result.win) {
-      resDiv.className = 'result-box result-win';
-      resDiv.innerHTML = `🎉 ROLLED ${finalFace}! You Won!<br><span style="font-size:24px;">+₹${result.winAmount}</span>`;
-      fireConfetti(document.getElementById('stageContainer'));
-    } else {
-      resDiv.className = 'result-box result-lose';
-      resDiv.innerHTML = `🎲 Rolled ${finalFace} — you guessed ${guess}<br><span style="font-size:20px;">-₹${bet}</span>`;
-    }
+    if (result.win) { resDiv.className = 'result-box result-win'; resDiv.innerHTML = `🎉 ROLLED ${finalFace}! You Won!<br><span style="font-size:24px;">+₹${result.winAmount}</span>`; fireConfetti(document.getElementById('stageContainer')); }
+    else { resDiv.className = 'result-box result-lose'; resDiv.innerHTML = `🎲 Rolled ${finalFace} — you guessed ${guess}<br><span style="font-size:20px;">-₹${bet}</span>`; }
     document.getElementById('modalBalance').textContent = currentProfile.balance;
     btn.disabled = false; btn.textContent = '🎲 ROLL AGAIN';
   }, 950);
@@ -1874,92 +1584,45 @@ async function playCrash() {
   const bet = parseInt(document.getElementById('betInput').value);
   if (!bet || bet < 1) return toast('Enter valid bet', 'error');
   if (bet > currentProfile.balance) return toast('Insufficient balance', 'error');
-
-  const deduct = await db.ref('users/' + currentUser.uid).child('balance').transaction(c => {
-    if (c === null || c < bet) return;
-    return c - bet;
-  });
+  const deduct = await db.ref('users/' + currentUser.uid).child('balance').transaction(c => { if (c === null || c < bet) return; return c - bet; });
   if (!deduct.committed) return toast('Insufficient balance', 'error');
-  await db.ref('users/' + currentUser.uid).child('bonusBalance').transaction(b => {
-    const bal = deduct.snapshot.val() || 0;
-    if (b === null) return 0;
-    return Math.min(b, bal);
-  });
+  await db.ref('users/' + currentUser.uid).child('bonusBalance').transaction(b => { const bal = deduct.snapshot.val() || 0; if (b === null) return 0; return Math.min(b, bal); });
   await addTransaction(currentUser.uid, currentProfile.username, 'bet', -bet, 'crash');
-
-  crashState.running = true;
-  crashState.mult = 1.00;
-  crashState.bet = bet;
-  crashState.cashedOut = false;
-  crashState.points = [];
+  crashState.running = true; crashState.mult = 1.00; crashState.bet = bet; crashState.cashedOut = false; crashState.points = [];
   const willWin = Math.random() < 0.60;
   crashState.crashAt = willWin ? 1.8 + Math.random() * 3.5 : 1.05 + Math.random() * 0.6;
-
-  const btn = document.getElementById('playBtn');
-  const coBtn = document.getElementById('cashoutBtn');
-  btn.style.display = 'none';
-  coBtn.style.display = 'block';
-
-  const canvas = document.getElementById('crashCanvas');
-  const ctx = canvas.getContext('2d');
+  const btn = document.getElementById('playBtn'); const coBtn = document.getElementById('cashoutBtn');
+  btn.style.display = 'none'; coBtn.style.display = 'block';
+  const canvas = document.getElementById('crashCanvas'); const ctx = canvas.getContext('2d');
   const dpr = window.devicePixelRatio || 1;
-  canvas.width = canvas.offsetWidth * dpr;
-  canvas.height = canvas.offsetHeight * dpr;
-  canvas.style.width = canvas.offsetWidth + 'px';
-  canvas.style.height = canvas.offsetHeight + 'px';
+  canvas.width = canvas.offsetWidth * dpr; canvas.height = canvas.offsetHeight * dpr;
+  canvas.style.width = canvas.offsetWidth + 'px'; canvas.style.height = canvas.offsetHeight + 'px';
   ctx.scale(dpr, dpr);
-
   const multEl = document.getElementById('crashMult');
-  multEl.classList.remove('crashed');
-  multEl.style.color = '#66bb6a';
-  multEl.textContent = '1.00x';
-
+  multEl.classList.remove('crashed'); multEl.style.color = '#66bb6a'; multEl.textContent = '1.00x';
   crashState.interval = setInterval(() => {
     crashState.mult += 0.025 * crashState.mult + 0.012;
     const m = crashState.mult;
     multEl.textContent = m.toFixed(2) + 'x';
     multEl.style.color = m > 2 ? '#feca57' : '#66bb6a';
     crashState.points.push(m);
-
-    const W = canvas.width / dpr;
-    const H = canvas.height / dpr;
+    const W = canvas.width / dpr; const H = canvas.height / dpr;
     ctx.clearRect(0, 0, W, H);
-    const maxPoints = 120;
-    const pts = crashState.points.slice(-maxPoints);
+    const pts = crashState.points.slice(-120);
     if (pts.length > 1) {
       ctx.beginPath();
-      pts.forEach((p, i) => {
-        const x = (i / maxPoints) * W;
-        const y = H - ((p - 1) / 3.5) * H * 0.92 - 8;
-        if (i === 0) ctx.moveTo(x, H);
-        ctx.lineTo(x, Math.max(8, y));
-      });
-      ctx.lineTo((pts.length - 1) / maxPoints * W, H);
-      ctx.closePath();
+      pts.forEach((p, i) => { const x = (i / 120) * W; const y = H - ((p - 1) / 3.5) * H * 0.92 - 8; if (i === 0) ctx.moveTo(x, H); ctx.lineTo(x, Math.max(8, y)); });
+      ctx.lineTo((pts.length - 1) / 120 * W, H); ctx.closePath();
       const grad = ctx.createLinearGradient(0, 0, 0, H);
       grad.addColorStop(0, m > 1.5 ? 'rgba(254,202,87,0.35)' : 'rgba(102,187,106,0.35)');
-      grad.addColorStop(1, 'rgba(0,0,0,0)');
-      ctx.fillStyle = grad;
-      ctx.fill();
-      ctx.beginPath();
-      ctx.strokeStyle = m > 1.5 ? '#feca57' : '#66bb6a';
-      ctx.lineWidth = 3;
-      ctx.shadowBlur = 18;
-      ctx.shadowColor = ctx.strokeStyle;
-      pts.forEach((p, i) => {
-        const x = (i / maxPoints) * W;
-        const y = Math.max(8, H - ((p - 1) / 3.5) * H * 0.92 - 8);
-        if (i === 0) ctx.moveTo(x, H);
-        ctx.lineTo(x, y);
-      });
+      grad.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = grad; ctx.fill();
+      ctx.beginPath(); ctx.strokeStyle = m > 1.5 ? '#feca57' : '#66bb6a'; ctx.lineWidth = 3;
+      ctx.shadowBlur = 18; ctx.shadowColor = ctx.strokeStyle;
+      pts.forEach((p, i) => { const x = (i / 120) * W; const y = Math.max(8, H - ((p - 1) / 3.5) * H * 0.92 - 8); if (i === 0) ctx.moveTo(x, H); ctx.lineTo(x, y); });
       ctx.stroke();
       const lastIdx = pts.length - 1;
-      ctx.beginPath();
-      ctx.arc((lastIdx / maxPoints) * W, Math.max(8, H - ((pts[lastIdx] - 1) / 3.5) * H * 0.92 - 8), 5, 0, Math.PI * 2);
-      ctx.fillStyle = m > 1.5 ? '#feca57' : '#66bb6a';
-      ctx.shadowBlur = 25;
-      ctx.fill();
-      ctx.shadowBlur = 0;
+      ctx.beginPath(); ctx.arc((lastIdx / 120) * W, Math.max(8, H - ((pts[lastIdx] - 1) / 3.5) * H * 0.92 - 8), 5, 0, Math.PI * 2);
+      ctx.fillStyle = m > 1.5 ? '#feca57' : '#66bb6a'; ctx.shadowBlur = 25; ctx.fill(); ctx.shadowBlur = 0;
     }
     if (m >= crashState.crashAt) crashCrash();
   }, 70);
@@ -1968,19 +1631,14 @@ async function playCrash() {
 async function cashoutCrash() {
   if (!crashState.running || crashState.cashedOut) return;
   crashState.cashedOut = true;
-  clearInterval(crashState.interval);
-  crashState.running = false;
+  clearInterval(crashState.interval); crashState.running = false;
   const winAmount = Math.floor(crashState.bet * crashState.mult);
   const mult = crashState.mult.toFixed(2);
   await db.ref('users/' + currentUser.uid).child('balance').transaction(c => (c||0) + winAmount);
   await addTransaction(currentUser.uid, currentProfile.username, 'win', winAmount, 'crash');
   document.getElementById('cashoutBtn').style.display = 'none';
-  const btn = document.getElementById('playBtn');
-  btn.style.display = 'block';
-  btn.disabled = false;
-  btn.textContent = '🚀 PLAY AGAIN';
-  const resDiv = document.getElementById('gameResult');
-  resDiv.className = 'result-box result-win';
+  const btn = document.getElementById('playBtn'); btn.style.display = 'block'; btn.disabled = false; btn.textContent = '🚀 PLAY AGAIN';
+  const resDiv = document.getElementById('gameResult'); resDiv.className = 'result-box result-win';
   resDiv.innerHTML = `💰 CASHED OUT at ${mult}x<br><span style="font-size:24px;">+₹${winAmount}</span>`;
   document.getElementById('modalBalance').textContent = currentProfile.balance;
   fireConfetti(document.getElementById('stageContainer'));
@@ -1988,19 +1646,12 @@ async function cashoutCrash() {
 
 function crashCrash() {
   if (!crashState.running) return;
-  clearInterval(crashState.interval);
-  crashState.running = false;
-  const multEl = document.getElementById('crashMult');
-  multEl.textContent = '💥 ' + crashState.mult.toFixed(2) + 'x';
-  multEl.classList.add('crashed');
+  clearInterval(crashState.interval); crashState.running = false;
+  const multEl = document.getElementById('crashMult'); multEl.textContent = '💥 ' + crashState.mult.toFixed(2) + 'x'; multEl.classList.add('crashed');
   document.getElementById('cashoutBtn').style.display = 'none';
-  const btn = document.getElementById('playBtn');
-  btn.style.display = 'block';
-  btn.disabled = false;
-  btn.textContent = '🚀 PLAY AGAIN';
+  const btn = document.getElementById('playBtn'); btn.style.display = 'block'; btn.disabled = false; btn.textContent = '🚀 PLAY AGAIN';
   if (!crashState.cashedOut) {
-    const resDiv = document.getElementById('gameResult');
-    resDiv.className = 'result-box result-lose';
+    const resDiv = document.getElementById('gameResult'); resDiv.className = 'result-box result-lose';
     resDiv.innerHTML = `💥 CRASHED at ${crashState.mult.toFixed(2)}x<br><span style="font-size:20px;">-₹${crashState.bet}</span>`;
   }
 }
@@ -2012,322 +1663,174 @@ async function playDiscoWheel() {
   const bet = parseInt(document.getElementById('betInput').value);
   if (!bet || bet < 1) return toast('Enter valid bet', 'error');
   if (bet > currentProfile.balance) return toast('Insufficient balance', 'error');
-
-  const btn = document.getElementById('playBtn');
-  btn.disabled = true; btn.textContent = '🕺 SPINNING...';
-  const badge = document.getElementById('discoBadge');
-  badge.classList.remove('show');
-
+  const btn = document.getElementById('playBtn'); btn.disabled = true; btn.textContent = '🕺 SPINNING...';
+  const badge = document.getElementById('discoBadge'); badge.classList.remove('show');
   const result = await playGame(bet, 'disco');
-  if (result.error) {
-    toast(result.error, 'error');
-    btn.disabled = false; btn.textContent = '🕺 SPIN';
-    return;
-  }
-
+  if (result.error) { toast(result.error, 'error'); btn.disabled = false; btn.textContent = '🕺 SPIN'; return; }
   let segmentIndex;
-  if (result.win) {
-    segmentIndex = [2, 3, 5, 7][Math.floor(Math.random() * 4)];
-  } else {
-    segmentIndex = [0, 1, 4, 6][Math.floor(Math.random() * 4)];
-  }
-
-  const wheel = document.getElementById('discoWheel');
-  const lights = document.getElementById('discoLights');
-  wheel.classList.add('spinning');
-  lights.style.opacity = '1';
-
+  if (result.win) segmentIndex = [2, 3, 5, 7][Math.floor(Math.random() * 4)];
+  else segmentIndex = [0, 1, 4, 6][Math.floor(Math.random() * 4)];
+  const wheel = document.getElementById('discoWheel'); const lights = document.getElementById('discoLights');
+  wheel.classList.add('spinning'); lights.style.opacity = '1';
   const spins = 10 + Math.floor(Math.random() * 5);
   const targetDeg = getWheelTargetAngle(segmentIndex, DISCO_SEGMENTS.length, spins);
   const jitter = (Math.random() - 0.5) * 18;
-
-  wheel.style.transition = 'none';
-  wheel.style.transform = `rotate(${spins * 360}deg)`;
-  wheel.offsetHeight;
+  wheel.style.transition = 'none'; wheel.style.transform = `rotate(${spins * 360}deg)`; wheel.offsetHeight;
   wheel.style.transition = 'transform 2.5s cubic-bezier(0.17,0.67,0.16,1)';
   wheel.style.transform = `rotate(${targetDeg + jitter}deg)`;
-
   setTimeout(() => {
-    wheel.classList.remove('spinning');
-    lights.style.opacity = '0.7';
+    wheel.classList.remove('spinning'); lights.style.opacity = '0.7';
     const seg = DISCO_SEGMENTS[segmentIndex];
-    badge.textContent = seg.label;
-    badge.classList.add('show');
-
+    badge.textContent = seg.label; badge.classList.add('show');
     const resDiv = document.getElementById('gameResult');
-    if (result.win) {
-      resDiv.className = 'result-box result-win';
-      resDiv.innerHTML = `🎉 Landed on <b>${seg.label}</b>! You Won!<br><span style="font-size:24px;">+₹${result.winAmount}</span>`;
-      fireConfetti(document.getElementById('stageContainer'));
-    } else {
-      resDiv.className = 'result-box result-lose';
-      resDiv.innerHTML = `😢 Landed on <b>${seg.label}</b><br><span style="font-size:20px;">-₹${bet}</span>`;
-    }
+    if (result.win) { resDiv.className = 'result-box result-win'; resDiv.innerHTML = `🎉 Landed on <b>${seg.label}</b>! You Won!<br><span style="font-size:24px;">+₹${result.winAmount}</span>`; fireConfetti(document.getElementById('stageContainer')); }
+    else { resDiv.className = 'result-box result-lose'; resDiv.innerHTML = `😢 Landed on <b>${seg.label}</b><br><span style="font-size:20px;">-₹${bet}</span>`; }
     document.getElementById('modalBalance').textContent = currentProfile.balance;
     btn.disabled = false; btn.textContent = '🕺 SPIN AGAIN';
   }, 2700);
 }
 
 /* ============================================================
-   LUCKY 7, COLOR, COIN, MATKA (unchanged)
+   LUCKY 7
    ============================================================ */
 let lucky7Choice = '7';
-function selectLucky7(val) {
-  lucky7Choice = val;
-  document.querySelectorAll('.lucky7-choice').forEach(b => b.classList.toggle('active', b.dataset.val === val));
-}
+function selectLucky7(val) { lucky7Choice = val; document.querySelectorAll('.lucky7-choice').forEach(b => b.classList.toggle('active', b.dataset.val === val)); }
 
 async function playLucky7() {
   const bet = parseInt(document.getElementById('betInput').value);
   if (!bet || bet < 1) return toast('Enter valid bet', 'error');
   if (bet > currentProfile.balance) return toast('Insufficient balance', 'error');
-
-  const btn = document.getElementById('playBtn');
-  btn.disabled = true; btn.textContent = '7️⃣ ROLLING...';
-  const d1 = document.getElementById('lucky7d1');
-  const d2 = document.getElementById('lucky7d2');
-  const sumEl = document.getElementById('lucky7sum');
-  d1.classList.add('rolling');
-  d2.classList.add('rolling');
-
+  const btn = document.getElementById('playBtn'); btn.disabled = true; btn.textContent = '7️⃣ ROLLING...';
+  const d1 = document.getElementById('lucky7d1'); const d2 = document.getElementById('lucky7d2'); const sumEl = document.getElementById('lucky7sum');
+  d1.classList.add('rolling'); d2.classList.add('rolling');
   const result = await playGame(bet, 'lucky7');
-  if (result.error) {
-    d1.classList.remove('rolling');
-    d2.classList.remove('rolling');
-    toast(result.error, 'error');
-    btn.disabled = false; btn.textContent = '7️⃣ ROLL DICE';
-    return;
-  }
-
+  if (result.error) { d1.classList.remove('rolling'); d2.classList.remove('rolling'); toast(result.error, 'error'); btn.disabled = false; btn.textContent = '7️⃣ ROLL DICE'; return; }
   let face1, face2, sum;
   if (result.win) {
-    if (lucky7Choice === '7') {
-      const pairs = [[1,6],[2,5],[3,4],[4,3],[5,2],[6,1]];
-      [face1, face2] = pairs[Math.floor(Math.random() * pairs.length)];
-    } else if (lucky7Choice === 'under7') {
-      do { face1 = Math.floor(Math.random()*6)+1; face2 = Math.floor(Math.random()*6)+1; sum = face1+face2; } while (sum >= 7);
-    } else {
-      do { face1 = Math.floor(Math.random()*6)+1; face2 = Math.floor(Math.random()*6)+1; sum = face1+face2; } while (sum <= 7);
-    }
+    if (lucky7Choice === '7') { const pairs = [[1,6],[2,5],[3,4],[4,3],[5,2],[6,1]]; [face1, face2] = pairs[Math.floor(Math.random() * pairs.length)]; }
+    else if (lucky7Choice === 'under7') { do { face1 = Math.floor(Math.random()*6)+1; face2 = Math.floor(Math.random()*6)+1; sum = face1+face2; } while (sum >= 7); }
+    else { do { face1 = Math.floor(Math.random()*6)+1; face2 = Math.floor(Math.random()*6)+1; sum = face1+face2; } while (sum <= 7); }
   } else {
-    do {
-      face1 = Math.floor(Math.random()*6)+1;
-      face2 = Math.floor(Math.random()*6)+1;
-      sum = face1+face2;
+    do { face1 = Math.floor(Math.random()*6)+1; face2 = Math.floor(Math.random()*6)+1; sum = face1+face2;
       if (lucky7Choice === '7' && sum !== 7) break;
       if (lucky7Choice === 'under7' && sum >= 7) break;
       if (lucky7Choice === 'over7' && sum <= 7) break;
     } while (true);
   }
-
   const diceEmoji = ['⚀','⚁','⚂','⚃','⚄','⚅'];
-
   setTimeout(() => {
-    d1.classList.remove('rolling');
-    d2.classList.remove('rolling');
-    d1.textContent = diceEmoji[face1 - 1];
-    d2.textContent = diceEmoji[face2 - 1];
-    sumEl.textContent = sum;
-    d1.classList.remove('win','lose');
-    d2.classList.remove('win','lose');
+    d1.classList.remove('rolling'); d2.classList.remove('rolling');
+    d1.textContent = diceEmoji[face1 - 1]; d2.textContent = diceEmoji[face2 - 1]; sumEl.textContent = sum;
+    d1.classList.remove('win','lose'); d2.classList.remove('win','lose');
     if (result.win) { d1.classList.add('win'); d2.classList.add('win'); }
     else { d1.classList.add('lose'); d2.classList.add('lose'); }
-
     const resDiv = document.getElementById('gameResult');
-    if (result.win) {
-      resDiv.className = 'result-box result-win';
-      resDiv.innerHTML = `🎉 Sum ${sum} — You Won!<br><span style="font-size:24px;">+₹${result.winAmount}</span>`;
-      fireConfetti(document.getElementById('stageContainer'));
-    } else {
-      resDiv.className = 'result-box result-lose';
-      resDiv.innerHTML = `😢 Sum ${sum} — Lost<br><span style="font-size:20px;">-₹${bet}</span>`;
-    }
+    if (result.win) { resDiv.className = 'result-box result-win'; resDiv.innerHTML = `🎉 Sum ${sum} — You Won!<br><span style="font-size:24px;">+₹${result.winAmount}</span>`; fireConfetti(document.getElementById('stageContainer')); }
+    else { resDiv.className = 'result-box result-lose'; resDiv.innerHTML = `😢 Sum ${sum} — Lost<br><span style="font-size:20px;">-₹${bet}</span>`; }
     document.getElementById('modalBalance').textContent = currentProfile.balance;
     btn.disabled = false; btn.textContent = '7️⃣ ROLL AGAIN';
   }, 700);
 }
 
+/* ============================================================
+   COLOR
+   ============================================================ */
 let colorChoice = 'red';
-function selectColor(c) {
-  colorChoice = c;
-  document.querySelectorAll('.color-btn').forEach(b => b.classList.toggle('active', b.dataset.val === c));
-}
+function selectColor(c) { colorChoice = c; document.querySelectorAll('.color-btn').forEach(b => b.classList.toggle('active', b.dataset.val === c)); }
 
 async function playColorGame() {
   const bet = parseInt(document.getElementById('betInput').value);
   if (!bet || bet < 1) return toast('Enter valid bet', 'error');
   if (bet > currentProfile.balance) return toast('Insufficient balance', 'error');
-
-  const btn = document.getElementById('playBtn');
-  btn.disabled = true; btn.textContent = '🎨 PLAYING...';
-
-  const balls = document.getElementById('colorBalls');
-  const resultLabel = document.getElementById('colorResultLabel');
-  balls.innerHTML = '';
-  resultLabel.classList.remove('show');
+  const btn = document.getElementById('playBtn'); btn.disabled = true; btn.textContent = '🎨 PLAYING...';
+  const balls = document.getElementById('colorBalls'); const resultLabel = document.getElementById('colorResultLabel');
+  balls.innerHTML = ''; resultLabel.classList.remove('show');
   document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('winner', 'dimmed', 'flash'));
-
   const result = await playGame(bet, 'color');
-  if (result.error) {
-    toast(result.error, 'error');
-    btn.disabled = false; btn.textContent = '🎨 PLAY';
-    return;
-  }
-
-  const names = ['red', 'green', 'blue'];
-  const emojis = ['🔴', '🟢', '🔵'];
-  const colors = ['#e53935', '#43a047', '#1e88e5'];
-  const displayNames = ['RED', 'GREEN', 'BLUE'];
-
+  if (result.error) { toast(result.error, 'error'); btn.disabled = false; btn.textContent = '🎨 PLAY'; return; }
+  const names = ['red', 'green', 'blue']; const emojis = ['🔴', '🟢', '🔵']; const colors = ['#e53935', '#43a047', '#1e88e5']; const displayNames = ['RED', 'GREEN', 'BLUE'];
   let resultColor;
   if (result.win) resultColor = colorChoice;
-  else {
-    const others = names.filter(n => n !== colorChoice);
-    resultColor = others[Math.floor(Math.random() * others.length)];
-  }
+  else { const others = names.filter(n => n !== colorChoice); resultColor = others[Math.floor(Math.random() * others.length)]; }
   const resultIdx = names.indexOf(resultColor);
-
-  const ball = document.createElement('div');
-  ball.className = 'color-ball big';
-  ball.style.background = colors[resultIdx];
-  ball.style.color = colors[resultIdx];
-  ball.textContent = emojis[resultIdx];
+  const ball = document.createElement('div'); ball.className = 'color-ball big';
+  ball.style.background = colors[resultIdx]; ball.style.color = colors[resultIdx]; ball.textContent = emojis[resultIdx];
   balls.appendChild(ball);
-
   setTimeout(() => {
-    document.querySelectorAll('.color-btn').forEach(b => {
-      if (b.dataset.val === resultColor) { b.classList.add('winner'); b.classList.remove('dimmed'); }
-      else b.classList.add('dimmed');
-    });
+    document.querySelectorAll('.color-btn').forEach(b => { if (b.dataset.val === resultColor) { b.classList.add('winner'); b.classList.remove('dimmed'); } else b.classList.add('dimmed'); });
     resultLabel.textContent = `🎯 ${displayNames[resultIdx]} is the winner!`;
-    resultLabel.style.color = colors[resultIdx];
-    resultLabel.classList.add('show');
+    resultLabel.style.color = colors[resultIdx]; resultLabel.classList.add('show');
   }, 300);
-
   setTimeout(() => {
     const resDiv = document.getElementById('gameResult');
-    if (result.win) {
-      resDiv.className = 'result-box result-win';
-      resDiv.innerHTML = `🎉 ${displayNames[resultIdx]} — You Won!<br><span style="font-size:24px;">+₹${result.winAmount}</span>`;
-      fireConfetti(document.getElementById('stageContainer'));
-    } else {
-      resDiv.className = 'result-box result-lose';
-      resDiv.innerHTML = `😢 ${displayNames[resultIdx]} — You Lost (picked ${displayNames[names.indexOf(colorChoice)]})<br><span style="font-size:20px;">-₹${bet}</span>`;
-    }
+    if (result.win) { resDiv.className = 'result-box result-win'; resDiv.innerHTML = `🎉 ${displayNames[resultIdx]} — You Won!<br><span style="font-size:24px;">+₹${result.winAmount}</span>`; fireConfetti(document.getElementById('stageContainer')); }
+    else { resDiv.className = 'result-box result-lose'; resDiv.innerHTML = `😢 ${displayNames[resultIdx]} — You Lost (picked ${displayNames[names.indexOf(colorChoice)]})<br><span style="font-size:20px;">-₹${bet}</span>`; }
     document.getElementById('modalBalance').textContent = currentProfile.balance;
     btn.disabled = false; btn.textContent = '🎨 PLAY AGAIN';
   }, 800);
 }
 
+/* ============================================================
+   COIN
+   ============================================================ */
 let coinChoice = 'heads';
-function selectCoin(v) {
-  coinChoice = v;
-  document.querySelectorAll('.coin-choice').forEach(b => b.classList.toggle('active', b.dataset.val === v));
-}
+function selectCoin(v) { coinChoice = v; document.querySelectorAll('.coin-choice').forEach(b => b.classList.toggle('active', b.dataset.val === v)); }
 
 async function playCoinFlip() {
   const bet = parseInt(document.getElementById('betInput').value);
   if (!bet || bet < 1) return toast('Enter valid bet', 'error');
   if (bet > currentProfile.balance) return toast('Insufficient balance', 'error');
-
-  const btn = document.getElementById('playBtn');
-  btn.disabled = true; btn.textContent = '🪙 FLIPPING...';
-  const resultLabel = document.getElementById('coinResultLabel');
-  resultLabel.classList.remove('show');
-
+  const btn = document.getElementById('playBtn'); btn.disabled = true; btn.textContent = '🪙 FLIPPING...';
+  const resultLabel = document.getElementById('coinResultLabel'); resultLabel.classList.remove('show');
   const result = await playGame(bet, 'coinflip');
-  if (result.error) {
-    toast(result.error, 'error');
-    btn.disabled = false; btn.textContent = '🪙 FLIP COIN';
-    return;
-  }
-
+  if (result.error) { toast(result.error, 'error'); btn.disabled = false; btn.textContent = '🪙 FLIP COIN'; return; }
   let resultSide = result.win ? coinChoice : (coinChoice === 'heads' ? 'tails' : 'heads');
-
   const coin = document.getElementById('coin3d');
-  coin.style.transition = 'none';
-  coin.style.transform = 'rotateY(0deg)';
-  coin.offsetHeight;
+  coin.style.transition = 'none'; coin.style.transform = 'rotateY(0deg)'; coin.offsetHeight;
   const finalRot = resultSide === 'heads' ? 3600 : 3780;
   coin.style.transition = 'transform 1.2s cubic-bezier(0.25,0.1,0.25,1)';
   coin.style.transform = `rotateY(${finalRot}deg)`;
-
   setTimeout(() => {
-    const icon = resultSide === 'heads' ? '👑' : '🪙';
-    const label = resultSide === 'heads' ? 'HEADS' : 'TAILS';
+    const icon = resultSide === 'heads' ? '👑' : '🪙'; const label = resultSide === 'heads' ? 'HEADS' : 'TAILS';
     resultLabel.innerHTML = `${icon} <b>${label}</b>`;
     resultLabel.style.color = resultSide === 'heads' ? '#feca57' : '#e0e0e0';
     resultLabel.classList.add('show');
-
     const resDiv = document.getElementById('gameResult');
-    if (result.win) {
-      resDiv.className = 'result-box result-win';
-      resDiv.innerHTML = `🎉 ${label} — You Won!<br><span style="font-size:24px;">+₹${result.winAmount}</span>`;
-      fireConfetti(document.getElementById('stageContainer'));
-    } else {
-      resDiv.className = 'result-box result-lose';
-      const pickLabel = coinChoice === 'heads' ? 'HEADS' : 'TAILS';
-      resDiv.innerHTML = `😢 ${label} — You Lost (picked ${pickLabel})<br><span style="font-size:20px;">-₹${bet}</span>`;
-    }
+    if (result.win) { resDiv.className = 'result-box result-win'; resDiv.innerHTML = `🎉 ${label} — You Won!<br><span style="font-size:24px;">+₹${result.winAmount}</span>`; fireConfetti(document.getElementById('stageContainer')); }
+    else { resDiv.className = 'result-box result-lose'; const pickLabel = coinChoice === 'heads' ? 'HEADS' : 'TAILS'; resDiv.innerHTML = `😢 ${label} — You Lost (picked ${pickLabel})<br><span style="font-size:20px;">-₹${bet}</span>`; }
     document.getElementById('modalBalance').textContent = currentProfile.balance;
     btn.disabled = false; btn.textContent = '🪙 FLIP AGAIN';
   }, 1300);
 }
 
+/* ============================================================
+   MATKA
+   ============================================================ */
 let matkaChoice = 5;
-function selectMatka(n) {
-  matkaChoice = n;
-  document.querySelectorAll('.matka-choice').forEach(b => b.classList.toggle('active', parseInt(b.dataset.val) === n));
-}
+function selectMatka(n) { matkaChoice = n; document.querySelectorAll('.matka-choice').forEach(b => b.classList.toggle('active', parseInt(b.dataset.val) === n)); }
 
 async function playMatka() {
   const bet = parseInt(document.getElementById('betInput').value);
   if (!bet || bet < 1) return toast('Enter valid bet', 'error');
   if (bet > currentProfile.balance) return toast('Insufficient balance', 'error');
-
-  const btn = document.getElementById('playBtn');
-  btn.disabled = true; btn.textContent = '🏺 SHAKING...';
-  const pot = document.getElementById('matkaPot');
-  const numEl = document.getElementById('matkaNumber');
-  numEl.classList.remove('show');
-  pot.classList.add('shaking');
-
+  const btn = document.getElementById('playBtn'); btn.disabled = true; btn.textContent = '🏺 SHAKING...';
+  const pot = document.getElementById('matkaPot'); const numEl = document.getElementById('matkaNumber');
+  numEl.classList.remove('show'); pot.classList.add('shaking');
   const result = await playGame(bet, 'matka');
-  if (result.error) {
-    pot.classList.remove('shaking');
-    toast(result.error, 'error');
-    btn.disabled = false; btn.textContent = '🏺 SHAKE MATKA';
-    return;
-  }
-
-  let resultNum = result.win ? matkaChoice : (() => {
-    let n; do { n = Math.floor(Math.random() * 10); } while (n === matkaChoice); return n;
-  })();
-
+  if (result.error) { pot.classList.remove('shaking'); toast(result.error, 'error'); btn.disabled = false; btn.textContent = '🏺 SHAKE MATKA'; return; }
+  let resultNum = result.win ? matkaChoice : (() => { let n; do { n = Math.floor(Math.random() * 10); } while (n === matkaChoice); return n; })();
   setTimeout(() => {
-    pot.classList.remove('shaking');
-    numEl.textContent = resultNum;
-    numEl.classList.add('show');
+    pot.classList.remove('shaking'); numEl.textContent = resultNum; numEl.classList.add('show');
     for (let i = 0; i < 6; i++) {
-      const sp = document.createElement('div');
-      sp.className = 'matka-sparkle';
-      sp.textContent = '✨';
-      sp.style.left = (Math.random() * 100) + '%';
-      sp.style.top = (Math.random() * 100) + '%';
+      const sp = document.createElement('div'); sp.className = 'matka-sparkle'; sp.textContent = '✨';
+      sp.style.left = (Math.random() * 100) + '%'; sp.style.top = (Math.random() * 100) + '%';
       sp.style.animationDelay = (i * 0.05) + 's';
-      pot.parentElement.appendChild(sp);
-      setTimeout(() => sp.remove(), 1200);
+      pot.parentElement.appendChild(sp); setTimeout(() => sp.remove(), 1200);
     }
     setTimeout(() => {
       const resDiv = document.getElementById('gameResult');
-      if (result.win) {
-        resDiv.className = 'result-box result-win';
-        resDiv.innerHTML = `🎉 Number ${resultNum} — You Won!<br><span style="font-size:24px;">+₹${result.winAmount}</span>`;
-        fireConfetti(document.getElementById('stageContainer'));
-      } else {
-        resDiv.className = 'result-box result-lose';
-        resDiv.innerHTML = `😢 Number ${resultNum} — Lost<br><span style="font-size:20px;">-₹${bet}</span>`;
-      }
+      if (result.win) { resDiv.className = 'result-box result-win'; resDiv.innerHTML = `🎉 Number ${resultNum} — You Won!<br><span style="font-size:24px;">+₹${result.winAmount}</span>`; fireConfetti(document.getElementById('stageContainer')); }
+      else { resDiv.className = 'result-box result-lose'; resDiv.innerHTML = `😢 Number ${resultNum} — Lost<br><span style="font-size:20px;">-₹${bet}</span>`; }
       document.getElementById('modalBalance').textContent = currentProfile.balance;
       btn.disabled = false; btn.textContent = '🏺 SHAKE AGAIN';
     }, 500);
@@ -2344,32 +1847,16 @@ function openDeposit() {
     <label style="font-size:12px;opacity:0.8;">Amount (₹)</label>
     <input type="number" id="depositAmt" placeholder="Enter amount" min="10" value="100" oninput="updateQR()">
     <div class="upi-pay-box">
-      <div class="qr-container" id="qrContainer">
-        <div id="qrLoading" style="color:#000;text-align:center;font-size:12px;">Loading QR...</div>
-      </div>
-      <div class="upi-id-box">
-        <div class="upi-id-text" id="upiTextEl">${MERCHANT_UPI}</div>
-        <button class="btn btn-copy" onclick="copyUPI()">📋 Copy</button>
-      </div>
+      <div class="qr-container" id="qrContainer"><div id="qrLoading" style="color:#000;text-align:center;font-size:12px;">Loading QR...</div></div>
+      <div class="upi-id-box"><div class="upi-id-text" id="upiTextEl">${MERCHANT_UPI}</div><button class="btn btn-copy" onclick="copyUPI()">📋 Copy</button></div>
       <div style="font-size:12px;opacity:0.7;margin-bottom:10px;">Ya is UPI ID pe manually bhejo</div>
       <div class="amount-highlight">₹<span id="qrAmount">100</span></div>
       <a id="upiDirectLink" href="#" class="open-upi-btn" style="display:block;margin-top:12px;">📱 Open UPI App</a>
     </div>
-    <div class="payment-steps">
-      <b>Steps:</b>
-      <ol>
-        <li>QR scan karo ya UPI ID copy karo</li>
-        <li>Amount bhejo: ₹<b id="stepAmount">100</b></li>
-        <li>Payment ke baad UTR / Transaction ID copy karo</li>
-        <li>Neeche UTR daal ke submit karo</li>
-      </ol>
-    </div>
+    <div class="payment-steps"><b>Steps:</b><ol><li>QR scan karo ya UPI ID copy karo</li><li>Amount bhejo: ₹<b id="stepAmount">100</b></li><li>Payment ke baad UTR / Transaction ID copy karo</li><li>Neeche UTR daal ke submit karo</li></ol></div>
     <label style="font-size:12px;opacity:0.8;">UTR / Transaction ID</label>
     <input type="text" id="utrInput" placeholder="12 digit UTR number" maxlength="30">
-    <div class="modal-btns">
-      <button class="btn btn-cancel" onclick="closeModal()">Cancel</button>
-      <button class="btn btn-deposit" id="depBtn" onclick="submitDepositRequest()">✅ Submit</button>
-    </div>
+    <div class="modal-btns"><button class="btn btn-cancel" onclick="closeModal()">Cancel</button><button class="btn btn-deposit" id="depBtn" onclick="submitDepositRequest()">✅ Submit</button></div>
   `);
   setTimeout(() => updateQR(), 100);
 }
@@ -2397,9 +1884,8 @@ function qrFallbackUI(upiUrl) {
 
 function copyUPI() {
   const text = MERCHANT_UPI;
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(text).then(() => toast('✅ UPI ID copied', 'success')).catch(() => legacyCopy(text));
-  } else legacyCopy(text);
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(() => toast('✅ UPI ID copied', 'success')).catch(() => legacyCopy(text));
+  else legacyCopy(text);
 }
 
 function legacyCopy(text) {
@@ -2416,23 +1902,15 @@ async function submitDepositRequest() {
   const utr = document.getElementById('utrInput').value.trim();
   if (!amt || amt < 10) return toast('Min ₹10', 'error');
   if (!utr || utr.length < 6) return toast('Valid UTR daalo', 'error');
-
-  const btn = document.getElementById('depBtn');
-  btn.disabled = true; btn.innerHTML = '<span class="loader"></span>Submitting...';
+  const btn = document.getElementById('depBtn'); btn.disabled = true; btn.innerHTML = '<span class="loader"></span>Submitting...';
   try {
     const uid = currentUser.uid;
     const existing = await db.ref('deposits').orderByChild('utr').equalTo(utr).get();
     if (existing.exists()) throw new Error('Ye UTR already submit ho chuka hai');
-    await db.ref('deposits').push().set({
-      uid, username: currentProfile.username, email: currentUser.email,
-      amount: amt, utr, upiId: MERCHANT_UPI, status: 'pending', createdAt: Date.now()
-    });
+    await db.ref('deposits').push().set({ uid, username: currentProfile.username, email: currentUser.email, amount: amt, utr, upiId: MERCHANT_UPI, status: 'pending', createdAt: Date.now() });
     closeModal();
     toast('✅ Deposit request submitted', 'success');
-  } catch (e) {
-    toast('❌ ' + e.message, 'error');
-    btn.disabled = false; btn.textContent = '✅ Submit';
-  }
+  } catch (e) { toast('❌ ' + e.message, 'error'); btn.disabled = false; btn.textContent = '✅ Submit'; }
 }
 
 /* ============================================================
@@ -2440,12 +1918,8 @@ async function submitDepositRequest() {
    ============================================================ */
 function openWithdraw() {
   const bank = currentProfile.bank || {};
-  const withdrawable = getWithdrawableBalance();
-  const bonus = getBonusBalance();
-  const bonusNotice = bonus > 0
-    ? `<div class="bonus-lock-box">🔒 <b>₹${bonus}</b> bonus locked hai — withdraw nahi ho sakta.<br>✅ <b>Withdrawable: ₹${withdrawable}</b></div>`
-    : '';
-
+  const withdrawable = getWithdrawableBalance(); const bonus = getBonusBalance();
+  const bonusNotice = bonus > 0 ? `<div class="bonus-lock-box">🔒 <b>₹${bonus}</b> bonus locked hai — withdraw nahi ho sakta.<br>✅ <b>Withdrawable: ₹${withdrawable}</b></div>` : '';
   showModal(`
     <h2>💸 Withdraw to Bank Account</h2>
     <p style="font-size:12px;opacity:0.7;margin-bottom:15px;">Min ₹100. Admin approval ke baad bank account me paisa aayega (1-24 hours).</p>
@@ -2461,21 +1935,17 @@ function openWithdraw() {
     <input type="text" id="wdIfsc" placeholder="e.g. SBIN0001234" maxlength="11" style="text-transform:uppercase;" value="${bank.ifsc || ''}">
     <label>Bank Name</label>
     <input type="text" id="wdBankName" placeholder="e.g. State Bank of India" value="${bank.bankName || ''}">
-    <div class="modal-btns">
-      <button class="btn btn-cancel" onclick="closeModal()">Cancel</button>
-      <button class="btn btn-withdraw" id="wdBtn" onclick="doWithdraw()">Request</button>
-    </div>
+    <div class="modal-btns"><button class="btn btn-cancel" onclick="closeModal()">Cancel</button><button class="btn btn-withdraw" id="wdBtn" onclick="doWithdraw()">Request</button></div>
   `);
 }
 
 async function doWithdraw() {
-  const amt      = parseInt(document.getElementById('wdAmt').value);
-  const holder   = document.getElementById('wdHolder').value.trim();
-  const account  = document.getElementById('wdAccount').value.trim();
-  const ifsc     = document.getElementById('wdIfsc').value.trim().toUpperCase();
+  const amt = parseInt(document.getElementById('wdAmt').value);
+  const holder = document.getElementById('wdHolder').value.trim();
+  const account = document.getElementById('wdAccount').value.trim();
+  const ifsc = document.getElementById('wdIfsc').value.trim().toUpperCase();
   const bankName = document.getElementById('wdBankName').value.trim();
   const withdrawable = getWithdrawableBalance();
-
   if (!amt || amt < 100) return toast('Min ₹100', 'error');
   if (amt > withdrawable) {
     const bonus = getBonusBalance();
@@ -2486,70 +1956,37 @@ async function doWithdraw() {
   if (!account || !/^\d{9,18}$/.test(account)) return toast('Valid account number (9-18 digits)', 'error');
   if (!ifsc || !/^[A-Z]{4}0[A-Z0-9]{6}$/.test(ifsc)) return toast('Valid IFSC code daalo', 'error');
   if (!bankName || bankName.length < 3) return toast('Bank name daalo', 'error');
-
-  const btn = document.getElementById('wdBtn');
-  btn.disabled = true; btn.innerHTML = '<span class="loader"></span>Submitting...';
+  const btn = document.getElementById('wdBtn'); btn.disabled = true; btn.innerHTML = '<span class="loader"></span>Submitting...';
   try {
     const uid = currentUser.uid;
-    const res = await db.ref('users/' + uid).child('balance').transaction(c => {
-      if (c === null || c < amt) return;
-      return c - amt;
-    });
+    const res = await db.ref('users/' + uid).child('balance').transaction(c => { if (c === null || c < amt) return; return c - amt; });
     if (!res.committed) throw new Error('Insufficient balance');
-
-    await db.ref('users/' + uid).child('bonusBalance').transaction(b => {
-      const bal = res.snapshot.val() || 0;
-      if (b === null) return 0;
-      return Math.min(b, bal);
-    });
-
+    await db.ref('users/' + uid).child('bonusBalance').transaction(b => { const bal = res.snapshot.val() || 0; if (b === null) return 0; return Math.min(b, bal); });
     const bank = { accountHolder: holder, accountNumber: account, ifsc, bankName };
     await db.ref('users/' + uid).update({ bank });
-
-    await db.ref('withdrawals').push().set({
-      uid, username: currentProfile.username, amount: amt, bank,
-      accountHolder: holder, accountNumber: account, ifsc, bankName,
-      status: 'pending', createdAt: Date.now()
-    });
-
+    await db.ref('withdrawals').push().set({ uid, username: currentProfile.username, amount: amt, bank, accountHolder: holder, accountNumber: account, ifsc, bankName, status: 'pending', createdAt: Date.now() });
     await addTransaction(uid, currentProfile.username, 'withdraw', -amt, 'Bank Withdrawal');
     closeModal();
     toast('✅ Withdrawal request submitted', 'success');
-  } catch (e) {
-    toast('Failed: ' + e.message, 'error');
-    btn.disabled = false; btn.textContent = 'Request';
-  }
+  } catch (e) { toast('Failed: ' + e.message, 'error'); btn.disabled = false; btn.textContent = 'Request'; }
 }
 
 /* ============================================================
    HISTORY
    ============================================================ */
 function openHistory() {
-  showModal(`<h2>📜 Transaction History</h2>
-    <div id="historyList" class="history-list"><p style="text-align:center;padding:20px;"><span class="loader"></span>Loading...</p></div>
-    <div class="modal-btns"><button class="btn btn-primary" onclick="closeModal()">Close</button></div>`);
+  showModal(`<h2>📜 Transaction History</h2><div id="historyList" class="history-list"><p style="text-align:center;padding:20px;"><span class="loader"></span>Loading...</p></div><div class="modal-btns"><button class="btn btn-primary" onclick="closeModal()">Close</button></div>`);
   const uid = currentUser.uid;
   db.ref('transactions').orderByChild('uid').equalTo(uid).limitToLast(50).once('value', snap => {
-    const list = [];
-    snap.forEach(c => list.push(c.val()));
-    list.reverse();
-    const div = document.getElementById('historyList');
-    if (!div) return;
-    div.innerHTML = list.length === 0
-      ? '<p style="opacity:0.5;text-align:center;padding:20px;">No transactions yet</p>'
-      : list.map(t => `
-        <div class="history-item">
-          <div>
-            <div style="font-weight:600;">${(t.type||'').toUpperCase()}</div>
-            <div style="font-size:11px;opacity:0.6;">${t.game || '-'} • ${new Date(t.time).toLocaleString()}</div>
-          </div>
-          <div class="history-amount ${t.amount > 0 ? 'win' : 'lose'}">${t.amount > 0 ? '+' : ''}₹${t.amount}</div>
-        </div>`).join('');
+    const list = []; snap.forEach(c => list.push(c.val())); list.reverse();
+    const div = document.getElementById('historyList'); if (!div) return;
+    div.innerHTML = list.length === 0 ? '<p style="opacity:0.5;text-align:center;padding:20px;">No transactions yet</p>'
+      : list.map(t => `<div class="history-item"><div><div style="font-weight:600;">${(t.type||'').toUpperCase()}</div><div style="font-size:11px;opacity:0.6;">${t.game || '-'} • ${new Date(t.time).toLocaleString()}</div></div><div class="history-amount ${t.amount > 0 ? 'win' : 'lose'}">${t.amount > 0 ? '+' : ''}₹${t.amount}</div></div>`).join('');
   });
 }
 
 /* ============================================================
-   ADMIN PANEL
+   ADMIN
    ============================================================ */
 let adminListeners = [];
 
@@ -2563,10 +2000,8 @@ function openAdminPanel() {
 
 function adminLogout() {
   adminListeners.forEach(({ref, ev, cb}) => ref.off(ev, cb));
-  adminListeners = [];
-  adminButtonUnlocked = false;
-  const btn = document.getElementById('adminBtn');
-  if (btn) btn.style.display = 'none';
+  adminListeners = []; adminButtonUnlocked = false;
+  const btn = document.getElementById('adminBtn'); if (btn) btn.style.display = 'none';
   location.href = location.pathname;
 }
 
@@ -2579,16 +2014,7 @@ function startAdminListeners() {
     const users = [];
     snap.forEach(c => {
       const u = c.val();
-      if (u) users.push({
-        key: c.key, uid: u.uid || c.key,
-        username: u.username || 'Unknown', email: u.email || '-',
-        mobile: u.mobile || '-',
-        plainPassword: u.plainPassword || '',
-        upiId: u.upiId || '', balance: u.balance || 0,
-        bonusBalance: u.bonusBalance || 0,
-        referralCode: u.referralCode || '-',
-        isBanned: !!u.isBanned
-      });
+      if (u) users.push({ key: c.key, uid: u.uid || c.key, username: u.username || 'Unknown', email: u.email || '-', mobile: u.mobile || '-', plainPassword: u.plainPassword || '', upiId: u.upiId || '', balance: u.balance || 0, bonusBalance: u.bonusBalance || 0, referralCode: u.referralCode || '-', isBanned: !!u.isBanned });
     });
     users.sort((a, b) => (a.username || '').localeCompare(b.username || ''));
     renderUsers(users);
@@ -2598,14 +2024,7 @@ function startAdminListeners() {
   const depRef = db.ref('deposits');
   const depCb = depRef.on('value', snap => {
     const deps = [];
-    snap.forEach(c => {
-      const d = c.val();
-      if (d) deps.push({
-        key: c.key, uid: d.uid || '', username: d.username || 'Unknown',
-        amount: d.amount || 0, utr: d.utr || '-',
-        status: d.status || 'pending', createdAt: d.createdAt || 0
-      });
-    });
+    snap.forEach(c => { const d = c.val(); if (d) deps.push({ key: c.key, uid: d.uid || '', username: d.username || 'Unknown', amount: d.amount || 0, utr: d.utr || '-', status: d.status || 'pending', createdAt: d.createdAt || 0 }); });
     deps.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
     renderDeposits(deps);
   });
@@ -2617,15 +2036,8 @@ function startAdminListeners() {
     snap.forEach(c => {
       const w = c.val();
       if (w) {
-        const bank = w.bank || {
-          accountHolder: w.accountHolder || '', accountNumber: w.accountNumber || '',
-          ifsc: w.ifsc || '', bankName: w.bankName || ''
-        };
-        wds.push({
-          key: c.key, uid: w.uid || '', username: w.username || 'Unknown',
-          bank, amount: w.amount || 0,
-          status: w.status || 'pending', createdAt: w.createdAt || 0
-        });
+        const bank = w.bank || { accountHolder: w.accountHolder || '', accountNumber: w.accountNumber || '', ifsc: w.ifsc || '', bankName: w.bankName || '' };
+        wds.push({ key: c.key, uid: w.uid || '', username: w.username || 'Unknown', bank, amount: w.amount || 0, status: w.status || 'pending', createdAt: w.createdAt || 0 });
       }
     });
     wds.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
@@ -2633,41 +2045,26 @@ function startAdminListeners() {
   });
   adminListeners.push({ref: wdRef, ev: 'value', cb: wdCb});
 
-  // REFERRALS
   const refRef = db.ref('referrals');
   const refCb = refRef.on('value', snap => {
     const refs = [];
-    snap.forEach(c => {
-      const r = c.val();
-      if (r) refs.push({ key: c.key, ...r });
-    });
+    snap.forEach(c => { const r = c.val(); if (r) refs.push({ key: c.key, ...r }); });
     refs.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
     renderReferrals(refs);
-    // Update stat
     const statEl = document.getElementById('statReferrals');
     if (statEl) statEl.textContent = refs.length;
   });
   adminListeners.push({ref: refRef, ev: 'value', cb: refCb});
 
   const txRef = db.ref('transactions').limitToLast(200);
-  const txCb = txRef.on('value', snap => {
-    const txs = [];
-    snap.forEach(c => { const t = c.val(); if (t) txs.push(t); });
-    txs.reverse();
-    renderTx(txs);
-  });
+  const txCb = txRef.on('value', snap => { const txs = []; snap.forEach(c => { const t = c.val(); if (t) txs.push(t); }); txs.reverse(); renderTx(txs); });
   adminListeners.push({ref: txRef, ev: 'value', cb: txCb});
 
   const statCb = usersRef.on('value', snap => {
     let totalDep = 0, usersCount = 0;
-    snap.forEach(c => {
-      const u = c.val();
-      if (u) { usersCount++; totalDep += u.totalDeposit || 0; }
-    });
-    const el1 = document.getElementById('statUsers');
-    const el2 = document.getElementById('statDeposits');
-    if (el1) el1.textContent = usersCount;
-    if (el2) el2.textContent = '₹' + totalDep;
+    snap.forEach(c => { const u = c.val(); if (u) { usersCount++; totalDep += u.totalDeposit || 0; } });
+    const el1 = document.getElementById('statUsers'); const el2 = document.getElementById('statDeposits');
+    if (el1) el1.textContent = usersCount; if (el2) el2.textContent = '₹' + totalDep;
   });
   adminListeners.push({ref: usersRef, ev: 'value', cb: statCb});
 
@@ -2675,15 +2072,10 @@ function startAdminListeners() {
     let pending = 0, withdrawn = 0;
     snap.forEach(c => {
       const w = c.val();
-      if (w) {
-        if ((w.status || 'pending') === 'pending') pending++;
-        if (w.status === 'approved') withdrawn += (w.amount || 0);
-      }
+      if (w) { if ((w.status || 'pending') === 'pending') pending++; if (w.status === 'approved') withdrawn += (w.amount || 0); }
     });
-    const el1 = document.getElementById('statPending');
-    const el2 = document.getElementById('statWithdrawn');
-    if (el1) el1.textContent = pending;
-    if (el2) el2.textContent = '₹' + withdrawn;
+    const el1 = document.getElementById('statPending'); const el2 = document.getElementById('statWithdrawn');
+    if (el1) el1.textContent = pending; if (el2) el2.textContent = '₹' + withdrawn;
   });
   adminListeners.push({ref: wdRef, ev: 'value', cb: wdStatCb});
 }
@@ -2699,196 +2091,81 @@ function switchAdminTab(tab, ev) {
 }
 
 function renderUsers(users) {
-  const tbody = document.getElementById('usersTable');
-  if (!tbody) return;
-  if (!users || users.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:20px;opacity:0.5;">No users</td></tr>';
-    return;
-  }
+  const tbody = document.getElementById('usersTable'); if (!tbody) return;
+  if (!users || users.length === 0) { tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:20px;opacity:0.5;">No users</td></tr>'; return; }
   tbody.innerHTML = users.map(u => {
     const pwd = u.plainPassword || '';
     let pwdDisplay;
-    if (!pwd) {
-      pwdDisplay = `<span style="opacity:0.5;font-size:11px;">not set</span>
-        <button class="small-btn small-pwd" style="padding:3px 8px;font-size:10px;margin-left:4px;" onclick="adminSetPassword('${u.uid}', '${u.username}')">🔑 Set</button>`;
-    } else {
-      pwdDisplay = `<span class="pwd-text" id="pwd-${u.uid}">••••••</span>
-         <button class="small-btn" style="background:#667eea;color:#fff;padding:3px 8px;font-size:10px;margin-left:4px;" onclick="togglePwd('${u.uid}', '${pwd.replace(/'/g, "\\'")}')">👁️</button>
-         <button class="small-btn small-pwd" style="padding:3px 8px;font-size:10px;margin-left:2px;" onclick="adminSetPassword('${u.uid}', '${u.username}')">🔑</button>`;
-    }
-    const bonusDisplay = (u.bonusBalance || 0) > 0
-      ? `<span style="color:#feca57;font-weight:600;">₹${u.bonusBalance} 🔒</span>`
-      : `<span style="opacity:0.5;font-size:11px;">₹0</span>`;
-    return `
-    <tr>
-      <td><strong>${u.username || 'Unknown'}</strong></td>
-      <td style="font-size:11px;">${u.email || '-'}</td>
-      <td style="font-family:monospace;font-size:11px;">${u.mobile || '-'}</td>
-      <td>${pwdDisplay}</td>
-      <td><span class="ref-code-badge">${u.referralCode}</span></td>
-      <td>₹${u.balance || 0}</td>
-      <td>${bonusDisplay}</td>
-      <td>${u.isBanned ? '<span class="badge badge-rejected">BANNED</span>' : '<span class="badge badge-approved">ACTIVE</span>'}</td>
-      <td>
-        <button class="small-btn small-add" onclick="adminAddBalance('${u.uid}','${u.username}')">+₹</button>
-        <button class="small-btn small-ban" onclick="adminBan('${u.uid}', ${u.isBanned ? 'true' : 'false'})">${u.isBanned?'Unban':'Ban'}</button>
-        <button class="small-btn small-delete" onclick="adminDeleteUser('${u.uid}','${u.username}','${u.email}')">🗑️</button>
-      </td>
-    </tr>`;
+    if (!pwd) pwdDisplay = `<span style="opacity:0.5;font-size:11px;">not set</span> <button class="small-btn small-pwd" style="padding:3px 8px;font-size:10px;margin-left:4px;" onclick="adminSetPassword('${u.uid}', '${u.username}')">🔑 Set</button>`;
+    else pwdDisplay = `<span class="pwd-text" id="pwd-${u.uid}">••••••</span> <button class="small-btn" style="background:#667eea;color:#fff;padding:3px 8px;font-size:10px;margin-left:4px;" onclick="togglePwd('${u.uid}', '${pwd.replace(/'/g, "\\'")}')">👁️</button> <button class="small-btn small-pwd" style="padding:3px 8px;font-size:10px;margin-left:2px;" onclick="adminSetPassword('${u.uid}', '${u.username}')">🔑</button>`;
+    const bonusDisplay = (u.bonusBalance || 0) > 0 ? `<span style="color:#feca57;font-weight:600;">₹${u.bonusBalance} 🔒</span>` : `<span style="opacity:0.5;font-size:11px;">₹0</span>`;
+    return `<tr><td><strong>${u.username || 'Unknown'}</strong></td><td style="font-size:11px;">${u.email || '-'}</td><td style="font-family:monospace;font-size:11px;">${u.mobile || '-'}</td><td>${pwdDisplay}</td><td><span class="ref-code-badge">${u.referralCode}</span></td><td>₹${u.balance || 0}</td><td>${bonusDisplay}</td><td>${u.isBanned ? '<span class="badge badge-rejected">BANNED</span>' : '<span class="badge badge-approved">ACTIVE</span>'}</td><td><button class="small-btn small-add" onclick="adminAddBalance('${u.uid}','${u.username}')">+₹</button> <button class="small-btn small-ban" onclick="adminBan('${u.uid}', ${u.isBanned ? 'true' : 'false'})">${u.isBanned?'Unban':'Ban'}</button> <button class="small-btn small-delete" onclick="adminDeleteUser('${u.uid}','${u.username}','${u.email}')">🗑️</button></td></tr>`;
   }).join('');
 }
 
 function renderReferrals(refs) {
-  const tbody = document.getElementById('referralsTable');
-  if (!tbody) return;
-  if (!refs || refs.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;opacity:0.5;">No referrals yet</td></tr>';
-    return;
-  }
-  tbody.innerHTML = refs.map(r => `
-    <tr>
-      <td><strong>${r.referrerName || 'Unknown'}</strong><br><span class="ref-code-badge" style="font-size:10px;">${r.referrerCode || '-'}</span></td>
-      <td><strong>${r.referredName || 'Unknown'}</strong></td>
-      <td style="color:#66bb6a;font-weight:600;">+₹${r.referrerReward || 0}</td>
-      <td style="color:#feca57;font-weight:600;">+₹${r.referredReward || 0} 🔒</td>
-      <td style="font-family:monospace;font-size:11px;">${r.referredMobile || '-'}</td>
-      <td style="font-size:11px;">${r.createdAt ? new Date(r.createdAt).toLocaleString() : '-'}</td>
-    </tr>
-  `).join('');
+  const tbody = document.getElementById('referralsTable'); if (!tbody) return;
+  if (!refs || refs.length === 0) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;opacity:0.5;">No referrals yet</td></tr>'; return; }
+  tbody.innerHTML = refs.map(r => `<tr><td><strong>${r.referrerName || 'Unknown'}</strong><br><span class="ref-code-badge" style="font-size:10px;">${r.referrerCode || '-'}</span></td><td><strong>${r.referredName || 'Unknown'}</strong></td><td style="color:#66bb6a;font-weight:600;">+₹${r.referrerReward || 0}</td><td style="color:#feca57;font-weight:600;">+₹${r.referredReward || 0} 🔒</td><td style="font-family:monospace;font-size:11px;">${r.referredMobile || '-'}</td><td style="font-size:11px;">${r.createdAt ? new Date(r.createdAt).toLocaleString() : '-'}</td></tr>`).join('');
 }
 
 function togglePwd(uid, pwd) {
-  const el = document.getElementById('pwd-' + uid);
-  if (!el) return;
-  if (el.textContent === '••••••') {
-    el.textContent = pwd; el.style.color = '#feca57'; el.style.fontFamily = 'monospace';
-  } else { el.textContent = '••••••'; el.style.color = '#feca57'; }
+  const el = document.getElementById('pwd-' + uid); if (!el) return;
+  if (el.textContent === '••••••') { el.textContent = pwd; el.style.color = '#feca57'; el.style.fontFamily = 'monospace'; }
+  else { el.textContent = '••••••'; el.style.color = '#feca57'; }
 }
 
 async function adminSetPassword(uid, username) {
   if (!uid) return toast('Invalid user', 'error');
-  const pwd = prompt(`Set new password for "${username}" (min 6 chars):`);
-  if (!pwd) return;
+  const pwd = prompt(`Set new password for "${username}" (min 6 chars):`); if (!pwd) return;
   if (pwd.length < 6) return toast('Password min 6 chars', 'error');
-  try {
-    await db.ref('users/' + uid).update({ plainPassword: pwd });
-    toast(`✅ Password saved for ${username}`, 'success');
-  } catch (e) { toast('❌ ' + e.message, 'error'); }
+  try { await db.ref('users/' + uid).update({ plainPassword: pwd }); toast(`✅ Password saved for ${username}`, 'success'); }
+  catch (e) { toast('❌ ' + e.message, 'error'); }
 }
 
 function renderDeposits(deps) {
-  const tbody = document.getElementById('depositsTable');
-  if (!tbody) return;
-  if (!deps || deps.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;opacity:0.5;">No deposit requests</td></tr>';
-    return;
-  }
-  tbody.innerHTML = deps.map(d => {
-    const status = d.status || 'pending';
-    return `
-    <tr>
-      <td><strong>${d.username || 'Unknown'}</strong></td>
-      <td style="color:#66bb6a;font-weight:600;">₹${d.amount || 0}</td>
-      <td style="font-family:monospace;font-size:11px;color:#feca57;">${d.utr || '-'}</td>
-      <td><span class="badge badge-${status}">${status.toUpperCase()}</span></td>
-      <td style="font-size:11px;">${d.createdAt ? new Date(d.createdAt).toLocaleString() : '-'}</td>
-      <td>
-        ${status === 'pending' ? `
-          <button class="small-btn small-approve" onclick="adminDeposit('${d.key}','approved')">✅ Approve</button>
-          <button class="small-btn small-reject" onclick="adminDeposit('${d.key}','rejected')">❌ Reject</button>
-        ` : '<span style="opacity:0.5;font-size:11px;">✓ Done</span>'}
-      </td>
-    </tr>`;
-  }).join('');
+  const tbody = document.getElementById('depositsTable'); if (!tbody) return;
+  if (!deps || deps.length === 0) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;opacity:0.5;">No deposit requests</td></tr>'; return; }
+  tbody.innerHTML = deps.map(d => { const status = d.status || 'pending'; return `<tr><td><strong>${d.username || 'Unknown'}</strong></td><td style="color:#66bb6a;font-weight:600;">₹${d.amount || 0}</td><td style="font-family:monospace;font-size:11px;color:#feca57;">${d.utr || '-'}</td><td><span class="badge badge-${status}">${status.toUpperCase()}</span></td><td style="font-size:11px;">${d.createdAt ? new Date(d.createdAt).toLocaleString() : '-'}</td><td>${status === 'pending' ? `<button class="small-btn small-approve" onclick="adminDeposit('${d.key}','approved')">✅ Approve</button> <button class="small-btn small-reject" onclick="adminDeposit('${d.key}','rejected')">❌ Reject</button>` : '<span style="opacity:0.5;font-size:11px;">✓ Done</span>'}</td></tr>`; }).join('');
 }
 
 function renderWithdrawals(wds) {
-  const tbody = document.getElementById('withdrawalsTable');
-  if (!tbody) return;
-  if (!wds || wds.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;opacity:0.5;">No withdrawal requests</td></tr>';
-    return;
-  }
+  const tbody = document.getElementById('withdrawalsTable'); if (!tbody) return;
+  if (!wds || wds.length === 0) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;opacity:0.5;">No withdrawal requests</td></tr>'; return; }
   tbody.innerHTML = wds.map(w => {
     const status = w.status || 'pending';
     const bank = w.bank || {};
-    const holder = bank.accountHolder || '-';
-    const account = bank.accountNumber || '-';
-    const ifsc = bank.ifsc || '-';
-    const bankName = bank.bankName || '-';
-    return `
-    <tr>
-      <td><strong>${w.username || 'Unknown'}</strong></td>
-      <td>
-        <div class="bank-cell">
-          <div>👤 ${holder}</div>
-          <div>🏦 ${bankName}</div>
-          <div>💳 A/C: ${account} <button class="small-btn small-copy" onclick="copyText('${account}')">📋</button></div>
-          <div>🔖 IFSC: ${ifsc} <button class="small-btn small-copy" onclick="copyText('${ifsc}')">📋</button></div>
-        </div>
-      </td>
-      <td style="color:#fb8c00;font-weight:600;">₹${w.amount || 0}</td>
-      <td><span class="badge badge-${status}">${status.toUpperCase()}</span></td>
-      <td style="font-size:11px;">${w.createdAt ? new Date(w.createdAt).toLocaleString() : '-'}</td>
-      <td>
-        ${status === 'pending' ? `
-          <button class="small-btn small-approve" onclick="adminWD('${w.key}','approved')">✅ Approve</button>
-          <button class="small-btn small-reject" onclick="adminWD('${w.key}','rejected')">❌ Reject</button>
-        ` : '<span style="opacity:0.5;font-size:11px;">✓ Done</span>'}
-      </td>
-    </tr>`;
+    const holder = bank.accountHolder || '-'; const account = bank.accountNumber || '-'; const ifsc = bank.ifsc || '-'; const bankName = bank.bankName || '-';
+    return `<tr><td><strong>${w.username || 'Unknown'}</strong></td><td><div class="bank-cell"><div>👤 ${holder}</div><div>🏦 ${bankName}</div><div>💳 A/C: ${account} <button class="small-btn small-copy" onclick="copyText('${account}')">📋</button></div><div>🔖 IFSC: ${ifsc} <button class="small-btn small-copy" onclick="copyText('${ifsc}')">📋</button></div></div></td><td style="color:#fb8c00;font-weight:600;">₹${w.amount || 0}</td><td><span class="badge badge-${status}">${status.toUpperCase()}</span></td><td style="font-size:11px;">${w.createdAt ? new Date(w.createdAt).toLocaleString() : '-'}</td><td>${status === 'pending' ? `<button class="small-btn small-approve" onclick="adminWD('${w.key}','approved')">✅ Approve</button> <button class="small-btn small-reject" onclick="adminWD('${w.key}','rejected')">❌ Reject</button>` : '<span style="opacity:0.5;font-size:11px;">✓ Done</span>'}</td></tr>`;
   }).join('');
 }
 
 function copyText(text) {
   if (!text) return;
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(text).then(() => toast('✅ Copied: ' + text, 'success')).catch(() => legacyCopy(text));
-  } else legacyCopy(text);
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(() => toast('✅ Copied: ' + text, 'success')).catch(() => legacyCopy(text));
+  else legacyCopy(text);
 }
 
 function renderTx(txs) {
-  const tbody = document.getElementById('txTable');
-  if (!tbody) return;
-  if (!txs || txs.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:20px;opacity:0.5;">No transactions</td></tr>';
-    return;
-  }
-  tbody.innerHTML = txs.map(t => `
-    <tr>
-      <td>${t.username || '-'}</td>
-      <td>${t.type || '-'}</td>
-      <td style="color:${t.amount>0?'#66bb6a':'#ef5350'};font-weight:600;">${t.amount>0?'+':''}₹${t.amount}</td>
-      <td>${t.game || '-'}</td>
-      <td style="font-size:11px;">${t.time ? new Date(t.time).toLocaleString() : '-'}</td>
-    </tr>`).join('');
+  const tbody = document.getElementById('txTable'); if (!tbody) return;
+  if (!txs || txs.length === 0) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:20px;opacity:0.5;">No transactions</td></tr>'; return; }
+  tbody.innerHTML = txs.map(t => `<tr><td>${t.username || '-'}</td><td>${t.type || '-'}</td><td style="color:${t.amount>0?'#66bb6a':'#ef5350'};font-weight:600;">${t.amount>0?'+':''}₹${t.amount}</td><td>${t.game || '-'}</td><td style="font-size:11px;">${t.time ? new Date(t.time).toLocaleString() : '-'}</td></tr>`).join('');
 }
 
-async function adminBan(uid, currentBan) {
-  if (!uid) return toast('Invalid user', 'error');
-  try {
-    await db.ref('users/' + uid).update({ isBanned: !currentBan });
-    toast(!currentBan ? '🚫 User banned' : '✅ User unbanned', 'success');
-  } catch (e) { toast('❌ ' + e.message, 'error'); }
-}
+async function adminBan(uid, currentBan) { if (!uid) return toast('Invalid user', 'error'); try { await db.ref('users/' + uid).update({ isBanned: !currentBan }); toast(!currentBan ? '🚫 User banned' : '✅ User unbanned', 'success'); } catch (e) { toast('❌ ' + e.message, 'error'); } }
 
 async function adminAddBalance(uid, username) {
   if (!uid) return toast('Invalid user', 'error');
-  const amt = prompt('Amount to add (use - for deduct):');
-  if (!amt || isNaN(amt)) return;
+  const amt = prompt('Amount to add (use - for deduct):'); if (!amt || isNaN(amt)) return;
   const num = parseInt(amt);
-  try {
-    await db.ref('users/' + uid).child('balance').transaction(c => (c || 0) + num);
-    await addTransaction(uid, username, 'admin_adjust', num, 'Admin');
-    toast('✅ Balance adjusted', 'success');
-  } catch (e) { toast('❌ ' + e.message, 'error'); }
+  try { await db.ref('users/' + uid).child('balance').transaction(c => (c || 0) + num); await addTransaction(uid, username, 'admin_adjust', num, 'Admin'); toast('✅ Balance adjusted', 'success'); }
+  catch (e) { toast('❌ ' + e.message, 'error'); }
 }
 
 async function adminDeposit(key, status) {
   if (!key || key === 'undefined') return toast('❌ Invalid deposit', 'error');
   try {
-    const depRef = db.ref('deposits/' + key);
-    const snap = await depRef.get();
+    const depRef = db.ref('deposits/' + key); const snap = await depRef.get();
     if (!snap.exists()) return toast('❌ Deposit not found', 'error');
     const d = snap.val();
     if ((d.status || 'pending') !== 'pending') return toast('⚠️ Already ' + d.status, 'error');
@@ -2906,8 +2183,7 @@ async function adminDeposit(key, status) {
 async function adminWD(key, status) {
   if (!key || key === 'undefined') return toast('❌ Invalid withdrawal', 'error');
   try {
-    const wdRef = db.ref('withdrawals/' + key);
-    const snap = await wdRef.get();
+    const wdRef = db.ref('withdrawals/' + key); const snap = await wdRef.get();
     if (!snap.exists()) return toast('❌ Withdrawal not found', 'error');
     const w = snap.val();
     if ((w.status || 'pending') !== 'pending') return toast('⚠️ Already ' + w.status, 'error');
@@ -2917,10 +2193,7 @@ async function adminWD(key, status) {
       await db.ref('users/' + w.uid).child('balance').transaction(c => (c || 0) + (w.amount || 0));
       await addTransaction(w.uid, w.username || 'Unknown', 'refund', w.amount || 0, 'WD Rejected');
       toast('❌ Rejected & refunded', 'info');
-    } else {
-      await db.ref('users/' + w.uid).child('totalWithdraw').transaction(c => (c || 0) + (w.amount || 0));
-      toast('✅ Approved', 'success');
-    }
+    } else { await db.ref('users/' + w.uid).child('totalWithdraw').transaction(c => (c || 0) + (w.amount || 0)); toast('✅ Approved', 'success'); }
   } catch (e) { toast('❌ Error: ' + e.message, 'error'); }
 }
 
@@ -2940,21 +2213,9 @@ async function adminDeleteUser(uid, username, email) {
     }
     await db.ref('users/' + uid).remove();
     if (username && username !== 'Unknown') await db.ref('usernames/' + username.toLowerCase()).remove().catch(() => {});
-    try {
-      const txSnap = await db.ref('transactions').orderByChild('uid').equalTo(uid).get();
-      const ps = []; txSnap.forEach(child => ps.push(db.ref('transactions/' + child.key).remove()));
-      await Promise.all(ps);
-    } catch (e) {}
-    try {
-      const depSnap = await db.ref('deposits').orderByChild('uid').equalTo(uid).get();
-      const ps = []; depSnap.forEach(child => ps.push(db.ref('deposits/' + child.key).remove()));
-      await Promise.all(ps);
-    } catch (e) {}
-    try {
-      const wdSnap = await db.ref('withdrawals').orderByChild('uid').equalTo(uid).get();
-      const ps = []; wdSnap.forEach(child => ps.push(db.ref('withdrawals/' + child.key).remove()));
-      await Promise.all(ps);
-    } catch (e) {}
+    try { const txSnap = await db.ref('transactions').orderByChild('uid').equalTo(uid).get(); const ps = []; txSnap.forEach(child => ps.push(db.ref('transactions/' + child.key).remove())); await Promise.all(ps); } catch (e) {}
+    try { const depSnap = await db.ref('deposits').orderByChild('uid').equalTo(uid).get(); const ps = []; depSnap.forEach(child => ps.push(db.ref('deposits/' + child.key).remove())); await Promise.all(ps); } catch (e) {}
+    try { const wdSnap = await db.ref('withdrawals').orderByChild('uid').equalTo(uid).get(); const ps = []; wdSnap.forEach(child => ps.push(db.ref('withdrawals/' + child.key).remove())); await Promise.all(ps); } catch (e) {}
     toast(`✅ User "${username}" deleted`, 'success');
   } catch (e) { toast('❌ Delete failed: ' + e.message, 'error'); }
 }
