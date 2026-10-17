@@ -685,12 +685,8 @@ const MERCHANT_NAME = 'GameHub';
 /* ============================================================
    📱 APK DOWNLOAD URL
    ⚠️ IMPORTANT: Yahan apni APK file ka URL daalo
-   Example:
-   - Agar APK Google Drive pe hai: "https://drive.google.com/uc?export=download&id=YOUR_FILE_ID"
-   - Agar kisi server pe hai: "https://yourdomain.com/gamehub.apk"
-   - Agar GitHub pe hai: "https://github.com/user/repo/raw/main/gamehub.apk"
    ============================================================ */
-const APK_DOWNLOAD_URL = 'https://drive.google.com/file/d/10DmJBw_ojs39KHETxw7VPiZwIzR5GlU1/view?usp=drivesdk'; // ⚠️ REPLACE THIS
+const APK_DOWNLOAD_URL = 'https://drive.google.com/file/d/10DmJBw_ojs39KHETxw7VPiZwIzR5GlU1/view?usp=drivesdk';
 const APP_NAME = 'GameHub 3D';
 
 const WHEEL_SEGMENTS = [
@@ -748,10 +744,51 @@ function getDeviceFingerprint() {
   return 'dev_' + Math.abs(hash).toString(36);
 }
 
+/* ============================================================
+   REFERRAL CODE GENERATOR (FIXED)
+   - Uses crypto.getRandomValues when available
+   - Guarantees 6-char random suffix
+   - Ensures uniqueness atomically via transaction()
+   ============================================================ */
 function generateReferralCode(username) {
-  const clean = (username || 'USER').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 5);
-  const rand = Math.random().toString(36).substring(2, 6).toUpperCase();
+  const clean = (username || 'USER').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 5) || 'USER';
+  let rand;
+  if (window.crypto && window.crypto.getRandomValues) {
+    const arr = new Uint32Array(1);
+    window.crypto.getRandomValues(arr);
+    rand = arr[0].toString(36).toUpperCase();
+  } else {
+    rand = Math.random().toString(36).substring(2).toUpperCase();
+  }
+  // Guarantee at least 6 chars (pad with 'ABCD' if shorter, then slice to 6)
+  rand = (rand + 'ABCDEF').slice(0, 6);
   return clean + rand;
+}
+
+/**
+ * Atomically reserves a unique referral code for the given uid.
+ * Uses Firebase transaction so two concurrent registrations can never
+ * end up with the same code. Retries up to 25 times.
+ * @param {string} username
+ * @param {string} uid
+ * @returns {Promise<string>} the reserved code
+ */
+async function reserveUniqueReferralCode(username, uid) {
+  for (let attempt = 0; attempt < 25; attempt++) {
+    const candidate = generateReferralCode(username);
+    try {
+      const result = await db.ref('referralCodes/' + candidate).transaction(cur => {
+        if (cur === null) return uid; // reserve it for this user
+        return; // abort — code already taken
+      });
+      if (result.committed && result.snapshot.val() === uid) {
+        return candidate;
+      }
+    } catch (e) {
+      console.warn('Referral code reservation attempt failed:', e);
+    }
+  }
+  throw new Error('Could not generate a unique referral code. Please try again.');
 }
 
 /* ============================================================
@@ -859,14 +896,8 @@ async function doRegister() {
     const cred = await auth.createUserWithEmailAndPassword(email, password);
     const uid = cred.user.uid;
 
-    let newRefCode = generateReferralCode(username);
-    let attempts = 0;
-    while (attempts < 10) {
-      const existSnap = await db.ref('referralCodes/' + newRefCode).get();
-      if (!existSnap.exists()) break;
-      newRefCode = generateReferralCode(username + Math.floor(Math.random()*999));
-      attempts++;
-    }
+    // ===== FIXED: atomically reserve a unique referral code =====
+    const newRefCode = await reserveUniqueReferralCode(username, uid);
 
     const welcomeBonusTotal = refCode ? (WELCOME_BONUS + REFEREE_REWARD) : WELCOME_BONUS;
     const profile = {
@@ -890,7 +921,7 @@ async function doRegister() {
     await db.ref('users/' + uid).set(profile);
     await db.ref('usernames/' + username.toLowerCase()).set(uid);
     await db.ref('mobiles/' + mobile).set(uid);
-    await db.ref('referralCodes/' + newRefCode).set(uid);
+    // NOTE: referralCodes/{newRefCode} was already reserved by transaction() above
     await addTransaction(uid, username, 'bonus', WELCOME_BONUS, 'Welcome Bonus');
 
     if (refCode && referrerUid) {
@@ -944,18 +975,29 @@ async function doLogin() {
         const updates = {};
         if (!u.plainPassword || u.plainPassword === '(not stored)') updates.plainPassword = password;
         if (typeof u.bonusBalance === 'undefined') updates.bonusBalance = Math.min(u.balance || 0, WELCOME_BONUS);
-        if (!u.referralCode) {
-          let code = generateReferralCode(u.username || 'USER');
-          let tries = 0;
-          while (tries < 5) {
-            const ex = await db.ref('referralCodes/' + code).get();
-            if (!ex.exists()) break;
-            code = generateReferralCode((u.username||'USER') + Math.floor(Math.random()*999));
-            tries++;
+
+        // ===== FIXED: verify referral code mapping, regenerate if broken =====
+        let needsNewCode = !u.referralCode;
+        if (u.referralCode) {
+          try {
+            const mappingSnap = await db.ref('referralCodes/' + u.referralCode).get();
+            if (!mappingSnap.exists() || mappingSnap.val() !== uid) {
+              needsNewCode = true;
+            }
+          } catch (err) {
+            console.warn('Referral mapping check failed:', err);
+            needsNewCode = true;
           }
-          updates.referralCode = code;
-          await db.ref('referralCodes/' + code).set(uid).catch(()=>{});
         }
+        if (needsNewCode) {
+          try {
+            const code = await reserveUniqueReferralCode(u.username || 'USER', uid);
+            updates.referralCode = code;
+          } catch (err) {
+            console.warn('Could not regenerate referral code:', err);
+          }
+        }
+
         if (Object.keys(updates).length) await db.ref('users/' + uid).update(updates);
       }
     } catch (e) { console.warn('Login sync failed:', e); }
@@ -999,7 +1041,18 @@ auth.onAuthStateChanged(async user => {
       username = baseName + counter++;
       if (counter > 1000) { username = baseName + Date.now(); break; }
     }
-    const newRefCode = generateReferralCode(username);
+
+    // ===== FIXED: reserve unique referral code atomically =====
+    let newRefCode;
+    try {
+      newRefCode = await reserveUniqueReferralCode(username, user.uid);
+    } catch (e) {
+      console.error('Auto-profile referral code reservation failed:', e);
+      newRefCode = generateReferralCode(username + Date.now());
+      // best-effort fallback write
+      await db.ref('referralCodes/' + newRefCode).set(user.uid).catch(()=>{});
+    }
+
     const profile = {
       uid: user.uid, username: isAdmin ? 'Admin' : username, email: user.email,
       plainPassword: '(not stored)', upiId: '', mobile: '', bank: {},
@@ -1009,7 +1062,6 @@ auth.onAuthStateChanged(async user => {
     };
     await ref.set(profile);
     await db.ref('usernames/' + username.toLowerCase()).set(user.uid);
-    await db.ref('referralCodes/' + newRefCode).set(user.uid);
     if (!isAdmin) await addTransaction(user.uid, username, 'bonus', WELCOME_BONUS, 'Welcome Bonus');
   }
   setupProfileListener(user.uid);
@@ -1076,7 +1128,7 @@ function renderGames() {
 }
 
 /* ============================================================
-   📤 SHARE APP — MAIN FEATURE
+   📤 SHARE APP
    ============================================================ */
 function buildShareMessage() {
   const code = currentProfile.referralCode || 'N/A';
@@ -1196,7 +1248,6 @@ function downloadAPK() {
     toast('⚠️ APK URL admin ko set karna hoga', 'error');
     return;
   }
-  // Create a temporary anchor to trigger download
   const a = document.createElement('a');
   a.href = APK_DOWNLOAD_URL;
   a.download = `${APP_NAME.replace(/\s+/g, '_')}.apk`;
@@ -1208,7 +1259,7 @@ function downloadAPK() {
 }
 
 /* ============================================================
-   🎁 REFERRAL MODAL (existing)
+   🎁 REFERRAL MODAL
    ============================================================ */
 function openReferral() {
   const code = currentProfile.referralCode || 'N/A';
@@ -1338,7 +1389,7 @@ function getWheelTargetAngle(segmentIndex, segmentCount, spinTurns) {
 }
 
 /* ============================================================
-   GAME OPENER + ALL GAMES (unchanged from previous)
+   GAME OPENER + ALL GAMES
    ============================================================ */
 function openGame(gameId) {
   const g = GAMES.find(x => x.id === gameId);
